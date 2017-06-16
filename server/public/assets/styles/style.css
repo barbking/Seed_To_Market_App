@@ -1,0 +1,49 @@
+/*USE VW or VW percentage instead of px, eliminates alignment issues when changing view size*/
+
+/*.instructions .container h1 {
+    font-size: 24px;
+    font-weight: 700;
+}*/
+
+/*.instructions {
+    background-color: #333333;
+    color: #DDDDDD;
+}*/
+.btn-danger{
+    margin-left: 10px;
+}
+.container p{
+    margin-top : 14px;
+}
+
+.message {
+    padding: 10px 0;
+}
+
+.message p {
+    margin-left: 10px;
+}
+
+.message:nth-child(odd) {
+     background-color: #eeeeee;
+}
+
+.message:nth-child(even) {
+    background-color: #f8f8f8;
+}
+#entryForm {
+    margin-top: 14px;
+}
+
+#container {
+    margin-top: 10px;
+}
+#register {
+  align-items: center;
+  margin-left: 40vw;
+}
+#registerbackground {
+  background-color: #1D9E3C;
+  height: 100vh;
+  width: 100vw;
+}
