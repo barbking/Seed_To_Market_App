@@ -16,6 +16,9 @@ input {
 .btn-danger {
     margin-left: 10px;
 }
+.buttons {
+  padding: 10px;
+}
 .container p {
     margin-top : 14px;
 }
@@ -37,12 +40,21 @@ input {
 .message:nth-child(even) {
     background-color: #f8f8f8;
 }
+.vertical-line{
+     width: 45vw; /* Line width */
+     background-color: black; /* Line color */
+     height: 1px;
+
+   }
 #entryForm {
     margin-top: 14px;
 }
 
 #container {
     margin-top: 10px;
+}
+#farmpage {
+  margin-left: 10vw;
 }
 #register {
   align-items: center;
