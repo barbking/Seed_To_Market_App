@@ -3,9 +3,9 @@ myApp.controller('UserController', ['$http', '$location', function($http, $locat
   var vm = this;
   console.log('checking user');
   $http.get('/user').then(function(response) {
-      if(response.data.username) {
+      if(response.data.email) {
           // user has a curret session on the server
-          vm.userName = response.data.username;
+          vm.userName = response.data.name;
           console.log('User Data: ', vm.userName);
       } else {
           // user has no session, bounce them back to the login page

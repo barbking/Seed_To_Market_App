@@ -10,6 +10,11 @@ var session = require('express-session');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
+var suppliers = require('./routes/suppliers');
+var reports = require('./routes/reports');
+var planner = require('./routes/planner');
+var inventory = require('./routes/inventory');
+var farm = require('./routes/farm');
 
 
 app.use(bodyParser.json());
@@ -32,6 +37,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/farm', farm);
+app.use('/inventory', inventory);
+app.use('/planner', planner);
+app.use('/reports', reports);
+app.use('/suppliers', suppliers);
 app.use('/register', register);
 app.use('/user', user);
 app.use('/*', index);
