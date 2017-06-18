@@ -9,15 +9,18 @@
     background-color: #333333;
     color: #DDDDDD;
 }*/
-input{
+input {
   border: 1px solid black;
   border-radius: 5px;
 }
-.btn-danger{
+.btn-danger {
     margin-left: 10px;
 }
-.container p{
+.container p {
     margin-top : 14px;
+}
+.logout {
+  float: right;
 }
 .message {
     padding: 10px 0;

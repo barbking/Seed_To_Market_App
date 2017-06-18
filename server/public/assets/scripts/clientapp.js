@@ -24,7 +24,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "InventoryController as ic"
     })
     .when('/planner', {
-      templateUrl: '/views/inventory.html',
+      templateUrl: '/views/planner.html',
       controller: "PlannerController as pc"
     })
     .when('/reports', {
@@ -32,7 +32,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: "ReportsController as rc"
     })
     .when('/suppliers', {
-      templateUrl: '/views/reports.html',
+      templateUrl: '/views/suppliers.html',
       controller: "SuppliersController as sc"
     })
     .otherwise({

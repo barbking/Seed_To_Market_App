@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" ng-controller="NavbarController as nc">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Seed to Market</a>
@@ -11,5 +11,6 @@
       <li><a href="#reports">Reports</a></li>
       <li><a href="#suppliers">Suppliers</a></li>
     </ul>
+      <button class="btn logout btn-default" ng-click="nc.logout()">Log Out</button>
   </div>
 </nav>
