@@ -9,13 +9,16 @@
     background-color: #333333;
     color: #DDDDDD;
 }*/
+input{
+  border: 1px solid black;
+  border-radius: 5px;
+}
 .btn-danger{
     margin-left: 10px;
 }
 .container p{
     margin-top : 14px;
 }
-
 .message {
     padding: 10px 0;
 }
@@ -43,7 +46,8 @@
   margin-left: 40vw;
 }
 #registerbackground {
-  background-color: #1D9E3C;
+  background-color: #845bb8;
   height: 100vh;
   width: 100vw;
+  /*color: black;*/
 }

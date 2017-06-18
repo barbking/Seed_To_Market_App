@@ -2,13 +2,16 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
   var vm = this;
     vm.user = {
       email: '',
-      password: ''
+      name: '',
+      phone: '',
+      password: '',
+      newfarm: false
     };
     vm.message = '';
 
     vm.login = function() {
-      if(vm.user.username === '' || vm.user.password === '') {
-        vm.message = "Enter your email and password!";
+      if(vm.user.email === '' || vm.user.password === '')  {
+        vm.message = "Enter an e-mail and password!";
       } else {
         console.log('sending to server...', vm.user);
         $http.post('/', vm.user).then(function(response) {
@@ -26,8 +29,8 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
     };
 
     vm.registerUser = function() {
-      if(vm.user.email === '' || vm.user.password === '') {
-        vm.message = "Enter an e-mail and password!";
+      if(vm.user.email === '' || vm.user.name === '' || vm.user.phone === '' || vm.user.password === '' ){
+        vm.message = "No fields can be blank, try again.";
       } else {
         console.log('sending to server...', vm.user);
         $http.post('/register', vm.user).then(function(response) {
