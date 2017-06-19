@@ -8,7 +8,6 @@ var session = require('express-session');
 
 // Route includes
 var index = require('./routes/index');
-var user = require('./routes/user');
 var register = require('./routes/register');
 var suppliers = require('./routes/suppliers');
 var reports = require('./routes/reports');
@@ -43,7 +42,6 @@ app.use('/planner', planner);
 app.use('/reports', reports);
 app.use('/suppliers', suppliers);
 app.use('/register', register);
-app.use('/user', user);
 app.use('/*', index);
 
 // App Set //
