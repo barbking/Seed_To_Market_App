@@ -44,8 +44,23 @@ input {
      width: 45vw; /* Line width */
      background-color: black; /* Line color */
      height: 1px;
-
+     margin-top: 10px;
    }
+.wrap {
+      width:60vw;
+      height:15vh;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      /*margin:0 auto;*/
+}
+.left_col {
+      float:left;
+      width:30vw;
+}
+.right_col {
+      float:right;
+      width:30vw;
+}
 #entryForm {
     margin-top: 14px;
 }
@@ -55,6 +70,8 @@ input {
 }
 #farmpage {
   margin-left: 10vw;
+  line-height: 300%;
+  height: 50vh;
 }
 #register {
   align-items: center;
@@ -65,4 +82,28 @@ input {
   height: 100vh;
   width: 100vw;
   /*color: black;*/
+}
+
+
+form[name="editableForm"] > div {
+  height: auto;
+  padding: 5px 0;
+}
+
+form[name="editableForm"] .title {
+  display: inline-block;
+  font-weight: bold;
+  padding-top: 5px;
+  vertical-align: top;
+  min-width: 90px;
+}
+
+form[name="editableForm"] .editable {
+  display: inline-block;
+  padding-top: 5px;
+  vertical-align: top;
+}
+
+form[name="editableForm"] select {
+  width: 120px;
 }

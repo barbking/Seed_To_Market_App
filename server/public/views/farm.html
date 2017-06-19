@@ -9,69 +9,82 @@
         Edit
       </button>
     </div>
-    <div>
-      <span class="title">Farm name: </span>
-      <span editable-text="fc.farm.name" e-name="name" e-required>{{ fc.farm.name || 'empty' }}</span>
+    <div class="wrap">
+      <div class="left_col">
+        <div>
+          <span class="title">Farm name: </span>
+          <span editable-text="fc.farm.name" e-name="name" e-required>{{ fc.farm.name || 'empty' }}</span>
+        </div>
+        <div>
+          <span class="title">Address: </span>
+          <span editable-text="fc.farm.address" e-name="address" e-required>{{ fc.farm.address || 'empty' }}</span>
+        </div>
+      </div>
+      <div class="right_col">
+        <div>
+          <span class="title">City: </span>
+          <span editable-text="fc.farm.city" e-name="city" e-required>{{ fc.farm.city || 'empty' }}</span>
+        </div>
+        <div>
+          <span class="title">State: </span>
+          <span editable-text="fc.farm.state" e-name="state" e-required>{{ fc.farm.state || 'empty' }}</span>
+          <span class="title">ZIP: </span>
+          <span editable-text="fc.farm.zip" e-name="zip" e-required>{{ fc.farm.zip || 'empty' }}</span>
+        </div>
+      </div>
     </div>
-    <div>
-      <span class="title">Address: </span>
-      <span editable-text="fc.farm.address" e-name="address" e-required>{{ fc.farm.address || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">City: </span>
-      <span editable-text="fc.farm.city" e-name="city" e-required>{{ fc.farm.city || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">State: </span>
-      <span editable-text="fc.farm.state" e-name="state" e-required>{{ fc.farm.state || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">ZIP: </span>
-      <span editable-text="fc.farm.zip" e-name="zip" e-required>{{ fc.farm.zip || 'empty' }}</span>
-    </div>
+    <!-- <div class="vertical-line"></div> -->
+    <hr width="60%" align="left">
+    <div class="wrap">
+      <div class="left_col">
+        <div>
+          <span class="title">Primary Owner: </span>
+          <span editable-text="fc.farm.owner1" e-name="owner1" e-required>{{ fc.farm.owner1 || 'empty' }}</span>
+        </div>
+        <div>
+          <span class="title">Phone Number: </span>
+          <span editable-text="fc.farm.phone1" e-name="phone1" e-required>{{ fc.farm.phone1 || 'empty' }}</span>
+        </div>
+        <div>
+          <span class="title">Email: </span>
+          <span editable-text="fc.farm.email1" e-name="email1" e-required>{{ fc.farm.email1 || 'empty' }}</span>
+        </div>
+      </div>
+      <div class="right_col">
+        <div>
+          <span class="title">Other Owner: </span>
+          <span editable-text="fc.farm.owner2" e-name="owner2" e-required>{{ fc.farm.owner2 || 'empty' }}</span>
+        </div>
+        <div>
+          <span class="title">Phone Number: </span>
+          <span editable-text="fc.farm.phone2" e-name="phone2" e-required>{{ fc.farm.phone2 || 'empty' }}</span>
+        </div>
+        <div>
+          <span class="title">Email: </span>
+          <span editable-text="fc.farm.email2" e-name="email2" e-required>{{ fc.farm.email2 || 'empty' }}</span>
+        </div>
+      </div>
+    </div><br>
 
-    <div class="vertical-line" />
-    <!-- <hr width="60%" align="center"> -->
-
-    <div>
-      <span class="title">owner1: </span>
-      <span editable-text="fc.farm.owner1" e-name="owner1" e-required>{{ fc.farm.owner1 || 'empty' }}</span>
+  <!-- <div class="vertical-line"></div> -->
+    <hr width="60%" align="left">
+  <div class="wrap">
+    <div class="left_col">
+      <div>
+        <span class="title">Certifier: </span>
+        <span editable-text="fc.farm.certifier" e-name="certifier" e-required>{{ fc.farm.certifier || 'empty' }}</span>
+      </div>
+      <div>
+        <span class="title">Certifier Email: </span>
+        <span editable-text="fc.farm.certifierEmail" e-name="certifierEmail" e-required>{{ fc.farm.certifierEmail || 'empty' }}</span>
+      </div>
     </div>
-    <div>
-      <span class="title">owner2: </span>
-      <span editable-text="fc.farm.owner2" e-name="owner2" e-required>{{ fc.farm.owner2 || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">phone1: </span>
-      <span editable-text="fc.farm.phone1" e-name="phone1" e-required>{{ fc.farm.phone1 || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">phone1: </span>
-      <span editable-text="fc.farm.phone2" e-name="phone2" e-required>{{ fc.farm.phone2 || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">email1: </span>
-      <span editable-text="fc.farm.email1" e-name="email1" e-required>{{ fc.farm.email1 || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">email2: </span>
-      <span editable-text="fc.farm.email2" e-name="email2" e-required>{{ fc.farm.email2 || 'empty' }}</span>
-    </div>
-
-    <div class="vertical-line" />
-
-    <div>
-      <span class="title">certifier: </span>
-      <span editable-text="fc.farm.certifier" e-name="certifier" e-required>{{ fc.farm.certifier || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">certifierID: </span>
-      <span editable-text="fc.farm.certifierId" e-name="certifierId" e-required>{{ fc.farm.certifierId || 'empty' }}</span>
-    </div>
-    <div>
-      <span class="title">certifierEmail: </span>
-      <span editable-text="fc.farm.certifierEmail" e-name="certifierEmail" e-required>{{ fc.farm.certifierEmail || 'empty' }}</span>
-    </div>
+    <div class="right_col">
+      <div>
+        <span class="title">certifierID: </span>
+        <span editable-text="fc.farm.certifierId" e-name="certifierId" e-required>{{ fc.farm.certifierId || 'empty' }}</span>
+      </div>
+    </div><br>
 
     <div class="buttons">
       <!-- buttons to submit / cancel form -->
@@ -84,5 +97,6 @@
         </button>
       </span>
     </div>
+  </div>
   </form>
 </div>
