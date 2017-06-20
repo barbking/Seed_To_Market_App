@@ -34,4 +34,5 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', fun
       vm.seedcheck= "";
     };
 
+  vm.clearSeedInputs();
 }]);
