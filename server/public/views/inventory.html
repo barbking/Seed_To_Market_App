@@ -72,18 +72,26 @@
         </a>
     </td>
     <td>
-        <a  ng-click="sortType = 'NonGMO'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'non_gmo'; sortReverse = !sortReverse">
           NonGMO
-          <span ng-show="sortType == 'NonGMO' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'NonGMO' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'non_gmo' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'non_gmo' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
 
     <td>
-        <a  ng-click="sortType = 'seed_check'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+          Supplier
+          <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+
+    <td>
+        <a  ng-click="sortType = 'seed_check_sources'; sortReverse = !sortReverse">
           Seed Check
-          <span ng-show="sortType == 'seed_check' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'seed_check' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'seed_check_sources' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'seed_check_sources' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
   </tr>
