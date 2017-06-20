@@ -3,6 +3,127 @@
 <!-- crop	variety	purchase date	Lot #	Quantity	Item Code	supplier_id	Organic: T/F	Untreated: T/F	NonGMO: T/F	seed_check_sources	receipt_img_url -->
 <button type="button" ng-click="ic.open()">Add Seed</button>
 
+
+
+
+
+
+
+
+
+<div class="container">
+  <div class="alert alert-info">
+          Sort Type: {{ ic.sortType }}
+          <br>
+          Sort Reverse: {{ ic.sortReverse }}
+          <br>
+          Search Query: {{ ic.searchSeeds }}
+  </div>
+<table class="table table-bordered table-striped">
+<thead>
+  <tr>
+    <td>
+        <a href="#" ng-click="sortType = 'crop'; sortReverse = !sortReverse">
+          Crop
+          <span ng-show="sortType == 'crop' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'crop' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a href="#" ng-click="sortType = 'variety'; sortReverse = !sortReverse">
+          Variety
+          <span ng-show="sortType == 'variety' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'variety' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a href="#" ng-click="sortType = 'purchase_date'; sortReverse = !sortReverse">
+          Date
+          <span ng-show="sortType == 'purchase_date' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'purchase_date' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a href="#" ng-click="sortType = 'lot_number'; sortReverse = !sortReverse">
+          Lot Number
+          <span ng-show="sortType == 'lot_number' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'lot_number' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a href="#" ng-click="sortType = 'quanity'; sortReverse = !sortReverse">
+          Quanity
+          <span ng-show="sortType == 'quanity' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'quanity' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+
+    <td>
+        <a href="#" ng-click="sortType = 'item_code'; sortReverse = !sortReverse">
+          Item Code
+          <span ng-show="sortType == 'item_code' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'item_code' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a href="#" ng-click="sortType = 'organic'; sortReverse = !sortReverse">
+          Organic
+          <span ng-show="sortType == 'organic' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'organic' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a href="#" ng-click="sortType = 'untreated'; sortReverse = !sortReverse">
+          Untreated
+          <span ng-show="sortType == 'untreated' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'untreated' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a href="#" ng-click="sortType = 'NonGMO'; sortReverse = !sortReverse">
+          NonGMO
+          <span ng-show="sortType == 'NonGMO' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'NonGMO' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+
+    <td>
+        <a href="#" ng-click="sortType = 'seed_check'; sortReverse = !sortReverse">
+          Seed Check
+          <span ng-show="sortType == 'seed_check' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'seed_check' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+  </tr>
+</thead>
+  <tbody>
+    <tr ng-repeat="seed in ic.inventory | orderBy:sortType:sortReverse">
+      <td>{{ seed.crop }}</td>
+      <td>{{ seed.variety }}</td>
+      <td>{{ seed.purchasedate }}</td>
+      <td>{{ seed.lotnum }}</td>
+      <td>{{ seed.quantity }}</td>
+      <td>{{ seed.itemcode }}</td>
+      <td>{{ seed.organic}}</td>
+      <td>{{ seed.untreated }}</td>
+      <td>{{ seed.nongmo }}</td>
+      <td>{{ seed.seedcheck }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- add seed modal -->
 <div class="add-seed-modal container">
   <script type="text/ng-template" id="addSeedModalContent.html">
