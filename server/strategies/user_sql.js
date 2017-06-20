@@ -34,7 +34,7 @@ pool.on('connect', function () {
 });
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user.user_id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -49,7 +49,7 @@ passport.deserializeUser(function(id, done) {
 
     var user = {};
 
-    client.query("SELECT * FROM users WHERE id = $1", [id], function(err, result) {
+    client.query("SELECT * FROM users WHERE user_id = $1", [id], function(err, result) {
 
       // Handle Errors
       if(err) {

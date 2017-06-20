@@ -29,7 +29,7 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
     };
 
     vm.registerUser = function() {
-      if(vm.user.email === '' || vm.user.name === '' || vm.user.phone === '' || vm.user.password === '' ){
+      if(vm.user.email === '' || vm.user.user_name === '' || vm.user.phone_number === '' || vm.user.password === '' ){
         vm.message = "No fields can be blank, try again.";
       } else {
         console.log('sending to server...', vm.user);
