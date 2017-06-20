@@ -1,1 +1,21 @@
 <!-- InventoryController as ic -->
+
+<nav ng-include="'/views/templates/navbar.html'"></nav>
+<!-- crop	variety	purchase date	Lot #	Quantity	Item Code	supplier_id	Organic: T/F	Untreated: T/F	NonGMO: T/F	seed_check_sources	receipt_img_url -->
+<!-- add activity-modal -->
+  Crop: <input type="text" ng-model="ic.crop"><br>
+  Variety: <input type="text" ng-model="ic.variety"><br>
+  Purchase Date: <input type="date" ng-model="ic.puchasedate"><br>
+  Lot #: <input type="number" ng-model="ic.lotnum"><br>
+  Quantity: <input type="number" ng-model="ic.quantity"><br>
+  Item Code: <input type="number" ng-model="ic.itemcode"><br>
+  Organic: <input type="checkbox" ng-model="ic.organic">
+  Untreated: <input type="checkbox" ng-model="ic.untreated">
+  NonGMO: <input type="checkbox" ng-model="ic.nongmo"><br>
+  Seed Check Sources: <input type="text" ng-model="ic.seedcheck"><br>
+<button type="button" class="btn btn-default btn-success" ng-click="" >
+  Save
+</button>
+<button type="button" class="btn btn-default btn-danger" ng-click="">
+  Cancel
+</button>
