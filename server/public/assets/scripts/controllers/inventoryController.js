@@ -1,4 +1,4 @@
-myApp.controller('InventoryController', ['$http', '$location','seedService' function($http, $location, seedService) {
+myApp.controller('InventoryController', ['$http', '$location','seedService', function($http, $location, seedService) {
   var vm = this;
 
 
@@ -20,5 +20,18 @@ myApp.controller('InventoryController', ['$http', '$location','seedService' func
         //FILESTACK IMG URL GOES HERE
           console.log(itemToSend);
       };//end add Item
+
+    vm.clearSeedInputs = function (){
+      vm.crop = "";
+      vm.variety = "";
+      vm.purchasedate = "";
+      vm.lotnum = "";
+      vm.quantity = "";
+      vm.itemcode = "";
+      vm.organic = false;
+      vm.untreated = false;
+      vm.nongmo= false;
+      vm.seedcheck= "";
+    };
 
 }]);
