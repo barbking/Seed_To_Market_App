@@ -16,9 +16,9 @@ myApp.controller('FarmController', ['$http', '$filter', '$location', function($h
       email2: 'test@gmail.com',
       certifier: 'xxxx',
       certifierId: 'xxxx',
-      certifierEmail: 'certifier@gamil.com'
+      certifierEmail: 'certifier@gmail.com'
     };
-    
+
     vm.loadGroups = function() {
       console.log('in loadGroups');
       return vm.groups.length ? null : $http.get('/groups').success(function(data) {
