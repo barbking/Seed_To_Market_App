@@ -32,7 +32,7 @@ CREATE TABLE seeds (
 	variety VARCHAR(100),
 	purchase_date TIMESTAMP,
 	lot_number VARCHAR(100),
-	quanity INT,
+	quantity INT,
 	item_code VARCHAR(100),
 	supplier_id INT REFERENCES suppliers (supplier_id),
 	organic BOOLEAN,
