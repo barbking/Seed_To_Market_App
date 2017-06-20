@@ -14,7 +14,8 @@ myApp.controller('InventoryController', ['$http', '$location','seedService' func
           untreated:vm.untreated,
           NonGMO: vm.nongmo,
           seed_check: vm.seedcheck
-          };
+        };
+        //FILESTACK IMG URL GOES HERE
           console.log(itemToSend);
       };//end add Item
 
