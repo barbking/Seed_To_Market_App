@@ -1,21 +1,61 @@
 <!-- InventoryController as ic -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
 <!-- crop	variety	purchase date	Lot #	Quantity	Item Code	supplier_id	Organic: T/F	Untreated: T/F	NonGMO: T/F	seed_check_sources	receipt_img_url -->
-<!-- add activity-modal -->
-  Crop: <input type="text" ng-model="ic.crop"><br>
-  Variety: <input type="text" ng-model="ic.variety"><br>
-  Purchase Date: <input type="date" ng-model="ic.purchasedate"><br>
-  Lot #: <input type="number" ng-model="ic.lotnum"><br>
-  Quantity: <input type="number" ng-model="ic.quantity"><br>
-  Item Code: <input type="number" ng-model="ic.itemcode"><br>
-  Organic: <input type="checkbox" ng-model="ic.organic">
-  Untreated: <input type="checkbox" ng-model="ic.untreated">
-  NonGMO: <input type="checkbox" ng-model="ic.nongmo"><br>
-  Seed Check Sources: <input type="text" ng-model="ic.seedcheck"><br>
-  <!--add seed_check_source as parameter in function below-->
-<button type="button" class="btn btn-default btn-success" ng-click="ic.addNewSeed(12344)" >
-  Save
-</button>
-<button type="button" class="btn btn-default btn-danger" ng-click="ic.clearSeedInputs()">
-  Cancel
-</button>
+<button type="button" ng-click="ic.open()">Add Seed</button>
+
+<!-- add seed modal -->
+<div class="add-seed-modal container">
+  <script type="text/ng-template" id="addSeedModalContent.html">
+    <div class="modal-header">
+      <h3>Add a New Seed to Inventory</h3>
+    </div>
+    <div class="modal-body col-xs-12">
+      <div class="col-xs-12">
+        <label class="col-xs-4">Crop: </label>
+        <input type="text" ng-model="asmic.crop" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Variety: </label>
+        <input type="text" ng-model="asmic.variety" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Purchase Date: </label>
+        <input type="date" ng-model="asmic.purchasedate" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Lot #: </label>
+        <input type="text" ng-model="asmic.lotnum" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Quantity: </label>
+        <input type="text" ng-model="asmic.quantity" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Item Code: </label>
+        <input type="text" ng-model="asmic.itemcode" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-3">Organic: </label>
+        <label class="col-xs-3">Untreated: </label>
+        <label class="col-xs-3">NonGMO: </label>
+      </div>
+      <div class="col-xs-12">
+        <input type="checkbox" ng-model="asmic.organic" class="checkbox-seeds col-xs-3">
+        <input type="checkbox" ng-model="asmic.untreated" class="checkbox-seeds col-xs-3">
+        <input type="checkbox" ng-model="asmic.nongmo" class="checkbox-seeds col-xs-3">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-6">Seed Check Sources: </label>
+        <textarea rows="4" ng-model="asmic.seedcheck" class="col-xs-6"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-success" ng-click="asmic.addNewSeed(12344)" >
+        Save
+      </button>
+      <button type="button" class="btn btn-default btn-danger" ng-click="asmic.clearSeedInputs()">
+        Cancel
+      </button>
+    </div>
+  </script>
+</div>
