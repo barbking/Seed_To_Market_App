@@ -20,9 +20,13 @@ router.post('/', function(req, res, next) {
   var saveUser = {
     email: req.body.email,
     password: encryptLib.encryptPassword(req.body.password),
-    name: req.body.name,
-    phone: req.body.phone,
-    newfarm: req.body.newfarm
+    user_name: req.body.user_name,
+    phone_number: req.body.phone_number,
+    farm_name: req.body.farm_name,
+    farm_address: req.body.farm_address,
+    farm_city: req.body.farm_city,
+    farm_state: req.body.farm_state,
+    farm_zip: req.body.farm_zip
   };
   console.log('new user:', saveUser);
 
@@ -31,8 +35,8 @@ router.post('/', function(req, res, next) {
       console.log("Error connecting: ", err);
       next(err);
     }
-    client.query("INSERT INTO users (email, password, name, phone, newfarm) VALUES ($1, $2, $3, $4, $5) RETURNING id",
-      [saveUser.email, saveUser.password, saveUser.name, saveUser.phone, saveUser.newfarm ],
+    client.query("INSERT INTO users (email, password, user_name, phone_number, farm_name, farm_address, farm_city, farm_state, farm_zip) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING user_id",
+      [saveUser.email, saveUser.password, saveUser.user_name, saveUser.phone_number, saveUser.farm_name, saveUser.farm_address, saveUser.farm_city, saveUser.farm_state, saveUser.farm_zip ],
         function (err, result) {
           client.end();
 
