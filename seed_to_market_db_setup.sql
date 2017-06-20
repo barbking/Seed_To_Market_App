@@ -49,7 +49,7 @@ CREATE TABLE planted (
 	date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	location TEXT,
 	date_planted TIMESTAMP,
-	quanity INT,
+	quantity INT,
 	area_sqft INT,
 	notes TEXT,
 	harvest_complete BOOLEAN,
