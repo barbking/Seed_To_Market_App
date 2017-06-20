@@ -8,9 +8,9 @@
   Lot #: <input type="number" ng-model="ic.lotnum"><br>
   Quantity: <input type="number" ng-model="ic.quantity"><br>
   Item Code: <input type="number" ng-model="ic.itemcode"><br>
-  Organic: <input type="checkbox" value="false" ng-model="ic.organic">
-  Untreated: <input type="checkbox" value="false" ng-model="ic.untreated">
-  NonGMO: <input type="checkbox" value="false" ng-model="ic.nongmo"><br>
+  Organic: <input type="checkbox" ng-model="ic.organic">
+  Untreated: <input type="checkbox" ng-empty=false ng-model="ic.untreated">
+  NonGMO: <input type="checkbox" ng-empty=false ng-model="ic.nongmo"><br>
   Seed Check Sources: <input type="text" ng-model="ic.seedcheck"><br>
   <!--add seed_check_source as parameter in function below-->
 <button type="button" class="btn btn-default btn-success" ng-click="ic.addNewSeed(12344)" >
