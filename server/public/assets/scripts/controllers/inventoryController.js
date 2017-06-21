@@ -9,7 +9,7 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
   vm.searchSeeds   = '';     // set the default search/filter term
 
   // create the list of seeds
-  
+
   vm.inventory = seedService.inventory;
 
 
@@ -30,6 +30,11 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
       }
     }); // end modalInstance
   }; // end newActivity
+
+
+
+
+
 }]);
 
 
@@ -49,7 +54,7 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
       untreated:vm.untreated,
       non_gmo: vm.nongmo,
       seed_check_sources: vm.seedcheck,
-      receipt_url: "this will be the url"
+      receipt_url: vm.file.url
     };
     //FILESTACK IMG URL GOES HERE
     console.log(itemToSend);
@@ -72,6 +77,22 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
     vm.seedcheck= "";
 
     $uibModalInstance.close();
+  };
+
+  vm.showPicker = function(){
+    var client = filestack.init('ANxEyrmJzQsSnoC7PFCcXz');
+    client.pick({
+      accept: 'image/*',
+      maxFiles: 1,
+      storeTo: {
+        location: 's3'
+      }
+    }).then(function(result) {
+      console.log(result.filesUploaded[0]);
+      vm.file = result.filesUploaded[0];
+      console.log(vm.file.url);
+      //console.log("result.filesUploaded", JSON.stringify(result.filesUploaded));
+    });
   };
 
   vm.clearSeedInputs();
