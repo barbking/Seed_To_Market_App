@@ -22,7 +22,8 @@ CREATE TABLE suppliers (
 	city VARCHAR(100),
 	state VARCHAR(2),
 	zip INT,
-	description TEXT
+	description TEXT,
+	user_id INT REFERENCES users (user_id)
 );
 
 CREATE TABLE seeds (

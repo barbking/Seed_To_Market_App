@@ -1,7 +1,8 @@
 //   Seed Service
 myApp.service('seedService', ['$http', function($http) {
+  var self = this;
 
-  this.addSeed = function(seedToSend){
+  self.addSeed = function(seedToSend){
     console.log('in addSeed service with seedToSend-->', seedToSend);
     return $http({
       method:'POST',
@@ -13,7 +14,7 @@ myApp.service('seedService', ['$http', function($http) {
     });
   };//end addSeed POST
 
-  this.getSeeds = function () {
+  self.getSeeds = function () {
     console.log('in getSeeds service');
     return $http ({
       method: 'GET',
