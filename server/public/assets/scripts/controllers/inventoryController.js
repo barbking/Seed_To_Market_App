@@ -9,17 +9,6 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
   vm.searchSeeds   = '';     // set the default search/filter term
 
   // create the list of seeds
-  vm.inventory = [
-  { crop: 'Beans', variety: 'Green', quanity: 100, date:'4/1', supplier:'seedbank' },
-  { crop: 'Onions', variety: 'red', quanity: 20, date:'4/2', supplier:'seedbank2' },
-  { crop: 'Cucumber', variety: 'large', quanity: 200, date:'4/10', supplier:'seedbank3' },
-  { crop: 'tomato', variety: 'russian', quanity: 2, date:'4/15', supplier:'seedbank4' }
-
-  ];
-
-
-
-
 
 
 
