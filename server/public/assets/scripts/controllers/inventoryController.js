@@ -2,14 +2,11 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
   var vm = this;
 
 
-
-
   vm.sortType     = 'crop'; // set the default sort type
   vm.sortReverse  = false;  // set the default sort order
   vm.searchSeeds   = '';     // set the default search/filter term
 
   // create the list of seeds
-  
   vm.inventory = seedService.inventory;
 
 

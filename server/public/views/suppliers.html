@@ -1,2 +1,98 @@
 <!-- SuppliersController as sc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
+
+
+
+<div class="container">
+  <div class="alert alert-info">
+          Sort Type: {{ sortType }}
+          <br>
+          Sort Reverse: {{ sortReverse }}
+          <br>
+          Search Query: {{ searchSuppliers }}
+  </div>
+
+  <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+          <input type="text" class="form-control" placeholder="Search" ng-model="searchSuppliers">
+        </div>
+      </div>
+  </form>
+
+<table class="table table-bordered table-striped">
+<thead>
+  <tr>
+    <td>
+        <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+          Crop
+          <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a  ng-click="sortType = 'website'; sortReverse = !sortReverse">
+          Variety
+          <span ng-show="sortType == 'website' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'website' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a  ng-click="sortType = 'phone_number'; sortReverse = !sortReverse">
+          Date
+          <span ng-show="sortType == 'phone_number' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'phone_number' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a  ng-click="sortType = 'address'; sortReverse = !sortReverse">
+          Lot Number
+          <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a  ng-click="sortType = 'city'; sortReverse = !sortReverse">
+          Quanity
+          <span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a  ng-click="sortType = 'state'; sortReverse = !sortReverse">
+          Item Code
+          <span ng-show="sortType == 'state' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'state' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a  ng-click="sortType = 'zip'; sortReverse = !sortReverse">
+          Organic
+          <span ng-show="sortType == 'zip' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'zip' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+    <td>
+        <a  ng-click="sortType = 'description'; sortReverse = !sortReverse">
+          Untreated
+          <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+    </td>
+  </tr>
+</thead>
+  <tbody>
+    <tr ng-repeat="supplier in sc.supplier.list | orderBy:sortType:sortReverse | filter:searchSuppliers">
+      <td>{{ supplier.name }}</td>
+      <td>{{ supplier.website }}</td>
+      <td>{{ supplier.phone_number }}</td>
+      <td>{{ supplier.address }}</td>
+      <td>{{ supplier.city }}</td>
+      <td>{{ supplier.state }}</td>
+      <td>{{ supplier.zip}}</td>
+      <td>{{ supplier.description }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
