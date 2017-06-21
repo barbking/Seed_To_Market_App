@@ -1,6 +1,7 @@
 //   Seed Service
 myApp.service('seedService', ['$http', function($http) {
   var self = this;
+  
   //empty object as placeholder for data that will be returned
   self.inventory = { list: [] };
 

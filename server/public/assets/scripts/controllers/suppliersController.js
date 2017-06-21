@@ -1,6 +1,6 @@
 myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log', function ($http, $location,$uibModal,$log) {
   var vm = this;
-
+  // vm.supplierObject = {};
 
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
