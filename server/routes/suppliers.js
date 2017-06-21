@@ -21,8 +21,8 @@ router.get( '/getAll', function ( req, res ) {
   // verify authentication
   if ( req.isAuthenticated() ) {
     console.log( 'fetching suppliers' );
-    var suppliers = [];
     pool.connect(function(err, connection, done) {
+      var suppliers = [];
       if (err) {
         res.send(400);
       } else {
@@ -63,7 +63,6 @@ router.post( '/addSupplier', function ( req, res ) {
   // verify authentication
   if ( req.isAuthenticated() ) {
     console.log( 'adding supplier' );
-    var suppliers = [];
     pool.connect(function(err, connection, done) {
       if (err) {
         res.send(400);

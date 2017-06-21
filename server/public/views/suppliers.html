@@ -84,7 +84,7 @@
   </tr>
 </thead>
   <tbody>
-    <tr ng-repeat="supplier in sc.supplier.list | orderBy:sortType:sortReverse | filter:searchSuppliers">
+    <tr ng-repeat="supplier in sc.suppliers.list | orderBy:sortType:sortReverse | filter:searchSuppliers">
       <td>{{ supplier.name }}</td>
       <td>{{ supplier.website }}</td>
       <td>{{ supplier.phone_number }}</td>
