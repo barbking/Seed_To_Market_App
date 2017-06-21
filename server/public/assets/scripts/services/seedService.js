@@ -1,6 +1,9 @@
 //   Seed Service
 myApp.service('seedService', ['$http', function($http) {
   var self = this;
+  
+  //empty object as placeholder for data that will be returned
+  self.inventory = { list: [] };
 
   self.addSeed = function(seedToSend){
     console.log('in addSeed service with seedToSend-->', seedToSend);
@@ -10,19 +13,23 @@ myApp.service('seedService', ['$http', function($http) {
       data: seedToSend,
     }).then(function( response ) {
       console.log('in service for addSeed with response-->', response );
+      self.getSeeds();
       return response;
     });
   };//end addSeed POST
 
   self.getSeeds = function () {
     console.log('in getSeeds service');
-    return $http ({
+    $http ({
       method: 'GET',
       url: '/inventory',
-    }).then( function success(response) {
-      console.log( 'getSeeds resp:', response );
-      return response.data;
+    }).then( function (response) {
+      console.log( 'getSeeds resp:', response.data );
+      self.inventory.list = response.data;
+      console.log (self.inventory);
     });
   };//end getSeeds GET
+
+  self.getSeeds();
 
 }]);

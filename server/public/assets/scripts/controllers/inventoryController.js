@@ -9,22 +9,9 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
   vm.searchSeeds   = '';     // set the default search/filter term
 
   // create the list of seeds
-  vm.inventory = [
-  { crop: 'Beans', variety: 'Green', quanity: 100, date:'4/1', supplier:'seedbank' },
-  { crop: 'Onions', variety: 'red', quanity: 20, date:'4/2', supplier:'seedbank2' },
-  { crop: 'Cucumber', variety: 'large', quanity: 200, date:'4/10', supplier:'seedbank3' },
-  { crop: 'tomato', variety: 'russian', quanity: 2, date:'4/15', supplier:'seedbank4' }
 
-  ];
-  //get seed inventory from seedService
-  vm.getInventory = function(){
-    seedService.getSeeds().then(function(data){
-      console.log('in InventoryController getInventory',data);
-      vm.inventory = data;
-    });
-  };
+  vm.inventory = seedService.inventory;
 
-  vm.getInventory();
 
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
@@ -43,6 +30,11 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
       }
     }); // end modalInstance
   }; // end newActivity
+
+
+
+
+
 }]);
 
 
@@ -62,7 +54,7 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
       untreated:vm.untreated,
       non_gmo: vm.nongmo,
       seed_check_sources: vm.seedcheck,
-      receipt_url: "this will be the url"
+      receipt_url: vm.file.url
     };
     //FILESTACK IMG URL GOES HERE
     console.log(itemToSend);
@@ -85,6 +77,22 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
     vm.seedcheck= "";
 
     $uibModalInstance.close();
+  };
+
+  vm.showPicker = function(){
+    var client = filestack.init('ANxEyrmJzQsSnoC7PFCcXz');
+    client.pick({
+      accept: 'image/*',
+      maxFiles: 1,
+      storeTo: {
+        location: 's3'
+      }
+    }).then(function(result) {
+      console.log(result.filesUploaded[0]);
+      vm.file = result.filesUploaded[0];
+      console.log(vm.file.url);
+      //console.log("result.filesUploaded", JSON.stringify(result.filesUploaded));
+    });
   };
 
   vm.clearSeedInputs();
