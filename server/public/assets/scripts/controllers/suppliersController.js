@@ -2,6 +2,10 @@ myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log',
   var vm = this;
   // vm.supplierObject = {};
 
+  vm.sortType     = 'name'; // set the default sort type
+  vm.sortReverse  = false;  // set the default sort order
+  vm.searchSuppliers   = '';     // set the default search/filter term
+
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-supplier-modal' + parentSelector)) : undefined;
