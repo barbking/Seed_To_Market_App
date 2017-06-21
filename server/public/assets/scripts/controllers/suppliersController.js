@@ -1,6 +1,7 @@
 myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log','supplierService', function ($http, $location,$uibModal,$log,supplierService) {
   var vm = this;
-  // vm.supplierObject = {};
+  vm.suppliers = supplierService.suppliers;
+  supplierService.getSuppliers();
 
   vm.sortType     = 'name'; // set the default sort type
   vm.sortReverse  = false;  // set the default sort order
@@ -39,11 +40,25 @@ myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
       zip: vm.zip,
       description: vm.description
     };
-
-    console.log(itemToSend);
-    supplierService.addSupplier(itemToSend);
-
-    $uibModalInstance.close();
+    // check for empty fields
+    if ( vm.name === '' || vm.website === '' || vm.phone_number === '' || vm.address === '' || vm.city === '' || vm.state === '' || vm.zip === '' ) {
+      console.log( 'fields are empty' );
+      swal({
+        title: "Empty Fields!",
+        text: "Please enter all necessary fields!",
+        type: "error",
+        confirmButtonText: "Ok"
+      });
+    } else {
+      console.log(itemToSend);
+      supplierService.addSupplier(itemToSend);
+      $uibModalInstance.close();
+      swal({
+        title: "Supplier Added!",
+        type: "success",
+        confirmButtonText: "Ok"
+      });
+    }
   };//end add Item
 
 
