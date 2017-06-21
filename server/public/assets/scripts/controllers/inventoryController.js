@@ -46,7 +46,7 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
 }]);
 
 
-myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', function ( $uibModalInstance, $uibModal, $log ) {
+myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', function ( $uibModalInstance, $uibModal, $log, seedService ) {
   var vm = this;
 
   vm.addNewSeed = function(supplierId){
@@ -62,10 +62,11 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
       untreated:vm.untreated,
       non_gmo: vm.nongmo,
       seed_check_sources: vm.seedcheck,
-      //receipt_url:
+      receipt_url: "this will be the url"
     };
     //FILESTACK IMG URL GOES HERE
     console.log(itemToSend);
+    seedService.addSeed(itemToSend);
 
     $uibModalInstance.close();
   };//end add Item
