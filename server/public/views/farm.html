@@ -2,7 +2,7 @@
 <nav ng-include="'/views/templates/navbar.html'"></nav>
 
 <div id="farmpage">
-  <form editable-form name="fc.editableForm" onaftersave="vm.saveFarm()">
+  <form editable-form name="fc.editableForm" onaftersave="fc.saveFarm()">
     <div class="buttons">
       <!-- button to show form -->
       <button type="button" class="btn btn-default" ng-click="fc.editableForm.$show()" ng-show="!fc.editableForm.$visible">
@@ -13,28 +13,28 @@
       <div class="left_col">
         <div>
           <span class="title">Farm name: </span>
-          <span editable-text="fc.farm.name" e-name="name" e-required>{{ fc.farm.name || 'empty' }}</span>
+          <span editable-text="fc.farm.farm_name" e-name="name" e-required>{{ fc.farm.farm_name || 'empty' }}</span>
         </div>
         <div>
           <span class="title">Address: </span>
-          <span editable-text="fc.farm.address" e-name="address" e-required>{{ fc.farm.address || 'empty' }}</span>
+          <span editable-text="fc.farm.farm_address" e-name="address" e-required>{{ fc.farm.farm_address || 'empty' }}</span>
         </div>
       </div>
       <div class="right_col">
         <div>
           <span class="title">City: </span>
-          <span editable-text="fc.farm.city" e-name="city" e-required>{{ fc.farm.city || 'empty' }}</span>
+          <span editable-text="fc.farm.farm_city" e-name="city" e-required>{{ fc.farm.farm_city || 'empty' }}</span>
         </div>
         <div>
           <span class="title">State: </span>
-          <span editable-text="fc.farm.state" e-name="state" e-required>{{ fc.farm.state || 'empty' }}</span>
+          <span editable-text="fc.farm.farm_state" e-name="state" e-required>{{ fc.farm.farm_state || 'empty' }}</span>
           <span class="title">ZIP: </span>
-          <span editable-text="fc.farm.zip" e-name="zip" e-required>{{ fc.farm.zip || 'empty' }}</span>
+          <span editable-text="fc.farm.farm_zip" e-name="zip" e-required>{{ fc.farm.farm_zip || 'empty' }}</span>
         </div>
       </div>
     </div>
     <!-- <div class="vertical-line"></div> -->
-    <hr width="60%" align="left">
+    <!-- <hr width="60%" align="left">
     <div class="wrap">
       <div class="left_col">
         <div>
@@ -66,8 +66,8 @@
       </div>
     </div><br>
 
-  <!-- <div class="vertical-line"></div> -->
-    <hr width="60%" align="left">
+  <!-<div class="vertical-line"></div> -->
+    <!-- <hr width="60%" align="left">
   <div class="wrap">
     <div class="left_col">
       <div>
@@ -84,7 +84,7 @@
         <span class="title">certifierID: </span>
         <span editable-text="fc.farm.certifierId" e-name="certifierId" e-required>{{ fc.farm.certifierId || 'empty' }}</span>
       </div>
-    </div><br>
+    </div><br> -->
 
     <div class="buttons">
       <!-- buttons to submit / cancel form -->
