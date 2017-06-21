@@ -13,4 +13,15 @@ myApp.service('seedService', ['$http', function($http) {
     });
   };//end addSeed POST
 
+  this.getSeeds = function () {
+    console.log('in getSeeds service');
+    return $http ({
+      method: 'GET',
+      url: '/inventory',
+    }).then( function success(response) {
+      console.log( 'getSeeds resp:', response );
+      return response.data;
+    });
+  };//end getSeeds GET
+
 }]);

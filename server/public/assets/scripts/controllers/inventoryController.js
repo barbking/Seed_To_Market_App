@@ -16,12 +16,15 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
   { crop: 'tomato', variety: 'russian', quanity: 2, date:'4/15', supplier:'seedbank4' }
 
   ];
+  //get seed inventory from seedService
+  vm.getInventory = function(){
+    seedService.getSeeds().then(function(data){
+      console.log('in InventoryController getInventory',data);
+      vm.inventory = data;
+    });
+  };
 
-
-
-
-
-
+  vm.getInventory();
 
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
@@ -66,6 +69,7 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
 
     $uibModalInstance.close();
   };//end add Item
+
 
   vm.clearSeedInputs = function (){
     vm.crop = "";
