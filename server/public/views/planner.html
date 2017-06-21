@@ -1,2 +1,54 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
+
+<button type="button" ng-click="pc.open()">Plant</button>
+<!-- add a plant modal -->
+<div class="add-plant-modal container">
+  <script type="text/ng-template" id="addPlantModalContent.html">
+    <div class="modal-header">
+      <h3>Move to Plant</h3>
+    </div>
+    <div class="modal-body col-xs-12">
+      <div class="col-xs-12">
+        <label class="col-xs-4">Crop: </label>
+        <select ng-model="apmic.crop">
+          <option ng-repeat="item in apmic.inventory.list" value="{{item.crop}}">{{item.crop}}</option>
+        </select><br>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Lot Number/Variety: </label>
+        <select ng-model="apmic.variety">
+          <option ng-repeat="item in apmic.inventory.list" value="{{item.variety}}">{{item.variety}}</option>
+        </select><br>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Quantity: </label>
+        <input type="number" ng-model="apmic.quantity" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date: </label>
+        <input type="date" ng-model="apmic.date_planted" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Location: </label>
+        <input type="text" ng-model="apmic.location" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Area Sqft: </label>
+        <input type="text" ng-model="apmic.area_sqft" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Notes: </label>
+        <input type="text" ng-model="apmic.notes" class="col-xs-8">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-success" ng-click="apmic.addPlant()" >
+        Plant
+      </button>
+      <button type="button" class="btn btn-default btn-danger" ng-click="apmic.clearPlantInputs()">
+        Cancel
+      </button>
+    </div>
+  </script>
+</div>
