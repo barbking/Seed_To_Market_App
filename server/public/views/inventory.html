@@ -104,18 +104,18 @@
   </tr>
 </thead>
   <tbody>
-    <tr ng-repeat="seed in ic.inventory | orderBy:sortType:sortReverse | filter:searchSeeds">
+    <tr ng-repeat="seed in ic.inventory.list | orderBy:sortType:sortReverse">
       <td>{{ seed.crop }}</td>
       <td>{{ seed.variety }}</td>
-      <td>{{ seed.purchasedate }}</td>
-      <td>{{ seed.lotnum }}</td>
+      <td>{{ seed.purchase_date | date:'MM-dd-yyyy' }}</td>
+      <td>{{ seed.lot_numbernum }}</td>
       <td>{{ seed.quantity }}</td>
-      <td>{{ seed.itemcode }}</td>
+      <td>{{ seed.item_code }}</td>
       <td>{{ seed.organic}}</td>
       <td>{{ seed.untreated }}</td>
       <td>{{ seed.nongmo }}</td>
-      <td>{{ seed.name }}</td>
-      <td>{{ seed.seedcheck }}</td>
+      <td>{{ seed.supplier_id }}</td>
+      <td>{{ seed.seed_check_sources }}</td>
     </tr>
   </tbody>
 </table>
