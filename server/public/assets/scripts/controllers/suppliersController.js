@@ -1,4 +1,4 @@
-myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log', function ($http, $location,$uibModal,$log) {
+myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log','supplierService', function ($http, $location,$uibModal,$log,supplierService) {
   var vm = this;
   // vm.supplierObject = {};
 
@@ -17,11 +17,11 @@ myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log',
       resolve: {
       }
     }); // end modalInstance
-  }; // end newActivity
+  }; // end open
 }]);
 
 
-myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', function ( $uibModalInstance, $uibModal, $log) {
+myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'supplierService', function ( $uibModalInstance, $uibModal, $log, supplierService) {
   var vm = this;
 
   vm.addNewSupplier = function(){
@@ -37,7 +37,7 @@ myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
     };
 
     console.log(itemToSend);
-    seedService.addSeed(itemToSend);
+    supplierService.addSupplier(itemToSend);
 
     $uibModalInstance.close();
   };//end add Item
