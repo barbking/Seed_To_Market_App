@@ -40,6 +40,9 @@ input {
 .message:nth-child(even) {
     background-color: #f8f8f8;
 }
+.planner-tables {
+  overflow-y: scroll;
+}
 .vertical-line{
      width: 45vw; /* Line width */
      background-color: black; /* Line color */

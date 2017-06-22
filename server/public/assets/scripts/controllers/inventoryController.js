@@ -26,13 +26,14 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
 
       }
     }); // end modalInstance
+
+  }; // end newActivity
+}]);
+
   }; // end open
 
-
-
-
-
 }]); // end InventoryController
+
 
 
 myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', function ( $uibModalInstance, $uibModal, $log, seedService ) {
