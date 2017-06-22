@@ -2,12 +2,18 @@
 myApp.service( 'supplierService', [ '$http', '$location', function ( $http, $location ){
   var self = this;
 
+  self.suppliers = { list: [] };
   // get all suppliers from database
   self.getSuppliers = function (){
     console.log( 'in get all suppliers' );
-    return $http.get( '/suppliers/getAll' ).then( function success(response) {
-      console.log( 'suppliers getAll resp:', response );
-      return response.data;
+    $http.get( '/suppliers/getAll' ).then( function success(response) {
+      console.log( 'suppliers getAll resp:', response.data );
+      self.suppliers.list = response.data;
+    }, function error ( response ){
+      console.log( 'Error in getSuppliers:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
     }); // end GET getAll from suppliers
   }; // end getSuppliers
 
@@ -16,9 +22,15 @@ myApp.service( 'supplierService', [ '$http', '$location', function ( $http, $loc
     console.log( 'in add a supplier' );
     $http.post( '/suppliers/addSupplier', supplierObject ).then( function success( response ) {
       console.log( 'add supplier successfull:', response );
-    }, function error ( err ){
-      console.log( 'error:', err );
+      self.getSuppliers();
+    }, function error ( response ){
+      console.log( 'Error in addSupplier:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
     }); // end POST addSupplier to suppliers
   }; // end addSupplier
+
+  self.getSuppliers();
 
 }]); // end supplierService

@@ -1,6 +1,7 @@
 myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', function($http, $location, $uibModal, $log, seedService ) {
   var vm = this;
 
+
   // create the list of seeds
 
 
