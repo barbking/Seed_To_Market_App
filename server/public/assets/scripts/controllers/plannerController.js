@@ -1,10 +1,20 @@
 myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', function($http, $location, $uibModal, $log, seedService ) {
   var vm = this;
 
+  vm.sortType     = 'crop'; // set the default sort type
+  vm.sortReverse  = false;  // set the default sort order
+  vm.searchSeeds   = '';     // set the default search/filter term
 
   // create the list of seeds
+  vm.inventory = seedService.inventory;
+  seedService.getSeeds();
 
-
+  //show/hide inventory table
+  vm.isVisible = false;
+  vm.showHide = function () {
+   //If DIV is visible it will be hidden and vice versa.
+   vm.isVisible = vm.isVisible ? false : true;
+ };
 
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
@@ -31,7 +41,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
   var vm = this;
 
   vm.inventory = seedService.inventory;
-  
+
 
   console.log ('apmic controller inventory',vm.inventory);
 

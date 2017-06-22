@@ -1,8 +1,131 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
+<!-- Inventory Table  -->
+<div ng-show="pc.isVisible">
+  <div class="container planner-tables planner-inventory">
+    <div class="alert alert-info">
+            Sort Type: {{ sortType }}
+            <br>
+            Sort Reverse: {{ sortReverse }}
+            <br>
+            Search Query: {{ searchSeeds }}
+    </div>
 
+    <form>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchSeeds">
+          </div>
+        </div>
+      </form>
 
-<button type="button" ng-click="pc.open()">Plant</button>
+  <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <td>
+          <a  ng-click="sortType = 'crop'; sortReverse = !sortReverse">
+            Crop
+            <span ng-show="sortType == 'crop' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'crop' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'variety'; sortReverse = !sortReverse">
+            Variety
+            <span ng-show="sortType == 'variety' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'variety' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'purchasedate'; sortReverse = !sortReverse">
+            Date
+            <span ng-show="sortType == 'purchasedate' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'purchasedate' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'lotnum'; sortReverse = !sortReverse">
+            Lot Number
+            <span ng-show="sortType == 'lotnum' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'lotnum' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'quanity'; sortReverse = !sortReverse">
+            Quanity
+            <span ng-show="sortType == 'quantity' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'quantity' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'itemcode'; sortReverse = !sortReverse">
+            Item Code
+            <span ng-show="sortType == 'itemcode' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'itemcode' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'organic'; sortReverse = !sortReverse">
+            Organic
+            <span ng-show="sortType == 'organic' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'organic' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'untreated'; sortReverse = !sortReverse">
+            Untreated
+            <span ng-show="sortType == 'untreated' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'untreated' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'nongmo'; sortReverse = !sortReverse">
+            NonGMO
+            <span ng-show="sortType == 'nongmo' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'nongmo' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+            Supplier
+            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>
+          <a  ng-click="sortType = 'seedcheck'; sortReverse = !sortReverse">
+            Seed Check
+            <span ng-show="sortType == 'seedcheck' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'seedcheck' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
+      <td>Plant</td>
+    </tr>
+  </thead>
+    <tbody>
+      <tr ng-repeat="seed in pc.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds">
+        <td>{{ seed.crop }}</td>
+        <td>{{ seed.variety }}</td>
+        <td>{{ seed.purchase_date | date:'MM-dd-yyyy' }}</td>
+        <td>{{ seed.lot_number }}</td>
+        <td>{{ seed.quantity }}</td>
+        <td>{{ seed.item_code }}</td>
+        <td>{{ seed.organic}}</td>
+        <td>{{ seed.untreated }}</td>
+        <td>{{ seed.non_gmo }}</td>
+        <td>{{ seed.supplier_id }}</td>
+        <td>{{ seed.seed_check_sources }}</td>
+        <td><button type="button" ng-click="pc.open()">Plant</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()">Hide</button>
+</div>
+   <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()">Show Inventory</button>
+
+<!-- <button type="button" ng-click="pc.open()">Plant</button> -->
 <!-- add a plant modal -->
 <div class="add-plant-modal container">
   <script type="text/ng-template" id="addPlantModalContent.html">

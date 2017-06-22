@@ -16,6 +16,11 @@ input {
 .btn-danger {
     margin-left: 10px;
 }
+.btn-inventory-toggle {
+  float: left;
+  margin-left: 5vw;
+  margin-bottom: 2vw;
+}
 .buttons {
   padding: 10px;
 }
