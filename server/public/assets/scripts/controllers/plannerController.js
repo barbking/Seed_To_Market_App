@@ -30,6 +30,8 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
   var vm = this;
 
   vm.inventory = seedService.inventory;
+  
+
   console.log ('apmic controller inventory',vm.inventory);
 
   vm.addPlant = function(){
