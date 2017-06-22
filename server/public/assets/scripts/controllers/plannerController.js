@@ -16,6 +16,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
    vm.isVisible = vm.isVisible ? false : true;
  };
 
+
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-plant-modal' + parentSelector)) : undefined;

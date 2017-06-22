@@ -45,8 +45,12 @@ input {
 .message:nth-child(even) {
     background-color: #f8f8f8;
 }
+.planner-inventory{
+  max-height: 412px;
+  margin-bottom: 30px;
+}
 .planner-tables {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .vertical-line{
      width: 45vw; /* Line width */
