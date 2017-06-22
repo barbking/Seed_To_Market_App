@@ -3,7 +3,8 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 
 
   // create the list of seeds
-
+  vm.inventory = seedService.inventory;
+  seedService.getSeeds();
 
 
   vm.open = function ( size, parentSelector ) {
@@ -31,7 +32,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
   var vm = this;
 
   vm.inventory = seedService.inventory;
-  
+
 
   console.log ('apmic controller inventory',vm.inventory);
 
