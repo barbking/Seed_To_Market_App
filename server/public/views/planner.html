@@ -1,2 +1,106 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
+
+<div class="container">
+  <div class="col-xs-12">
+    <div class="col-xs-4 planner-tables">
+      <div class="alert alert-info">
+        Sort Reverse: {{ sortReverse }}
+        <br>
+        Search Query: {{ searchPlanted }}
+      </div>
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchPlanted">
+          </div>
+        </div>
+      </form>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <td>
+              <a  ng-click="sortType = 'planted'; sortReverse = !sortReverse">
+                Planted
+                <span ng-show="sortType == 'planted' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="seed in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted">
+            <td>{{ seed.planted }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-4">
+          <div class="alert alert-info">
+            Sort Reverse: {{ sortReverse }}
+            <br>
+            Search Query: {{ searchHarvested }}
+          </div>
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchHarvested">
+              </div>
+            </div>
+          </form>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <td>
+                  <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
+                    Harvested
+                    <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="seed in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested">
+                <td>{{ seed.harvested }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-xs-4">
+          <div class="alert alert-info">
+            Sort Reverse: {{ sortReverse }}
+            <br>
+            Search Query: {{ searchSold }}
+          </div>
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchSold">
+              </div>
+            </div>
+          </form>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <td>
+                  <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                    Sold
+                    <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="seed in pc.sold_id.list | orderBy:sortType:sortReverse | filter:searchSold">
+                <td>{{ seed.sold }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
