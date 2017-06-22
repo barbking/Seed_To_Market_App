@@ -1,15 +1,13 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
 <!-- Inventory Table  -->
+<div class="col-xs-12">
+  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Show Inventory</button>
+  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Inventory</button>
+</div>
+
 <div ng-show="pc.isVisible">
   <div class="container planner-tables planner-inventory">
-    <div class="alert alert-info">
-            Sort Type: {{ sortType }}
-            <br>
-            Sort Reverse: {{ sortReverse }}
-            <br>
-            Search Query: {{ searchSeeds }}
-    </div>
 
     <form>
         <div class="form-group">
@@ -121,9 +119,8 @@
     </tbody>
   </table>
   </div>
-  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()">Hide</button>
+
 </div>
-   <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()">Show Inventory</button>
 
 <!-- <button type="button" ng-click="pc.open()">Plant</button> -->
 <!-- add a plant modal -->
