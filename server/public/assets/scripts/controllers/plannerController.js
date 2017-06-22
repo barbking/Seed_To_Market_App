@@ -17,7 +17,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
  };
 
 
-  vm.open = function ( size, parentSelector ) {
+  vm.open = function ( seed_id, size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-plant-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -30,7 +30,9 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
       size: size,
       appendTo: parentElem,
       resolve: {
-
+        seed_id: function() {
+          return seed_id;
+        }
       }
     }); // end modalInstance
   }; // end newActivity
@@ -38,17 +40,17 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 }]);
 
 
-myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', function ( $uibModalInstance, $uibModal, $log, seedService, plantService ) {
+myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'seed_id',function ( $uibModalInstance, $uibModal, $log, seedService, plantService, seed_id ) {
   var vm = this;
 
   vm.inventory = seedService.inventory;
 
-
+  console.log( 'seed_id in modal:', seed_id );
   console.log ('apmic controller inventory',vm.inventory);
 
-  vm.addPlant = function(seedID){
+  vm.addPlant = function(){
     var itemToSend = {
-      seed_id: seedID,
+      seed_id: seed_id,
       crop: vm.crop,
       location: vm.location,
       date_planted: vm.date_planted,
