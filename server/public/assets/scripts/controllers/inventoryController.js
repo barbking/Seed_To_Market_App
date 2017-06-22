@@ -8,13 +8,13 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
 
   // create the list of seeds
   vm.inventory = seedService.inventory;
-
+  seedService.getSeeds();
 
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-seed-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
-      animation: vm.animationsEnabled,
+      animation: true,
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
       templateUrl: 'addSeedModalContent.html',
@@ -26,8 +26,14 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
 
       }
     }); // end modalInstance
+
   }; // end newActivity
 }]);
+
+  }; // end open
+
+}]); // end InventoryController
+
 
 
 myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', function ( $uibModalInstance, $uibModal, $log, seedService ) {

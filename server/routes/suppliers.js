@@ -4,14 +4,25 @@ var passport = require('passport');
 var path = require('path');
 var pg = require('pg');
 
+// set up config for the pool
+var config = {
+  database: 'seed-to-market',
+  host: 'localhost',
+  port: 5432,
+  max: 10
+}; // end config
+
+// setup new pool
+var pool = new pg.Pool( config );
+
 // GET route to retrieve all suppliers
 router.get( '/getAll', function ( req, res ) {
   console.log( 'in get all suppliers' );
   // verify authentication
   if ( req.isAuthenticated() ) {
     console.log( 'fetching suppliers' );
-    var suppliers = [];
-    pg.connect(function(err, connection, done) {
+    pool.connect(function(err, connection, done) {
+      var suppliers = [];
       if (err) {
         res.send(400);
       } else {
@@ -52,8 +63,7 @@ router.post( '/addSupplier', function ( req, res ) {
   // verify authentication
   if ( req.isAuthenticated() ) {
     console.log( 'adding supplier' );
-    var suppliers = [];
-    pg.connect(function(err, connection, done) {
+    pool.connect(function(err, connection, done) {
       if (err) {
         res.send(400);
       } else {
