@@ -26,13 +26,10 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
 
       }
     }); // end modalInstance
-
   }; // end newActivity
-}]);
+}]);// end InventoryController
 
-  }; // end open
 
-}]); // end InventoryController
 
 
 
