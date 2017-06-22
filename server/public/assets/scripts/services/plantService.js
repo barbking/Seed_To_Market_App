@@ -31,7 +31,3 @@ myApp.service('plantService', ['$http', function($http) {
   self.getPlants();
 
 }]);
-
-
-
-}]);

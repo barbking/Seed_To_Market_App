@@ -1,4 +1,4 @@
-myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', function($http, $location, $uibModal, $log, seedService ) {
+myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', function($http, $location, $uibModal, $log, seedService, plantService ) {
   var vm = this;
 
   vm.sortType     = 'crop'; // set the default sort type
@@ -38,7 +38,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 }]);
 
 
-myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', function ( $uibModalInstance, $uibModal, $log, seedService ) {
+myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', function ( $uibModalInstance, $uibModal, $log, seedService, plantService ) {
   var vm = this;
 
   vm.inventory = seedService.inventory;
@@ -46,8 +46,9 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
 
   console.log ('apmic controller inventory',vm.inventory);
 
-  vm.addPlant = function(){
+  vm.addPlant = function(seedID){
     var itemToSend = {
+      seed_id: seedID,
       crop: vm.crop,
       location: vm.location,
       date_planted: vm.date_planted,
@@ -55,7 +56,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
       area_sqft: vm.area_sqft,
       notes: vm.notes,
     };
-    //FILESTACK IMG URL GOES HERE
+    plantService.addPlant(itemToSend);
     console.log(itemToSend);
 
     $uibModalInstance.close();
