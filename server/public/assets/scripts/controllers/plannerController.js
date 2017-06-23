@@ -67,7 +67,6 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
 
 
   vm.clearPlantInputs = function (){
-    vm.crop = '';
     vm.location = '';
     vm.date_planted = '';
     vm.quantity = '';
