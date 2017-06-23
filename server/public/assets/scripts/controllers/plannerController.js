@@ -82,7 +82,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 }]);//end of PlannerController
 
 //controller for PLANT modal
-myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'seed',function ( $uibModalInstance, $uibModal, $log, seedService, plantService, seed ) {
+myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'seed', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, seed) {
   var vm = this;
 
   vm.inventory = seedService.inventory;
@@ -115,7 +115,6 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
     vm.quantity = '';
     vm.area_sqft = '';
     vm.notes = '';
-
 
     $uibModalInstance.close();
   };

@@ -311,16 +311,22 @@
       <div class="modal-header">
         <h3>Sell Harvest</h3>
       </div>
-      <!-- <table>
-        <th>
-          <td>Location</td>
-          <td>Harvest</td>
-        </th>
-        <tr ng-repeat="plant in ahmic.plants">
-          <td>{{ plant. }}</td>
-          <td>{{ plant.  }}</td>
-        </tr>
-      </table> -->
+      <div class="col-xs-12">
+        <label class="col-xs-4">Weight Sold: </label>
+        <input type="number" ng-model="asmic.weight_sold" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date: </label>
+        <input type="date" ng-model="asmic.date_sold" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Sold to: </label>
+        <input type="text" ng-model="asmic.sold_to" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-3">Sold Out: </label>
+        <input type="checkbox" ng-model="asmic.sold_out" class="checkbox-sold col-xs-3">
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-success" ng-click="asmic.addSold()" >
           Sell
