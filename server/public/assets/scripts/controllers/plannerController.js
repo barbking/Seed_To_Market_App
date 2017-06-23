@@ -11,7 +11,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 
   //hard coded until get data from db working
   vm.planted = plantService.plantsAndSeeds;
-  console.log('vm.planted-->', vm.planted);
+  plantService.getPlantsAndSeeds();
   // vm.planted = {list: [{planted:"beans"},{planted:"corn"}]};
   vm.harvested = {list: [{harvested:"beans"},{harvested:"corn"}]};
 
