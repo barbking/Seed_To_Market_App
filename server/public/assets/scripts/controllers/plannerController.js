@@ -9,8 +9,9 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   vm.inventory = seedService.inventory;
   seedService.getSeeds();
 
-  //hard code until get data from db
-  vm.planted = plantService.plants;
+  //hard coded until get data from db working
+  // vm.planted = plantService.plants;
+  vm.planted = {list: [{planted:"beans"},{planted:"corn"}]};
   vm.harvested = {list: [{harvested:"beans"},{harvested:"corn"}]};
 
   //show/hide inventory table
