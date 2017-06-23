@@ -48,7 +48,7 @@ router.get('/', function(req,res) {
         res.send(400);
       } else {
         console.log('connected to db');
-        var resultSet = connection.query("SELECT * from seeds");
+        var resultSet = connection.query("SELECT * FROM seeds WHERE user_id=$1", [ req.user.user_id ]);
         resultSet.on( 'row', function( row ){
         seedInventory.push( row );
       });
