@@ -300,16 +300,18 @@
       <div class="modal-header">
         <h3>Move Plant to Harvest</h3>
       </div>
-      <!-- <table>
-        <th>
-          <td>Location</td>
-          <td>Harvest</td>
-        </th>
-        <tr ng-repeat="plant in ahmic.plants">
-          <td>{{ plant. }}</td>
-          <td>{{ plant.  }}</td>
-        </tr>
-      </table> -->
+      <div class="col-xs-12">
+        <label class="col-xs-4">Yield: </label>
+        <input type="number" ng-model="ahmic.yield" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date: </label>
+        <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Notes: </label>
+        <textarea rows="4" ng-model="ahmic.notes" class="col-xs-8"></textarea>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-success" ng-click="ahmic.addHarvest()" >
           Harvest
