@@ -10,7 +10,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   seedService.getSeeds();
 
   //hard code until get data from db
-  vm.planted = {list: [{planted:"beans"},{planted:"corn"}]};
+  vm.planted = plantService.plants;
   vm.harvested = {list: [{harvested:"beans"},{harvested:"corn"}]};
 
   //show/hide inventory table
@@ -109,7 +109,6 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
 
 
   vm.clearPlantInputs = function (){
-    vm.crop = '';
     vm.location = '';
     vm.date_planted = '';
     vm.quantity = '';
@@ -159,7 +158,10 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
   vm.addSold = function(){
     var itemToSend = {
       seed_id: seed.seed_id,
-
+      date_sold: vm.date_sold,
+      weight_sold: vm.weight_sold,
+      sold_to: vm.sold_to,
+      notes: vm.notes
     };
     // plantService.addPlant(itemToSend);
     console.log(itemToSend);

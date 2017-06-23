@@ -4,13 +4,13 @@ myApp.service('plantService', ['$http', function($http) {
   self.plants = { list: [] };
 
   self.addPlant = function(plantToSend){
-    console.log('in addSeed service with seedToSend-->', plantToSend);
+    console.log('in addPlant service with plantToSend-->', plantToSend);
     return $http({
       method:'POST',
       url:'/planner/addPlant',
       data: plantToSend,
     }).then(function( response ) {
-      console.log('in service for addSeed with response-->', response );
+      console.log('in service for addPlant with response-->', response );
       self.getPlants();
       return response;
     });
@@ -24,7 +24,7 @@ myApp.service('plantService', ['$http', function($http) {
     }).then( function (response) {
       console.log( 'getPlants resp:', response.data );
       self.plants.list = response.data;
-      console.log (self.plants);
+      console.log (self.plants.list);
     });
   };//end getPlant GET
 
