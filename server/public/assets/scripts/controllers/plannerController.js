@@ -132,7 +132,11 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
   vm.addHarvest = function(){
     var itemToSend = {
       seed_id: seed.seed_id,
-
+      location: vm.location,
+      area_sqft: vm.area_sqft,
+      date_harvested: vm.date_harvested,
+      yield: vm.yield,
+      notes: vm.notes
     };
     // plantService.addPlant(itemToSend);
     console.log(itemToSend);
@@ -142,8 +146,11 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
 
 
   vm.clearHarvestInputs = function (){
-
     vm.location = '';
+    vm.area_sqft = '';
+    vm.date_harvested = '';
+    vm.yield = '';
+    vm.notes = '';
 
     $uibModalInstance.close();
   };
@@ -163,7 +170,8 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
       date_sold: vm.date_sold,
       weight_sold: vm.weight_sold,
       sold_to: vm.sold_to,
-      notes: vm.notes
+      notes: vm.notes,
+      sold_out: vm.sold_out
     };
     // plantService.addPlant(itemToSend);
     console.log(itemToSend);
@@ -172,8 +180,11 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
   };//end add Item
 
   vm.clearSoldInputs = function (){
-
-    vm.location = '';
+    vm.date_sold = '';
+    vm.weight_sold = '';
+    vm.sold_to = '';
+    vm.notes = '';
+    vm.sold_out = false;
 
     $uibModalInstance.close();
   };
