@@ -11,16 +11,16 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 
   //hard code until get data from db
   vm.planted = {list: [{planted:"beans"},{planted:"corn"}]};
-
+  vm.harvested = {list: [{harvested:"beans"},{harvested:"corn"}]};
 
   //show/hide inventory table
   vm.isVisible = false;
   vm.showHide = function () {
    //If DIV is visible it will be hidden and vice versa.
    vm.isVisible = vm.isVisible ? false : true;
- };
+  };
 
-
+  //open plant modal
   vm.open = function ( seed, size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-plant-modal' + parentSelector)) : undefined;
@@ -41,6 +41,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
     }); // end modalInstance
   }; // end newActivity
 
+  //open harvest modal
   vm.openHarvest = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-harvest-modal' + parentSelector)) : undefined;
@@ -51,6 +52,25 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
       templateUrl: 'addHarvestModalContent.html',
       controller: 'addHarvestModalInstanceCtrl',
       controllerAs: 'ahmic',
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+
+      }
+    }); // end modalInstance
+  }; // end newActivity
+
+  //open sold modal
+  vm.openSold = function ( size, parentSelector ) {
+    var parentElem = parentSelector ?
+      angular.element($document[0].querySelector('.add-sold-modal' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+      animation: vm.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'addSoldModalContent.html',
+      controller: 'addSoldModalInstanceCtrl',
+      controllerAs: 'asmic',
       size: size,
       appendTo: parentElem,
       resolve: {
@@ -130,3 +150,30 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
 
   vm.clearHarvestInputs();
 }]);//end of addHarvestModalInstanceCtrl controller
+
+//conroller for Sold modal
+myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', function ( $uibModalInstance, $uibModal, $log, seedService, plantService) {
+  var vm = this;
+
+  console.log ('asmic controller inventory');
+
+  vm.addSold = function(){
+    var itemToSend = {
+      seed_id: seed.seed_id,
+
+    };
+    // plantService.addPlant(itemToSend);
+    console.log(itemToSend);
+
+    $uibModalInstance.close();
+  };//end add Item
+
+  vm.clearSoldInputs = function (){
+
+    vm.location = '';
+
+    $uibModalInstance.close();
+  };
+
+  vm.clearSoldInputs();
+}]);//end of addSoldModalInstanceCtrl controller

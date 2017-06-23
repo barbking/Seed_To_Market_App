@@ -195,7 +195,7 @@
                   <span ng-show="sortType == 'planted' && !sortReverse" class="fa fa-caret-down"></span>
                   <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
-                <td>Harvest Plant</td>
+                <td></td>
               </td>
             </tr>
           </thead>
@@ -231,12 +231,13 @@
                   <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </td>
-              <td>Sell Harvest</td>
+              <td></td>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="seed in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested">
               <td>{{ seed.harvested }}</td>
+              <td><button type="button" ng-click="pc.openSold()">Sell</button></td>
             </tr>
           </tbody>
         </table>
@@ -298,6 +299,33 @@
           Harvest
         </button>
         <button type="button" class="btn btn-default btn-danger" ng-click="ahmic.clearHarvestInputs()">
+          Cancel
+        </button>
+      </div>
+    </script>
+  </div>
+
+  <!-- add a sell modal -->
+  <div class="add-sold-modal container">
+    <script type="text/ng-template" id="addSoldModalContent.html">
+      <div class="modal-header">
+        <h3>Sell Harvest</h3>
+      </div>
+      <!-- <table>
+        <th>
+          <td>Location</td>
+          <td>Harvest</td>
+        </th>
+        <tr ng-repeat="plant in ahmic.plants">
+          <td>{{ plant. }}</td>
+          <td>{{ plant.  }}</td>
+        </tr>
+      </table> -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-success" ng-click="asmic.addSold()" >
+          Sell
+        </button>
+        <button type="button" class="btn btn-default btn-danger" ng-click="asmic.clearSoldInputs()">
           Cancel
         </button>
       </div>
