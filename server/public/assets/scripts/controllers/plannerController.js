@@ -17,7 +17,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
  };
 
 
-  vm.open = function ( seed_id, size, parentSelector ) {
+  vm.open = function ( seed, size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-plant-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -30,8 +30,8 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
       size: size,
       appendTo: parentElem,
       resolve: {
-        seed_id: function() {
-          return seed_id;
+        seed: function() {
+          return seed;
         }
       }
     }); // end modalInstance
@@ -40,17 +40,19 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 }]);
 
 
-myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'seed_id',function ( $uibModalInstance, $uibModal, $log, seedService, plantService, seed_id ) {
+myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'seed',function ( $uibModalInstance, $uibModal, $log, seedService, plantService, seed ) {
   var vm = this;
 
   vm.inventory = seedService.inventory;
+  vm.crop = seed.crop;
+  vm.variety = seed.variety;
 
-  console.log( 'seed_id in modal:', seed_id );
+  console.log( 'seed_id in modal:', seed.seed_id );
   console.log ('apmic controller inventory',vm.inventory);
 
   vm.addPlant = function(){
     var itemToSend = {
-      seed_id: seed_id,
+      seed_id: seed.seed_id,
       location: vm.location,
       date_planted: vm.date_planted,
       quantity: vm.quantity,

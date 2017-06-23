@@ -114,7 +114,7 @@
         <td>{{ seed.non_gmo }}</td>
         <td>{{ seed.supplier_id }}</td>
         <td>{{ seed.seed_check_sources }}</td>
-        <td><button type="button" ng-click="pc.open(seed.seed_id)">Plant</button></td>
+        <td><button type="button" ng-click="pc.open(seed)">Plant</button></td>
       </tr>
     </tbody>
   </table>
@@ -132,15 +132,12 @@
     <div class="modal-body col-xs-12">
       <div class="col-xs-12">
         <label class="col-xs-4">Crop: </label>
-        <select ng-model="apmic.crop">
-          <option ng-repeat="item in apmic.inventory.list" value="{{item.crop}}">{{item.crop}}</option>
-        </select><br>
+        <p ng-model="apmic.crop">{{apmic.crop}}</p>
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Variety: </label>
-        <select ng-model="apmic.variety">
-          <option ng-repeat="item in apmic.inventory.list" value="{{item.variety}}">{{item.variety}}</option>
-        </select><br>
+        <p ng-model="apmic.variety">{{apmic.variety}}</p>
+        <br>
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Quantity: </label>
