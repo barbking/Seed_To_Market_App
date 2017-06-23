@@ -51,7 +51,6 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
   vm.addPlant = function(){
     var itemToSend = {
       seed_id: seed_id,
-      crop: vm.crop,
       location: vm.location,
       date_planted: vm.date_planted,
       quantity: vm.quantity,
