@@ -10,8 +10,9 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   seedService.getSeeds();
 
   //hard coded until get data from db working
-  // vm.planted = plantService.plants;
-  vm.planted = {list: [{planted:"beans"},{planted:"corn"}]};
+  vm.planted = plantService.plantsAndSeeds;
+  console.log('vm.planted-->', vm.planted);
+  // vm.planted = {list: [{planted:"beans"},{planted:"corn"}]};
   vm.harvested = {list: [{harvested:"beans"},{harvested:"corn"}]};
 
   //show/hide inventory table

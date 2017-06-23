@@ -84,4 +84,29 @@ router.get('/Plants', function(req,res) {
  }
 });//end get
 
+router.get('/PlantsAndSeeds', function(req,res) {
+  console.log('in get PlantsandSeeds');
+  //array to save plant inventory from db
+  var plantTableInventory = [];
+  if (req.isAuthenticated()) {
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+        console.log('connected to db');
+        var resultSet = connection.query("SELECT seeds.seed_id, seeds.crop, seeds.variety, planted.location FROM seeds INNER JOIN planted ON seeds.seed_id=planted.seed_id WHERE seeds.user_id=$1;", [req.user.user_id]);
+        resultSet.on( 'row', function( row ){
+        plantTableInventory.push( row );
+      });
+        resultSet.on( 'end', function(){
+         done();
+         res.send( plantTableInventory );
+       }); //end on end
+     } // end no error
+   }); //end pool
+ } else {
+   res.sendStatus(403);
+ }
+});//end get
+
 module.exports = router;

@@ -2,6 +2,7 @@ myApp.service('plantService', ['$http', function($http) {
   var self = this;
 
   self.plants = { list: [] };
+  self.plantsAndSeeds = { list: [] };
 
   self.addPlant = function(plantToSend){
     console.log('in addPlant service with plantToSend-->', plantToSend);
@@ -30,4 +31,17 @@ myApp.service('plantService', ['$http', function($http) {
 
   self.getPlants();
 
+  self.getPlantsAndSeeds = function () {
+    console.log('in getPlantsandSeeds service');
+    $http ({
+      method: 'GET',
+      url: '/planner/PlantsAndSeeds',
+    }).then( function (response) {
+      console.log( 'getPlants resp:', response.data );
+      self.plantsAndSeeds.list = response.data;
+      console.log (self.plantsAndSeeds.list);
+    });
+  };//end getPlant GET
+
+  self.getPlantsAndSeeds();
 }]);
