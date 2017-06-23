@@ -47,7 +47,7 @@ router.post('/addPlant', function(req, res) {
       } else {
         console.log('connected to db');
         connection.query("INSERT INTO planted (" +
-          "seed_id, location, date_planted, quantity, area_sqft, notes, user_id"+
+          "seed_id, location, date_planted, quantity, area_sqft, notes, user_id)"+
           "VALUES ( $1, $2, $3, $4, $5, $6, $7 )", [req.body.seed_id, req.body.location, req.body.date_planted, req.body.quantity, req.body.area_sqft, req.body.notes, req.user.user_id]);
         done(); //close connection
         res.sendStatus(200);

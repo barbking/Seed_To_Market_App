@@ -83,5 +83,5 @@ CREATE TABLE sold (
 
 
 Create mock supplier:
-INSERT INTO suppliers (supplier_id, website , phone_number, address, city, state, zip, description)
- VALUES ('12344', 'www.test.com', '555-555-5555', '1234 street','nowhere','xx','55555', 'test' );
+INSERT INTO suppliers ( website , phone_number, address, city, state, zip, description, user_id)
+ VALUES ( 'www.test.com', '555-555-5555', '1234 street','nowhere','xx','55555', 'test', 1 );
