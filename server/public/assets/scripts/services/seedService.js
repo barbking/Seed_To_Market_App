@@ -1,5 +1,5 @@
 //   Seed Service
-myApp.service('seedService', ['$http', function($http) {
+myApp.service('seedService', ['$http', '$location', function($http, $location) {
   var self = this;
 
   //empty object as placeholder for data that will be returned

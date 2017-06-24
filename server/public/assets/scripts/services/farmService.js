@@ -1,4 +1,4 @@
-myApp.service('farmService', ['$http', function($http) {
+myApp.service('farmService', ['$http', '$location', function($http, $location) {
 
     this.updateFarm = function (farmInfo){
       return $http({
