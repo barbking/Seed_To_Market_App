@@ -1,4 +1,4 @@
-myApp.service('plantService', ['$http', function($http) {
+myApp.service('plantService', ['$http', '$location', function($http, $location) {
   var self = this;
 
   self.plants = { list: [] };
