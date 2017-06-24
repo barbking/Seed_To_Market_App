@@ -15,7 +15,12 @@ myApp.service('seedService', ['$http', function($http) {
       console.log('in service for addSeed with response-->', response );
       self.getSeeds();
       return response;
-    });
+    }, function error ( response ){
+      console.log( 'Error in addSeed:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end POST '/inventory/addSeed'
   };//end addSeed POST
 
   self.getSeeds = function () {
@@ -27,7 +32,12 @@ myApp.service('seedService', ['$http', function($http) {
       console.log( 'getSeeds resp:', response.data );
       self.inventory.list = response.data;
       console.log (self.inventory);
-    });
+    }, function error ( response ){
+      console.log( 'Error in getSeeds:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end GET '/inventory'
   };//end getSeeds GET
 
   self.getSeeds();
