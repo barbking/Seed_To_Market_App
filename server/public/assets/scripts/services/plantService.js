@@ -13,6 +13,7 @@ myApp.service('plantService', ['$http', function($http) {
     }).then(function( response ) {
       console.log('in service for addPlant with response-->', response );
       self.getPlants();
+      self.getPlantsAndSeeds();
       return response;
     });
   };//end addPlant POST
