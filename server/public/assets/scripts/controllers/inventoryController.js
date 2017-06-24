@@ -27,7 +27,27 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
 
       }
     }); // end modalInstance
-  }; // end newActivity
+  }; // end addSeed
+
+  vm.viewReceipt = function ( receipt_url, size, parentSelector ) {
+    var parentElem = parentSelector ?
+      angular.element($document[0].querySelector('.view-receipt-modal' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'viewReceiptModalContent.html',
+      controller: 'viewReceiptModalInstanceCtrl',
+      controllerAs: 'vrmic',
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+        receipt_url: function () {
+          return receipt_url;
+        }
+      }
+    }); // end modalInstance
+  }; // end viewReceipt
 }]);// end InventoryController
 
 
@@ -99,7 +119,17 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
       console.log(vm.file.url);
       //console.log("result.filesUploaded", JSON.stringify(result.filesUploaded));
     });
-  };
+  }; // end showPicker
 
   // vm.clearSeedInputs();
-}]);
+}]); // end addSeedModalInstanceCtrl
+
+myApp.controller( 'viewReceiptModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'receipt_url', function ( $uibModalInstance, $uibModal, $log, receipt_url ) {
+  var vm = this;
+
+  vm.receipt_url = receipt_url;
+
+  vm.ok = function () {
+    $uibModalInstance.close();
+  }; // end ok
+}]); // end viewReceiptModalInstanceCtrl
