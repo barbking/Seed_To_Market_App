@@ -195,13 +195,29 @@
                   <span ng-show="sortType == 'planted' && !sortReverse" class="fa fa-caret-down"></span>
                   <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
+              <td>
+                <a  ng-click="sortType = 'planted'; sortReverse = !sortReverse">
+                  Variety
+                  <span ng-show="sortType == 'planted' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
+              <td>
+                <a  ng-click="sortType = 'planted'; sortReverse = !sortReverse">
+                  Location
+                  <span ng-show="sortType == 'planted' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
                 <td></td>
               </td>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="seed in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted">
-              <td>{{ seed.planted }}</td>
+            <tr ng-repeat="item in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted">
+              <td>{{ item.crop }}</td>
+              <td>{{ item.variety }}</td>
+              <td>{{ item.location }}</td>
               <td><button type="button" ng-click="pc.openHarvest()">Harvest</button></td>
             </tr>
           </tbody>
@@ -284,16 +300,26 @@
       <div class="modal-header">
         <h3>Move Plant to Harvest</h3>
       </div>
-      <!-- <table>
-        <th>
-          <td>Location</td>
-          <td>Harvest</td>
-        </th>
-        <tr ng-repeat="plant in ahmic.plants">
-          <td>{{ plant. }}</td>
-          <td>{{ plant.  }}</td>
-        </tr>
-      </table> -->
+      <div class="col-xs-12">
+        <label class="col-xs-4">Yield in lbs: </label>
+        <input type="number" ng-model="ahmic.yield" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Location: </label>
+        <input type="test" ng-model="ahmic.location" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Area sqft: </label>
+        <input type="number" ng-model="ahmic.area_sqft" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date: </label>
+        <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Notes: </label>
+        <textarea rows="4" ng-model="ahmic.notes" class="col-xs-8"></textarea>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-success" ng-click="ahmic.addHarvest()" >
           Harvest
