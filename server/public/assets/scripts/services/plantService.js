@@ -13,7 +13,12 @@ myApp.service('plantService', ['$http', function($http) {
       console.log('in service for addSeed with response-->', response );
       self.getPlants();
       return response;
-    });
+    }, function error ( response ){
+      console.log( 'Error in addPlant:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end POST '/planner/addPlant'
   };//end addPlant POST
 
   self.getPlants = function () {
@@ -25,7 +30,12 @@ myApp.service('plantService', ['$http', function($http) {
       console.log( 'getPlants resp:', response.data );
       self.plants.list = response.data;
       console.log (self.plants);
-    });
+    }, function error ( response ){
+      console.log( 'Error in getPlants:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end getPlants
   };//end getPlant GET
 
   self.getPlants();

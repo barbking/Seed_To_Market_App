@@ -1,7 +1,7 @@
 <!-- InventoryController as ic -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
 
-<button type="button" ng-click="ic.open()">Add Seed</button>
+<button type="button" ng-click="ic.addSeed()">Add Seed</button>
 
 <div class="container">
   <div class="alert alert-info">
@@ -101,6 +101,9 @@
           <span ng-show="sortType == 'seedcheck' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
+    <td>
+        Receipt
+    </td>
   </tr>
 </thead>
   <tbody>
@@ -116,6 +119,7 @@
       <td>{{ seed.non_gmo }}</td>
       <td>{{ seed.supplier_id }}</td>
       <td>{{ seed.seed_check_sources }}</td>
+      <td><button type="button" class="btn btn-info" ng-click="ic.viewReceipt( seed.receipt_url )">View</button></td>
     </tr>
   </tbody>
 </table>
@@ -142,6 +146,12 @@
       <div class="col-xs-12">
         <label class="col-xs-4">Purchase Date: </label>
         <input type="date" ng-model="asmic.purchasedate" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Supplier: </label>
+        <select class="col-xs-8" ng-model="asmic.selectedSupplier">
+          <option ng-repeat="supplier in asmic.suppliers" value="{{supplier.supplier_id}}">{{ supplier.name }}</option>
+        </select>
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Lot #: </label>
@@ -172,10 +182,10 @@
     </div>
     <div class="modal-footer">
       <input type="button" ng-model='uc.imgUpld' value=" Click to Upload Receipt Image" ng-click="asmic.showPicker()" />
-      <button type="button" class="btn btn-default btn-success" ng-click="asmic.addNewSeed(1)" >
+      <button type="button" class="btn btn-default btn-success" ng-click="asmic.addNewSeed()" >
         Save
       </button>
-      <button type="button" class="btn btn-default btn-danger" ng-click="asmic.clearSeedInputs()">
+      <button type="button" class="btn btn-default btn-danger" ng-click="asmic.cancel()">
         Cancel
       </button>
     </div>

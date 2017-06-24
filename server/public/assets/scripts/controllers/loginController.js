@@ -6,12 +6,18 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
       phone: '',
       password: '',
       newfarm: false
-    };
+    }; // end vm.user
     vm.message = '';
 
     vm.login = function() {
       if(vm.user.email === '' || vm.user.password === '')  {
-        vm.message = "Enter an e-mail and password!";
+        // vm.message = "Enter an e-mail and password!";
+        swal({
+          title: "Empty Fields!",
+          text: "Please enter your email and password!",
+          type: "error",
+          confirmButtonText: "Ok"
+        }); // end sweetalert
       } else {
         console.log('sending to server...', vm.user);
         $http.post('/', vm.user).then(function(response) {
@@ -22,25 +28,43 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
             $location.path('/planner');
           } else {
             console.log('failure: ', response);
-            vm.message = "Wrong!!";
-          }
-        });
-      }
-    };
+            // vm.message = "Wrong!!";
+            swal({
+              title: "Incorrect email or password!",
+              type: "error",
+              confirmButtonText: "Ok"
+            }); // end sweetalert
+          } // end if else
+        }); // end POST '/'
+      } // end if else
+    }; // end login
 
     vm.registerUser = function() {
       if(vm.user.email === '' || vm.user.user_name === '' || vm.user.phone_number === '' || vm.user.password === '' ){
-        vm.message = "No fields can be blank, try again.";
+        // vm.message = "No fields can be blank, try again.";
+        swal({
+          title: "Empty Fields!",
+          text: "Please fill out all fields!",
+          type: "error",
+          confirmButtonText: "Ok"
+        }); // end sweetalert
       } else {
         console.log('sending to server...', vm.user);
-        $http.post('/register', vm.user).then(function(response) {
+        $http.post('/register', vm.user).then(
+        function(response) {
           console.log('success');
           $location.path('/home');
         },
         function(response) {
           console.log('error');
-          vm.message = "Please try again.";
-        });
-      }
-    };
-}]);
+          // vm.message = "Please try again.";
+          swal({
+            title: "An error occurred!",
+            text: "Please try again",
+            type: "error",
+            confirmButtonText: "Ok"
+          }); // end sweetalert
+        }); // end POST '/register'
+      } // end if else
+    }; // end registerUser
+}]); // end LoginController
