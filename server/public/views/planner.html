@@ -214,11 +214,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="item in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted">
-              <td>{{ item.crop }}</td>
-              <td>{{ item.variety }}</td>
-              <td>{{ item.location }}</td>
-              <td><button type="button" ng-click="pc.openHarvest()">Harvest</button></td>
+            <tr ng-repeat="plant in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted">
+              <td>{{ plant.crop }}</td>
+              <td>{{ plant.variety }}</td>
+              <td>{{ plant.location }}</td>
+              <td><button type="button" ng-click="pc.openHarvest(plant)">Harvest</button></td>
             </tr>
           </tbody>
         </table>
@@ -301,12 +301,20 @@
         <h3>Move Plant to Harvest</h3>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Yield in lbs: </label>
-        <input type="number" ng-model="ahmic.yield" class="col-xs-8">
+        <label class="col-xs-4">Crop: </label>
+        <p ng-model="ahmic.crop">{{ahmic.crop}}</p>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Variety: </label>
+        <p ng-model="ahmic.variety">{{ahmic.variety}}</p>
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Location: </label>
-        <input type="test" ng-model="ahmic.location" class="col-xs-8">
+        <p ng-model="ahmic.location">{{ahmic.location}}</p>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Yield in lbs: </label>
+        <input type="number" ng-model="ahmic.yield" class="col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Area sqft: </label>

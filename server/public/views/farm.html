@@ -5,30 +5,30 @@
   <form editable-form name="fc.editableForm" onaftersave="fc.saveFarm()">
     <div class="buttons">
       <!-- button to show form -->
-      <button type="button" class="btn btn-default" ng-click="fc.editableForm.$show()" ng-show="!fc.editableForm.$visible">
+      <button type="button" class="btn btn-default btn-primary" ng-click="fc.editableForm.$show()" ng-show="!fc.editableForm.$visible">
         Edit
       </button>
     </div>
     <div class="wrap">
       <div class="left_col">
         <div>
-          <span class="title">Farm name: </span>
+          <span class="title"><b>Farm name:</b></span>
           <span editable-text="fc.farm.farm_name" e-name="name" e-required>{{ fc.farm.farm_name || 'empty' }}</span>
         </div>
         <div>
-          <span class="title">Address: </span>
+          <span class="title"><b>Address:</b></span>
           <span editable-text="fc.farm.farm_address" e-name="address" e-required>{{ fc.farm.farm_address || 'empty' }}</span>
         </div>
       </div>
       <div class="right_col">
         <div>
-          <span class="title">City: </span>
+          <span class="title"><b>City:</b></span>
           <span editable-text="fc.farm.farm_city" e-name="city" e-required>{{ fc.farm.farm_city || 'empty' }}</span>
         </div>
         <div>
-          <span class="title">State: </span>
+          <span class="title"><b>State:</b></span>
           <span editable-text="fc.farm.farm_state" e-name="state" e-required>{{ fc.farm.farm_state || 'empty' }}</span>
-          <span class="title">ZIP: </span>
+          <span class="title"><b>ZIP:</b></span>
           <span editable-text="fc.farm.farm_zip" e-name="zip" e-required>{{ fc.farm.farm_zip || 'empty' }}</span>
         </div>
       </div>
