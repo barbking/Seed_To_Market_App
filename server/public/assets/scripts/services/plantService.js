@@ -49,7 +49,6 @@ myApp.service('plantService', ['$http', '$location', function($http, $location) 
     }).then( function (response) {
       console.log( 'getPlants resp:', response.data );
       self.plantsAndSeeds.list = response.data;
-      console.log (self.plantsAndSeeds.list);
     });
   };//end getPlant GET
 

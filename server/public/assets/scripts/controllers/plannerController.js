@@ -13,8 +13,9 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   vm.planted = plantService.plantsAndSeeds;
   plantService.getPlantsAndSeeds();
 
-  //hard coded until get data from db working
-  vm.harvested = {list: [{harvested:"beans"},{harvested:"corn"}]};
+  //create list of harvested crops
+  vm.harvested = harvestService.harvest;
+  harvestService.getHarvest();
 
   //show/hide inventory table
   vm.isVisible = false;
@@ -136,19 +137,20 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
   vm.location = plant.location;
 
   console.log ('ahmic controller plant', vm.planted);
-  console.log( 'plant_id in modal:', plant.plant_id );
+  console.log( 'plant_id in modal:', plant.planted_id );
 
   vm.addHarvest = function(){
     var itemToSend = {
       plant_id: plant.planted_id,
-      location: vm.plant.location,
+      location: vm.location,
       area_sqft: vm.area_sqft,
       date_harvested: vm.date_harvested,
       yield: vm.yield,
       notes: vm.notes
     };
-    // plantService.addPlant(itemToSend);
-    console.log(itemToSend);
+  
+    harvestService.addHarvest(itemToSend);
+    console.log('addHarvest object to send-->',itemToSend);
 
     $uibModalInstance.close();
   };//end add Item
