@@ -247,12 +247,28 @@
                   <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </td>
+              <td>
+                <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
+                  Variety
+                  <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
+              <td>
+                <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
+                  Date
+                  <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
               <td></td>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="seed in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested">
-              <td>{{ seed.harvested }}</td>
+              <td>{{ seed.crop }}</td>
+              <td>{{ seed.variety }}</td>
+              <td>{{ seed.date_harvested | date:'MM-dd-yyyy' }}</td>
               <td><button type="button" ng-click="pc.openSold()">Sell</button></td>
             </tr>
           </tbody>

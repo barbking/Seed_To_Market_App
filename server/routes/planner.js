@@ -154,4 +154,28 @@ router.get('/Harvest', function(req,res) {
  }
 });//end get
 
+router.get('/HarvestAndCrop', function(req,res) {
+  console.log('in inventory getHarvestAndCrop');
+  var harvestInventory = [];
+  if (req.isAuthenticated()) {
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+        console.log('connected to db');
+          var resultSet = connection.query("SELECT seeds.seed_id, seeds.crop, seeds.variety, planted.planted_id, harvested.plant_id, harvested.date_harvested FROM seeds INNER JOIN planted ON seeds.seed_id=planted.seed_id INNER JOIN harvested ON planted.planted_id=harvested.plant_id WHERE harvested.user_id=$1", [req.user.user_id]);
+        resultSet.on( 'row', function( row ){
+        harvestInventory.push( row );
+      });
+        resultSet.on( 'end', function(){
+         done();
+         res.send( harvestInventory );
+       }); //end on end
+     } // end no error
+   }); //end pool
+ } else {
+   res.sendStatus(403);
+ }
+});//end get
+
 module.exports = router;

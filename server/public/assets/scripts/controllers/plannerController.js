@@ -15,7 +15,8 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
 
   //create list of harvested crops
   vm.harvested = harvestService.harvest;
-  harvestService.getHarvest();
+  // harvestService.getHarvest();
+  harvestService.getHarvestAndCrop();
 
   //show/hide inventory table
   vm.isVisible = false;
@@ -148,7 +149,7 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
       yield: vm.yield,
       notes: vm.notes
     };
-  
+
     harvestService.addHarvest(itemToSend);
     console.log('addHarvest object to send-->',itemToSend);
 
