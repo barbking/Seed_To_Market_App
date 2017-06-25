@@ -1,4 +1,4 @@
-myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', function($http, $location, $uibModal, $log, seedService, plantService ) {
+myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', function($http, $location, $uibModal, $log, seedService, plantService, harvestService ) {
   var vm = this;
 
   vm.sortType     = 'crop'; // set the default sort type
@@ -9,11 +9,14 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   vm.inventory = seedService.inventory;
   seedService.getSeeds();
 
-  //hard coded until get data from db working
+  //create list of planted seeds
   vm.planted = plantService.plantsAndSeeds;
   plantService.getPlantsAndSeeds();
-  // vm.planted = {list: [{planted:"beans"},{planted:"corn"}]};
-  vm.harvested = {list: [{harvested:"beans"},{harvested:"corn"}]};
+
+  //create list of harvested crops
+  vm.harvested = harvestService.harvest;
+  // harvestService.getHarvest();
+  harvestService.getHarvestAndCrop();
 
   //show/hide inventory table
   vm.isVisible = false;
@@ -44,7 +47,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   }; // end newActivity
 
   //open harvest modal
-  vm.openHarvest = function ( size, parentSelector ) {
+  vm.openHarvest = function ( plant, size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-harvest-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -57,7 +60,9 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
       size: size,
       appendTo: parentElem,
       resolve: {
-
+        plant: function() {
+          return plant;
+        }
       }
     }); // end modalInstance
   }; // end newActivity
@@ -124,29 +129,35 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
 }]);//end of addPlantModalInstanceCtrl controller
 
 //conroller for HARVEST modal
-myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', function ( $uibModalInstance, $uibModal, $log, seedService, plantService) {
+myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'plant', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, harvestService, plant) {
   var vm = this;
 
-  console.log ('ahmic controller inventory');
+  vm.planted = plantService.plantsAndSeeds;
+  vm.crop = plant.crop;
+  vm.variety = plant.variety;
+  vm.location = plant.location;
+
+  console.log ('ahmic controller plant', vm.planted);
+  console.log( 'plant_id in modal:', plant.planted_id );
 
   vm.addHarvest = function(){
     var itemToSend = {
-      seed_id: seed.seed_id,
+      plant_id: plant.planted_id,
       location: vm.location,
       area_sqft: vm.area_sqft,
       date_harvested: vm.date_harvested,
       yield: vm.yield,
       notes: vm.notes
     };
-    // plantService.addPlant(itemToSend);
-    console.log(itemToSend);
+
+    harvestService.addHarvest(itemToSend);
+    console.log('addHarvest object to send-->',itemToSend);
 
     $uibModalInstance.close();
   };//end add Item
 
 
   vm.clearHarvestInputs = function (){
-    vm.location = '';
     vm.area_sqft = '';
     vm.date_harvested = '';
     vm.yield = '';
