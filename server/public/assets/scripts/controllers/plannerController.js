@@ -153,6 +153,16 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
     harvestService.addHarvest(itemToSend);
     console.log('addHarvest object to send-->',itemToSend);
 
+    if (vm.harvest_complete === true) {
+      var plantToUpdate = {
+        planted_id: plant.planted_id,
+        harvest_complete: true,
+        harvest_complet_date: vm.date_harvested
+      };
+      console.log('plantToUpdate-->', plantToUpdate);
+      plantService.updatePlanted(plantToUpdate);
+    }
+
     $uibModalInstance.close();
   };//end add Item
 
@@ -162,6 +172,7 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
     vm.date_harvested = '';
     vm.yield = '';
     vm.notes = '';
+    vm.harvest_complete = false;
 
     $uibModalInstance.close();
   };

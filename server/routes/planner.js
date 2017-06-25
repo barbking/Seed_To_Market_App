@@ -178,4 +178,24 @@ router.get('/HarvestAndCrop', function(req,res) {
  }
 });//end get
 
+router.put('/updatePlanted', function(req, res) {
+  console.log('in updatePlanted with -->', req.body);
+  if (req.isAuthenticated()) {
+    //query to add new plant to database
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+        console.log('connected to db');
+        connection.query("UPDATE planted SET harvest_complete=$1, harvest_complete_date=$2 WHERE planted_id=$3 VALUES( $1, $2, $3)", [req.body.harvest_complete, req.body.harvest_complete_date,req.body.planted_id,]);
+        done(); //close connection
+        res.sendStatus(200);
+        //end response of success if user logged in and new seed added
+      }
+    });
+  } else {
+    res.sendStatus(403);
+  } // end response if user not authenticated
+}); //end of POST
+
 module.exports = router;
