@@ -54,7 +54,7 @@ CREATE TABLE planted (
 	area_sqft INT,
 	notes TEXT,
 	harvest_complete BOOLEAN DEFAULT false,
-	harvest_complete_date BOOLEAN DEFAULT false,
+	harvest_complete_date TIMESTAMP,
 	user_id INT REFERENCES users (user_id)
 );
 
