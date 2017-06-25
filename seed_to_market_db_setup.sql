@@ -53,7 +53,7 @@ CREATE TABLE planted (
 	quantity INT,
 	area_sqft INT,
 	notes TEXT,
-	harvest_complete BOOLEAN,
+	harvest_complete BOOLEAN,  
 	harvest_complete_date BOOLEAN,
 	user_id INT REFERENCES users (user_id)
 );

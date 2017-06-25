@@ -1,4 +1,4 @@
-myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', function($http, $location, $uibModal, $log, seedService, plantService ) {
+myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', function($http, $location, $uibModal, $log, seedService, plantService, harvestService ) {
   var vm = this;
 
   vm.sortType     = 'crop'; // set the default sort type
@@ -127,7 +127,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
 }]);//end of addPlantModalInstanceCtrl controller
 
 //conroller for HARVEST modal
-myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'plant', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, plant) {
+myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'plant', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, harvestService, plant) {
   var vm = this;
 
   vm.planted = plantService.plantsAndSeeds;
@@ -141,7 +141,7 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
   vm.addHarvest = function(){
     var itemToSend = {
       plant_id: plant.planted_id,
-      // location: vm.location,
+      location: vm.plant.location,
       area_sqft: vm.area_sqft,
       date_harvested: vm.date_harvested,
       yield: vm.yield,
@@ -155,7 +155,6 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
 
 
   vm.clearHarvestInputs = function (){
-    // vm.location = '';
     vm.area_sqft = '';
     vm.date_harvested = '';
     vm.yield = '';

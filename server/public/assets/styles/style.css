@@ -45,6 +45,7 @@ input {
 .message:nth-child(even) {
     background-color: #f8f8f8;
 }
+
 .planner-inventory{
   max-height: 405px;
   margin-bottom: 30px;
