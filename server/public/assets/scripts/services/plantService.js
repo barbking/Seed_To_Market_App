@@ -69,7 +69,7 @@ myApp.service('plantService', ['$http', '$location', function($http, $location) 
       if ( response.status === 403 ) {
         $location.path( '/' );
       }
-    }); // end POST '/planner/addPlant'
+    }); // end POST
   };//end updatePlanted
 
 }]);
