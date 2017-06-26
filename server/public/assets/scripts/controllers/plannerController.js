@@ -68,7 +68,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   }; // end newActivity
 
   //open sold modal
-  vm.openSold = function ( size, parentSelector ) {
+  vm.openSold = function ( harvest, size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-sold-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -81,7 +81,9 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
       size: size,
       appendTo: parentElem,
       resolve: {
-
+        harvest: function() {
+          return harvest;
+        }
       }
     }); // end modalInstance
   }; // end newActivity
@@ -111,7 +113,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
     };
     plantService.addPlant(itemToSend);
     console.log(itemToSend);
-    
+
     //if check last seed checkbox in modal, update seeds table out_of_stock to true
     if (vm.out_of_stock === true) {
       var seedToUpdate = {
@@ -192,10 +194,15 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
 }]);//end of addHarvestModalInstanceCtrl controller
 
 //conroller for Sold modal
-myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', function ( $uibModalInstance, $uibModal, $log, seedService, plantService) {
+myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'harvest', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, harvestService, harvest) {
   var vm = this;
 
   console.log ('asmic controller inventory');
+
+  vm.harvested = harvestService.harvest;
+  vm.crop = harvest.crop;
+  vm.variety = harvest.variety;
+  vm.date_harvested = harvest.date_harvested;
 
   vm.addSold = function(){
     var itemToSend = {

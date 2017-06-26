@@ -103,7 +103,7 @@
     </tr>
   </thead>
     <tbody>
-      <tr ng-repeat="seed in pc.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds">
+      <tr ng-repeat="seed in pc.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds" ng-hide="seed.out_of_stock==true">
         <td>{{ seed.crop }}</td>
         <td>{{ seed.variety }}</td>
         <td>{{ seed.purchase_date | date:'MM-dd-yyyy' }}</td>
@@ -221,7 +221,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="plant in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted">
+            <tr ng-repeat="plant in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted" ng-hide="planted.harvest_complete==true">
               <td>{{ plant.crop }}</td>
               <td>{{ plant.variety }}</td>
               <td>{{ plant.location }}</td>
@@ -273,11 +273,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="seed in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested">
-              <td>{{ seed.crop }}</td>
-              <td>{{ seed.variety }}</td>
-              <td>{{ seed.date_harvested | date:'MM-dd-yyyy' }}</td>
-              <td><button type="button" class="btn-info" ng-click="pc.openSold()">Sell</button></td>
+            <tr ng-repeat="harvest in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested">
+              <td>{{ harvest.crop }}</td>
+              <td>{{ harvest.variety }}</td>
+              <td>{{ harvest.date_harvested | date:'MM-dd-yyyy' }}</td>
+              <td><button type="button" class="btn-info" ng-click="pc.openSold(harvest)">Sell</button></td>
             </tr>
           </tbody>
         </table>
@@ -373,6 +373,18 @@
     <script type="text/ng-template" id="addSoldModalContent.html">
       <div class="modal-header">
         <h3>Sell Harvest</h3>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Crop: </label>
+        <p ng-model="ahmic.crop">{{asmic.crop}}</p>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Variety: </label>
+        <p ng-model="ahmic.variety">{{asmic.variety}}</p>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date Harvested: </label>
+        <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p>
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Weight Sold: </label>

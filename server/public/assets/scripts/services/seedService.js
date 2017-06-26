@@ -2,9 +2,9 @@
 myApp.service('seedService', ['$http', '$location', function($http, $location) {
   var self = this;
 
-  //empty object as placeholder for data that will be returned
+  //empty object as placeholder for data that will be returned for inventory page
   self.inventory = { list: [] };
-
+  
   self.addSeed = function(seedToSend){
     console.log('in addSeed service with seedToSend-->', seedToSend);
     return $http({
@@ -51,6 +51,7 @@ myApp.service('seedService', ['$http', '$location', function($http, $location) {
     }).then(function( response ) {
       console.log('in service for updateSeeds with response-->', response );
       self.getSeeds();
+      self.getPlannerSeeds();
       return response;
     }, function error ( response ){
       console.log( 'Error in updateSeeds:', response );
