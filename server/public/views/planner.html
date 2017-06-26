@@ -1,5 +1,6 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
+<h1>Planner</h1>
 <!-- Inventory Table  -->
 <div class="col-xs-12">
   <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds</button>
@@ -180,6 +181,7 @@
         </div>
         <form>
           <div class="form-group">
+              <h2>Planted</h2>
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-search"></i></div>
               <input type="text" class="form-control" placeholder="Search" ng-model="searchPlanted">
@@ -187,6 +189,7 @@
           </div>
         </form>
         <table class="table table-bordered table-striped">
+
           <thead>
             <tr>
               <td>
@@ -231,6 +234,7 @@
         </div>
         <form>
           <div class="form-group">
+            <h2>Harvested</h2>
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-search"></i></div>
               <input type="text" class="form-control" placeholder="Search" ng-model="searchHarvested">
@@ -282,6 +286,7 @@
         </div>
         <form>
           <div class="form-group">
+              <h2>Sold</h2>
             <div class="input-group">
               <div class="input-group-addon"><i class="fa fa-search"></i></div>
               <input type="text" class="form-control" placeholder="Search" ng-model="searchSold">
