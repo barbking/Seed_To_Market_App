@@ -10,6 +10,9 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
   vm.inventory = seedService.inventory;
   seedService.getSeeds();
 
+  // populate suppliers
+  supplierService.getSuppliers();
+
   vm.addSeed = function ( size, parentSelector ) {
     supplierService.getSuppliers();
     var parentElem = parentSelector ?
