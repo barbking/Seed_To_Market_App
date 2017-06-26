@@ -67,6 +67,7 @@ CREATE TABLE harvested (
 	yield INT,
 	area_sqft INT,
 	notes TEXT,
+	sold_out BOOLEAN DEFAULT false,
 	user_id INT REFERENCES users (user_id)
 );
 
