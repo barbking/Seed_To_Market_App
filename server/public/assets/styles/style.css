@@ -9,6 +9,10 @@
     background-color: #333333;
     color: #DDDDDD;
 }*/
+
+h1 {
+  text-align: center;
+}
 input {
   border: 1px solid black;
   border-radius: 5px;
