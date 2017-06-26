@@ -30,6 +30,12 @@ input {
   border: 1px solid black;
   border-radius: 5px;
 }
+
+.logoDiv{
+  margin-top: 30px;
+  text-align: center;
+}
+
 .btn-danger {
     margin-left: 10px;
 }
