@@ -93,7 +93,7 @@ router.get('/PlantsAndSeeds', function(req,res) {
         res.send(400);
       } else {
         console.log('connected to db');
-        var resultSet = connection.query("SELECT seeds.seed_id, seeds.crop, seeds.variety, planted.location, planted.planted_id FROM seeds INNER JOIN planted ON seeds.seed_id=planted.seed_id WHERE seeds.user_id=$1 and planted.harvest_complete=false;", [req.user.user_id]);
+        var resultSet = connection.query("SELECT seeds.seed_id, seeds.crop, seeds.variety, planted.location, planted.planted_id FROM seeds INNER JOIN planted ON seeds.seed_id=planted.seed_id WHERE seeds.user_id=$1 and planted.harvest_complete=false", [req.user.user_id]);
         resultSet.on( 'row', function( row ){
         plantTableInventory.push( row );
       });
@@ -164,7 +164,7 @@ router.get('/HarvestAndCrop', function(req,res) {
         res.send(400);
       } else {
         console.log('connected to db');
-          var resultSet = connection.query("SELECT seeds.seed_id, seeds.crop, seeds.variety, planted.planted_id, harvested.plant_id, harvested.date_harvested, harvested.harvested_id FROM seeds INNER JOIN planted ON seeds.seed_id=planted.seed_id INNER JOIN harvested ON planted.planted_id=harvested.plant_id WHERE harvested.user_id=$1", [req.user.user_id]);
+          var resultSet = connection.query("SELECT seeds.seed_id, seeds.crop, seeds.variety, planted.planted_id, harvested.plant_id, harvested.date_harvested, harvested.harvested_id FROM seeds INNER JOIN planted ON seeds.seed_id=planted.seed_id INNER JOIN harvested ON planted.planted_id=harvested.plant_id WHERE harvested.user_id=$1 and harvested.sold_out=false", [req.user.user_id]);
         resultSet.on( 'row', function( row ){
         harvestInventory.push( row );
       });

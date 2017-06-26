@@ -273,7 +273,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="harvest in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested">
+            <tr ng-repeat="harvest in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested" ng-hide="harvest.out_of_stock==true">
               <td>{{ harvest.crop }}</td>
               <td>{{ harvest.variety }}</td>
               <td>{{ harvest.date_harvested | date:'MM-dd-yyyy' }}</td>
