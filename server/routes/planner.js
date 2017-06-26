@@ -217,7 +217,7 @@ router.put('/updateSeeds', function(req, res) {
   } else {
     res.sendStatus(403);
   } // end response if user not authenticated
-}); //end of POST
+}); //end of PUT
 
 router.post('/addSale', function(req, res) {
   console.log('in planner addSale with -->', req.body);
@@ -240,5 +240,25 @@ router.post('/addSale', function(req, res) {
     res.sendStatus(403);
   } // end response if user not authenticated
 }); //end of POST route for adding new sale
+
+router.put('/updateHarvest', function(req, res) {
+  console.log('in updateHarvest with -->', req.body);
+  if (req.isAuthenticated()) {
+    //query to add new plant to database
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+        console.log('connected to db');
+        connection.query("UPDATE harvested SET sold_out=$1 WHERE harvested.harvested_id=$2 AND harvested.user_id=$3", [req.body.sold_out,req.body.harvest_id,req.user.user_id]);
+        done(); //close connection
+        res.sendStatus(200);
+        //end response of success if user logged in and new seed added
+      }
+    });
+  } else {
+    res.sendStatus(403);
+  } // end response if user not authenticated
+}); //end of PUT
 
 module.exports = router;

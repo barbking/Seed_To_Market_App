@@ -217,6 +217,16 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
     sellService.addSale(itemToSend);
     console.log('addSale object to send-->',itemToSend);
 
+    if (vm.sold_out === true) {
+      var harvestToUpdate = {
+        harvest_id: harvest.harvested_id,
+        sold_out: true,
+      };
+
+      console.log('harvestToUpdate-->', harvestToUpdate);
+      harvestService.updateHarvest(harvestToUpdate);
+    }
+
     $uibModalInstance.close();
   };//end add Item
 
