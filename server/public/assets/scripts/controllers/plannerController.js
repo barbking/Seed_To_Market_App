@@ -1,4 +1,4 @@
-myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', function($http, $location, $uibModal, $log, seedService, plantService, harvestService ) {
+myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'sellService', function($http, $location, $uibModal, $log, seedService, plantService, harvestService, sellService ) {
   var vm = this;
 
   vm.sortType     = 'crop'; // set the default sort type
@@ -194,7 +194,7 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
 }]);//end of addHarvestModalInstanceCtrl controller
 
 //conroller for Sold modal
-myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'harvest', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, harvestService, harvest) {
+myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'sellService', 'harvest', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, harvestService, sellService, harvest) {
   var vm = this;
 
   console.log ('asmic controller inventory');
@@ -206,15 +206,16 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
 
   vm.addSold = function(){
     var itemToSend = {
-      seed_id: seed.seed_id,
+      harvested_id: harvest.harvested_id,
       date_sold: vm.date_sold,
       weight_sold: vm.weight_sold,
       sold_to: vm.sold_to,
       notes: vm.notes,
       sold_out: vm.sold_out
     };
-    // plantService.addPlant(itemToSend);
-    console.log(itemToSend);
+
+    sellService.addSale(itemToSend);
+    console.log('addSale object to send-->',itemToSend);
 
     $uibModalInstance.close();
   };//end add Item
