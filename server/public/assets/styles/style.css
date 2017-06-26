@@ -50,6 +50,12 @@ input {
     background-color: #f8f8f8;
 }
 
+.nav-bar-seed {
+  position: sticky;
+  z-index: 9999;
+  width: 100%;
+}
+
 .planner-inventory{
   max-height: 405px;
   margin-bottom: 30px;

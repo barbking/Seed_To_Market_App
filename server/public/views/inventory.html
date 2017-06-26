@@ -1,8 +1,9 @@
 <!-- InventoryController as ic -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-<h1>Inventory</h1>
+<div class="" style="margin-top: 70px">
+  <h1>Inventory</h1>
+</div>
 
-<button type="button" class="btn-primary" ng-click="ic.addSeed()">Add Seed</button>
 
 <div class="container">
   <div class="alert alert-info">
@@ -15,7 +16,10 @@
 
   <form>
       <div class="form-group">
-        <div class="input-group">
+        <div class="col-xs-2" style="padding-left: 0px; padding-right: 10px;">
+          <button type="button" class="btn btn-primary" ng-click="ic.addSeed()" style="width: 100%; padding-left: 0px; padding-right: 0px">Add Seed</button>
+        </div>
+        <div class="input-group col-xs-10">
           <div class="input-group-addon"><i class="fa fa-search"></i></div>
           <input type="text" class="form-control" placeholder="Search" ng-model="searchSeeds">
         </div>
