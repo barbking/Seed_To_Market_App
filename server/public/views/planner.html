@@ -2,8 +2,8 @@
 <nav ng-include="'/views/templates/navbar.html'"></nav>
 <!-- Inventory Table  -->
 <div class="col-xs-12">
-  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Show Inventory</button>
-  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Inventory</button>
+  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds</button>
+  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Seeds</button>
 </div>
 
 <div ng-show="pc.isVisible">
@@ -218,7 +218,7 @@
               <td>{{ plant.crop }}</td>
               <td>{{ plant.variety }}</td>
               <td>{{ plant.location }}</td>
-              <td><button type="button" ng-click="pc.openHarvest(plant)">Harvest</button></td>
+              <td><button type="button" class="btn-info" ng-click="pc.openHarvest(plant)">Harvest</button></td>
             </tr>
           </tbody>
         </table>
@@ -269,7 +269,7 @@
               <td>{{ seed.crop }}</td>
               <td>{{ seed.variety }}</td>
               <td>{{ seed.date_harvested | date:'MM-dd-yyyy' }}</td>
-              <td><button type="button" ng-click="pc.openSold()">Sell</button></td>
+              <td><button type="button" class="btn-info" ng-click="pc.openSold()">Sell</button></td>
             </tr>
           </tbody>
         </table>
