@@ -42,4 +42,22 @@ myApp.service('seedService', ['$http', '$location', function($http, $location) {
 
   self.getSeeds();
 
+  self.updateSeeds = function (seedToUpdate) {
+    console.log('in updateSeeds service with seedToUpdate-->', seedToUpdate);
+    return $http({
+      method:'PUT',
+      url:'/planner/updateSeeds',
+      data: seedToUpdate,
+    }).then(function( response ) {
+      console.log('in service for updateSeeds with response-->', response );
+      self.getSeeds();
+      return response;
+    }, function error ( response ){
+      console.log( 'Error in updateSeeds:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end POST
+  };//end updatePlanted
+
 }]);

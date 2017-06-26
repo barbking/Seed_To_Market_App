@@ -107,9 +107,20 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
       quantity: vm.quantity,
       area_sqft: vm.area_sqft,
       notes: vm.notes,
+      out_of_stock: vm.out_of_stock
     };
     plantService.addPlant(itemToSend);
     console.log(itemToSend);
+    
+    //if check last seed checkbox in modal, update seeds table out_of_stock to true
+    if (vm.out_of_stock === true) {
+      var seedToUpdate = {
+        seed_id: seed.seed_id,
+        out_of_stock: true,
+      };
+      console.log('seedToUpdate-->', seedToUpdate);
+      seedService.updateSeeds(seedToUpdate);
+    }
 
     $uibModalInstance.close();
   };//end add Item

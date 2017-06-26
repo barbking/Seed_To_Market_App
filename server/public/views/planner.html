@@ -3,7 +3,7 @@
 <h1>Planner</h1>
 <!-- Inventory Table  -->
 <div class="col-xs-12">
-  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds</button>
+  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds For Planting</button>
   <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Seeds</button>
 </div>
 
@@ -156,8 +156,12 @@
         <input type="text" ng-model="apmic.area_sqft" class="col-xs-8">
       </div>
       <div class="col-xs-12">
+        <label class="col-xs-8">Check here if used last of seed: </label>
+        <input type="checkbox" ng-model="apmic.out_of_stock" class="checkbox-plant col-xs-3">
+      </div>
+      <div class="col-xs-12">
         <label class="col-xs-4">Notes: </label>
-        <input type="text" ng-model="apmic.notes" class="col-xs-8">
+        <textarea rows="4" ng-model="apmic.notes" class="col-xs-8"></textarea>
       </div>
     </div>
     <div class="modal-footer">

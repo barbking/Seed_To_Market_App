@@ -34,6 +34,7 @@ CREATE TABLE seeds (
 	purchase_date TIMESTAMP,
 	lot_number VARCHAR(100),
 	quantity INT,
+	out_of_stock BOOLEAN DEFAULT false,
 	item_code VARCHAR(100),
 	supplier_id INT REFERENCES suppliers (supplier_id),
 	organic BOOLEAN DEFAULT false,

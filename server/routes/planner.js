@@ -99,6 +99,7 @@ router.get('/PlantsAndSeeds', function(req,res) {
       });
         resultSet.on( 'end', function(){
          done();
+         console.log('plantTableInventory-->', plantTableInventory);
          res.send( plantTableInventory );
        }); //end on end
      } // end no error
@@ -187,7 +188,27 @@ router.put('/updatePlanted', function(req, res) {
         res.send(400);
       } else {
         console.log('connected to db');
-        connection.query("UPDATE planted SET harvest_complete=$1, harvest_complete_date=$2 WHERE planted_id=$3", [req.body.harvest_complete, req.body.harvest_complete_date,req.body.planted_id,]);
+        connection.query("UPDATE planted SET harvest_complete=$1, harvest_complete_date=$2 WHERE planted_id=$3 and planted.user_id=$4", [req.body.harvest_complete, req.body.harvest_complete_date,req.body.planted_id,req.user.user_id]);
+        done(); //close connection
+        res.sendStatus(200);
+        //end response of success if user logged in and new seed added
+      }
+    });
+  } else {
+    res.sendStatus(403);
+  } // end response if user not authenticated
+}); //end of POST
+
+router.put('/updateSeeds', function(req, res) {
+  console.log('in updateSeeds with -->', req.body);
+  if (req.isAuthenticated()) {
+    //query to add new plant to database
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+        console.log('connected to db');
+        connection.query("UPDATE seeds SET out_of_stock=$1 WHERE seeds.seed_id=$2 AND seeds.user_id=$3", [req.body.out_of_stock,req.body.seed_id,req.user.user_id]);
         done(); //close connection
         res.sendStatus(200);
         //end response of success if user logged in and new seed added
