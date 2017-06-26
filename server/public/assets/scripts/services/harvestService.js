@@ -11,7 +11,8 @@ myApp.service('harvestService', ['$http', '$location', function($http, $location
       data: harvestToSend,
     }).then(function( response ) {
       console.log('in service for addHarvest with response-->', response );
-      self.getHarvest();
+      // self.getHarvest();
+      self.getHarvestAndCrop();
       return response;
     }, function error ( response ){
       console.log( 'Error in addHarvest:', response );

@@ -53,4 +53,23 @@ myApp.service('plantService', ['$http', '$location', function($http, $location) 
   };//end getPlant GET
 
   self.getPlantsAndSeeds();
+
+  self.updatePlanted = function (plantToUpdate) {
+    console.log('in updatePlanted service with plantToUpdate-->', plantToUpdate);
+    return $http({
+      method:'PUT',
+      url:'/planner/updatePlanted',
+      data: plantToUpdate,
+    }).then(function( response ) {
+      console.log('in service for updatePlanted with response-->', response );
+      self.getPlantsAndSeeds();
+      return response;
+    }, function error ( response ){
+      console.log( 'Error in updatePlanted:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end POST
+  };//end updatePlanted
+
 }]);
