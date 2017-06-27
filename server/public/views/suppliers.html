@@ -16,7 +16,8 @@
           <br>
           Search Query: {{ searchSuppliers }}
 
-  </div> 
+  </div>  -->
+<div class="container content-div">
 
   <form>
       <div class="form-group">
@@ -87,7 +88,10 @@
               </a>
           </td>
           <td>
-<!--           Empty Header for Edit -->
+            Remove
+          </td>
+          <td>
+            Edit
           </td>
         </tr>
       </thead>
@@ -128,14 +132,18 @@
       <input type="text" name="supplier.description" style="width:110px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.description" placeholder="supplier.description" required="" />
     </td>
     <td>
-      <button ng-hide="supplier.editMode" sortType= "" ng-disabled="sc.editMode" ng-click="sc.showEdit(supplier)">Edit</button>
       <button class="btn-warning" ng-click = "sc.deleteSupplier(supplier.supplier_id)"> Delete</button>
+    </td>
+    <td>
+      <button ng-hide="supplier.editMode" sortType= "" ng-disabled="sc.editMode" ng-click="sc.showEdit(supplier)">Edit</button>
       <a href="" ng-show="supplier.editMode" ng-click="sc.updateSupplier(supplier, supplier.supplier_id)">Update</a>
       <a href="" ng-show="supplier.editMode" ng-click="sc.cancel(supplier)">Cancel</a>
     </td>
   </tr>
 </tbody>
 </table>
+
+</div>
 
 
 <!-- add a supplier modal -->
