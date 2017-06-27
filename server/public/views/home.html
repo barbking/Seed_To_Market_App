@@ -5,16 +5,19 @@
   <h1 class="lead">Login</h1>
     <h2 class="lead alert" role="alert" ng-if="message != ''">{{lc.message}}</h2>
     <form ng-submit="lc.login()">
-      <div>
-          <label for="email">E-mail:</label>
-          <input type="text" ng-model="lc.user.email" />
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="">
+            <!-- <label for="email">E-mail:</label> -->
+            <input type="text" ng-model="lc.user.email" placeholder="Email:" class="login form-control"/>
+        </div>
+        <div class="">
+            <!-- <label for="password">Password:</label> -->
+            <input type="password" ng-model="lc.user.password" placeholder="Password:" class="login form-control"/>
+        </div>
       </div>
-      <div>
-          <label for="password">Password:</label>
-          <input type="password" ng-model="lc.user.password" />
-      </div>
-      <div>
-          <input class="btn btn-default" type="submit" name="submit" value="Log In" />
+
+      <div class="col-xs-6 col-xs-offset-3">
+          <input class="btn btn-default login-btn" type="submit" name="submit" value="Log In" />
           <a href="#register">Register</a>
       </div>
     </form>
