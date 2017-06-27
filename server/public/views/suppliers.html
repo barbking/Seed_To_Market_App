@@ -127,7 +127,7 @@
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">State: </label>
-        <input type="text" ng-model="asmc.state" class="col-xs-2">
+        <select ng-model="asmc.state" ng-options="state for state in asmc.states" class="col-xs-2"></select>
       <!-- </div>
       <div class="col-xs-12"> -->
         <label class="col-xs-4">Zip: </label>
