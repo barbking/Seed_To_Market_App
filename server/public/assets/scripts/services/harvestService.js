@@ -58,4 +58,22 @@ myApp.service('harvestService', ['$http', '$location', function($http, $location
 
   self.getHarvestAndCrop();
 
+  self.updateHarvest = function (harvestToUpdate) {
+    console.log('in updateHarvest service with harvestToUpdate-->', harvestToUpdate);
+    return $http({
+      method:'PUT',
+      url:'/planner/updateHarvest',
+      data: harvestToUpdate,
+    }).then(function( response ) {
+      console.log('in service for updateHarvest with response-->', response );
+      self.getHarvestAndCrop();
+      return response;
+    }, function error ( response ){
+      console.log( 'Error in updateSale:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end POST
+  };
+
   }]);

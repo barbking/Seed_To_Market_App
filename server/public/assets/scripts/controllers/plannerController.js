@@ -1,4 +1,4 @@
-myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', function($http, $location, $uibModal, $log, seedService, plantService, harvestService ) {
+myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'sellService', function($http, $location, $uibModal, $log, seedService, plantService, harvestService, sellService ) {
   var vm = this;
 
   vm.sortType     = 'crop'; // set the default sort type
@@ -17,6 +17,10 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   vm.harvested = harvestService.harvest;
   // harvestService.getHarvest();
   harvestService.getHarvestAndCrop();
+
+  //create list of sold crops
+  vm.sold = sellService.sold;
+  sellService.getSold();
 
   //show/hide inventory table
   vm.isVisible = false;
@@ -68,7 +72,7 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   }; // end newActivity
 
   //open sold modal
-  vm.openSold = function ( size, parentSelector ) {
+  vm.openSold = function ( harvest, size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-sold-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -81,7 +85,9 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
       size: size,
       appendTo: parentElem,
       resolve: {
-
+        harvest: function() {
+          return harvest;
+        }
       }
     }); // end modalInstance
   }; // end newActivity
@@ -107,9 +113,20 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
       quantity: vm.quantity,
       area_sqft: vm.area_sqft,
       notes: vm.notes,
+      out_of_stock: vm.out_of_stock
     };
     plantService.addPlant(itemToSend);
     console.log(itemToSend);
+
+    //if check last seed checkbox in modal, update seeds table out_of_stock to true
+    if (vm.out_of_stock === true) {
+      var seedToUpdate = {
+        seed_id: seed.seed_id,
+        out_of_stock: true,
+      };
+      console.log('seedToUpdate-->', seedToUpdate);
+      seedService.updateSeeds(seedToUpdate);
+    }
 
     $uibModalInstance.close();
   };//end add Item
@@ -153,6 +170,7 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
     harvestService.addHarvest(itemToSend);
     console.log('addHarvest object to send-->',itemToSend);
 
+    //update plant table if last harvest
     if (vm.harvest_complete === true) {
       var plantToUpdate = {
         planted_id: plant.planted_id,
@@ -181,25 +199,41 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
 }]);//end of addHarvestModalInstanceCtrl controller
 
 //conroller for Sold modal
-myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', function ( $uibModalInstance, $uibModal, $log, seedService, plantService) {
+myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'plantService', 'harvestService', 'sellService', 'harvest', function ( $uibModalInstance, $uibModal, $log, seedService, plantService, harvestService, sellService, harvest) {
   var vm = this;
 
   console.log ('asmic controller inventory');
 
+  vm.harvested = harvestService.harvest;
+  vm.crop = harvest.crop;
+  vm.variety = harvest.variety;
+  vm.date_harvested = harvest.date_harvested;
+
   vm.addSold = function(){
     var itemToSend = {
-      seed_id: seed.seed_id,
+      harvested_id: harvest.harvested_id,
       date_sold: vm.date_sold,
       weight_sold: vm.weight_sold,
       sold_to: vm.sold_to,
       notes: vm.notes,
       sold_out: vm.sold_out
     };
-    // plantService.addPlant(itemToSend);
-    console.log(itemToSend);
+
+    sellService.addSale(itemToSend);
+    console.log('addSale object to send-->',itemToSend);
+
+    //update harvest table if harvest sold out
+    if (vm.sold_out === true) {
+      var harvestToUpdate = {
+        harvest_id: harvest.harvested_id,
+        sold_out: true,
+      };
+      console.log('harvestToUpdate-->', harvestToUpdate);
+      harvestService.updateHarvest(harvestToUpdate);
+    }//end if
 
     $uibModalInstance.close();
-  };//end add Item
+  };//end addSold
 
   vm.clearSoldInputs = function (){
     vm.date_sold = '';
