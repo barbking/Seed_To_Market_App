@@ -1,6 +1,9 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-<h1>Planner</h1>
+<div class="headingDiv">
+  <h1>Planner</h1>
+</div>
+
 <!-- Inventory Table  -->
 <div class="col-xs-12">
   <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds For Planting</button>

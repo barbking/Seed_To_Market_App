@@ -18,6 +18,14 @@ h2{
   padding-top: 30px;
 }
 
+#farmTitle {
+  text-align: left;
+}
+
+.headingDiv {
+  margin-top: 70px;
+}
+
 .icons {
   float: left;
   margin-left: 40px;
@@ -26,6 +34,15 @@ h2{
   height: 60px;
   width: 60px;
 }
+
+.farmIcon {
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-right: 40px;
+  height: 60px;
+  width: 60px;
+}
+
 input {
   border: 1px solid black;
   border-radius: 5px;
@@ -128,7 +145,7 @@ input {
   margin-left: 40vw;
 }
 #registerbackground {
-  background-color: #845bb8;
+  background-color: white;
   height: 100vh;
   width: 100vw;
   /*color: black;*/
