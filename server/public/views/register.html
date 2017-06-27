@@ -1,33 +1,32 @@
-<div id="registerbackground" class="container">
-  <div id="register">
+  <div class="logoDiv content-div">
     <img src="/views/images/stmLogo1.jpg" class="logo">
-  <h2 class="lead alert" role="alert" ng-if="message != ''">{{lc.message}}</h2>
-  <form ng-submit="lc.registerUser()">
-    <h1 class="lead">Register User</h1>
-    <div>
-        <label for="email">E-mail</label><br>
-        <input type="text" ng-model="lc.user.email" />
-    </div>
-    <div>
-        <label for="name">Name</label><br>
-        <input type="text" ng-model="lc.user.user_name" />
-    </div>
-    <div>
-        <label for="phone">Phone</label><br>
-        <input type="text" ng-model="lc.user.phone_number" />
-    </div>
-    <div>
-        <label for="password">Password</label><br>
-        <input type="password" ng-model="lc.user.password" />
-    </div>
-    <!-- <label>Create a farm:
-      <input ng-model ="newfarm" type="checkbox">
-    </label><br> -->
-    <!-- <label>Join a farm:
-      <input ng-model ="useFarm" type="checkbox" ng-change="lc.useFarm()">
-    </label><br> -->
-    <input class="btn btn-default" type="submit" name="submit" value="Register" />
-    <a href="#home">Cancel</a>
-  </form>
- </div>
-</div>
+  </div>
+
+  <div class="container col-sm-4 col-md-4 col-lg-4 col-sm-offset-4" id="login">
+    <h1 class="lead" id="login">Register User</h1>
+      <form ng-submit="lc.registerUser()">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="">
+              <!-- <label for="email">E-mail:</label> -->
+              <input type="text" ng-model="lc.user.email" placeholder="Email:" class="login form-control"/>
+          </div>
+          <div class="">
+              <!-- <label for="password">Password:</label> -->
+              <input type="password" ng-model="lc.user.user_name" placeholder="Name:" class="login form-control"/>
+          </div>
+          <div class="">
+              <!-- <label for="email">E-mail:</label> -->
+              <input type="text" ng-model="lc.user.phone_number" placeholder="Phone Number:" class="login form-control"/>
+          </div>
+          <div class="">
+              <!-- <label for="email">E-mail:</label> -->
+              <input type="text" ng-model="lc.user.password" placeholder="Password:" class="login form-control"/>
+          </div>
+        </div>
+
+        <div class="col-xs-6 col-xs-offset-3">
+            <input class="btn btn-default login-btn" type="submit" name="submit" value="Register" />
+            <a href="#home" class="register">Cancel</a>
+        </div>
+      </form>
+  </div>

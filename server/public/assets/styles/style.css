@@ -19,8 +19,16 @@
   transform: scale(1.5);
 }
 
+.content-div {
+  background-color: white;
+  padding-top: 25px;
+}
+
 h1 {
   text-align: center;
+  color: #00778b !important;
+  font-size: 64px !important;
+  text-shadow: 3px 3px 3px black;
 }
 
 h2{
@@ -85,9 +93,11 @@ input {
     margin-left: 10px;
 }
 .btn-inventory-toggle {
-  float: left;
-  margin-left: 5vw;
-  margin-bottom: 2vw;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  /*margin-left: 5vw;*/
+  margin-bottom: 1vw;
 }
 .buttons {
   padding: 10px;
@@ -106,6 +116,8 @@ input {
 
 #login{
   text-align: center;
+  margin-top: 10vh;
+  margin-bottom: 50px;
 }
 
 
@@ -115,6 +127,9 @@ input {
 }
 body {
   background-image: url("/views/images/barley.jpg");
+  background-size: cover;
+  background-position: center;
+  /*position: fixed;*/
 }
 
 .message {
@@ -179,12 +194,16 @@ body {
   line-height: 300%;
   height: 50vh;
 }
+.register {
+  color: #00778b;
+  text-shadow: 1.5px 1.5px 1.5px black;
+  font-size: 21px;
+}
 #register {
   align-items: center;
   margin-left: 40vw;
 }
 #registerbackground {
-  background-color: white;
   height: 100vh;
   width: 100vw;
   /*color: black;*/

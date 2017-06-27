@@ -1,17 +1,20 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-<div class="headingDiv">
-  <h1>Planner</h1>
+<div class="headingDiv container">
+  <h1 class="col-xs-12">Planner</h1>
+  <div class="col-xs-4 col-xs-offset-4">
+    <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds For Planting</button>
+    <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Seeds</button>
+  </div>
 </div>
 
 <!-- Inventory Table  -->
-<div class="col-xs-12">
-  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds For Planting</button>
-  <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Seeds</button>
-</div>
 
+
+
+<div class="">
 <div ng-show="pc.isVisible">
-  <div class="container planner-tables planner-inventory">
+  <div class="container planner-tables planner-inventory content-div">
 
     <form>
         <div class="form-group">
@@ -126,6 +129,8 @@
 </div>
 <!-- end of inventory table-->
 
+</div>
+
 <!-- add a plant modal -->
 <div class="add-plant-modal container">
   <script type="text/ng-template" id="addPlantModalContent.html">
@@ -178,6 +183,8 @@
   </script>
 
 <!-- planner tables to display planted/harvested/sold on planner page -->
+<div class="content-div">
+
   <div class="container planner">
     <div class="col-xs-12">
       <div class="col-xs-4 planner-tables">
@@ -345,6 +352,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- add a harvest modal -->
   <div class="add-harvest-modal container">
