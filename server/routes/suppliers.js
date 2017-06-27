@@ -85,4 +85,25 @@ router.post( '/addSupplier', function ( req, res ) {
   } // end if authenticated
 }); // end POST to addSupplier
 
+//edit supplier PUT
+router.put('/editSupplier', function(req, res){
+console.log('in router PUT for edit supplier', req.query);
+  var newSeed = req.query;
+  if (req.isAuthenticated()) {
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+          connection.query("UPDATE suppliers SET name = $1 , website = $2 , phone_number = $3 , address = $4 , city = $5 , state = $6 , zip = $7 , description = $8 WHERE supplier_id = $9 ", [req.query.name, req.query.website, req.query.phone_number, req.query.address, req.query.city, req.query.state, req.query.zip, req.query.description, req.query.supplier_id]);
+
+        done();
+        res.sendStatus(200);
+      } //end else
+    }); //end pool
+  } else {
+    res.sendStatus(403);
+  }
+});//end PUT
+
+
 module.exports = router;

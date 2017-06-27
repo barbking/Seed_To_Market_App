@@ -13,7 +13,6 @@
           <br>
           Search Query: {{ searchSuppliers }}
   </div>
-
   <form>
       <div class="form-group">
         <div class="input-group">
@@ -22,81 +21,116 @@
         </div>
       </div>
   </form>
+  <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <td>
+          <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+            Name
+            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+      </td>
 
-<table class="table table-bordered table-striped">
-<thead>
-  <tr>
+          <td>
+              <a  ng-click="sortType = 'website'; sortReverse = !sortReverse">
+                Website
+                <span ng-show="sortType == 'website' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'website' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </td>
+          <td>
+              <a  ng-click="sortType = 'phone_number'; sortReverse = !sortReverse">
+                Phone Number
+                <span ng-show="sortType == 'phone_number' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'phone_number' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </td>
+          <td>
+              <a  ng-click="sortType = 'address'; sortReverse = !sortReverse">
+                Street Address
+                <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </td>
+          <td>
+              <a  ng-click="sortType = 'city'; sortReverse = !sortReverse">
+                City
+                <span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </td>
+          <td>
+              <a  ng-click="sortType = 'state'; sortReverse = !sortReverse">
+                State
+                <span ng-show="sortType == 'state' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'state' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </td>
+          <td>
+              <a  ng-click="sortType = 'zip'; sortReverse = !sortReverse">
+                Zip
+                <span ng-show="sortType == 'zip' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'zip' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </td>
+          <td>
+              <a  ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                Description
+                <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </thead>
+
+      <!-- Populating Table -->
+<tbody>
+  <tr ng-repeat="supplier in sc.suppliers.list | orderBy:sortType:sortReverse | filter:searchSuppliers">
     <td>
-        <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
-          Name
-          <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.name}}</span>
+      <input type="text" name="supplier.name" style="width:120px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.name" placeholder="supplier.name" required="" />
     </td>
     <td>
-        <a  ng-click="sortType = 'website'; sortReverse = !sortReverse">
-          Website
-          <span ng-show="sortType == 'website' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'website' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.website}}</span>
+      <input type="text" name="supplier.website" style="width:140px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.website" placeholder="supplier.website" required="" />
     </td>
     <td>
-        <a  ng-click="sortType = 'phone_number'; sortReverse = !sortReverse">
-          Phone Number
-          <span ng-show="sortType == 'phone_number' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'phone_number' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.phone_number}}</span>
+      <input type="text" name="supplier.phone_number" style="width:90px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.phone_number" placeholder="supplier.phone_number" required="" />
     </td>
     <td>
-        <a  ng-click="sortType = 'address'; sortReverse = !sortReverse">
-          Street Address
-          <span ng-show="sortType == 'address' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'address' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.address}}</span>
+      <input type="text" name="supplier.address" style="width:110px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.address" placeholder="supplier.address" required="" />
     </td>
     <td>
-        <a  ng-click="sortType = 'city'; sortReverse = !sortReverse">
-          City
-          <span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.city}}</span>
+      <input type="text" name="supplier.city" style="width:90px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.city" placeholder="supplier.city" required="" />
     </td>
     <td>
-        <a  ng-click="sortType = 'state'; sortReverse = !sortReverse">
-          State
-          <span ng-show="sortType == 'state' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'state' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.state}}</span>
+      <input type="text" name="supplier.state" style="width:60px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.state" placeholder="supplier.state" required="" />
     </td>
     <td>
-        <a  ng-click="sortType = 'zip'; sortReverse = !sortReverse">
-          Zip
-          <span ng-show="sortType == 'zip' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'zip' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.zip}}</span>
+      <input type="text" name="supplier.zip" style="width:70px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.zip" placeholder="supplier.zip" required="" />
     </td>
     <td>
-        <a  ng-click="sortType = 'description'; sortReverse = !sortReverse">
-          Description
-          <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
-        </a>
+      <span ng-hide="supplier.editMode">{{supplier.description}}</span>
+      <input type="text" name="supplier.description" style="width:110px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.description" placeholder="supplier.description" required="" />
     </td>
+    <td>
+      <button ng-hide="supplier.editMode" sortType= "" ng-disabled="sc.editMode" ng-click="sc.showEdit(supplier)">Edit</button>
+      <a href="" ng-show="supplier.editMode" ng-click="sc.updateSupplier(supplier, supplier.supplier_id)">Update</a>
+      <a href="" ng-show="supplier.editMode" ng-click="sc.cancel(supplier)">Cancel</a>
+    </td>
+      <!-- Blank Header for Edit -->
   </tr>
-</thead>
-  <tbody>
-    <tr ng-repeat="supplier in sc.suppliers.list | orderBy:sortType:sortReverse | filter:searchSuppliers">
-      <td>{{ supplier.name }}</td>
-      <td>{{ supplier.website }}</td>
-      <td>{{ supplier.phone_number }}</td>
-      <td>{{ supplier.address }}</td>
-      <td>{{ supplier.city }}</td>
-      <td>{{ supplier.state }}</td>
-      <td>{{ supplier.zip}}</td>
-      <td>{{ supplier.description }}</td>
-    </tr>
-  </tbody>
+</tbody>
 </table>
+
 
 <!-- add a supplier modal -->
 <div class="add-supplier-modal container">

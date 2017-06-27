@@ -12,6 +12,7 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
   seedService.getSeeds();
 
   // populate suppliers
+  vm.suppliers = supplierService.suppliers;
   supplierService.getSuppliers();
 
   vm.addSeed = function ( size, parentSelector ) {
@@ -77,6 +78,8 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
 //Update button from HTML
   vm.updateSeed = function (seed){
   console.log('In saveEditSeed');
+  seed.supplier_id = vm.selectedSupplier;
+  console.log('seed update:', seed);
   seedService.editSeed(seed);
   seed.editMode = false;
   vm.editMode = false;
