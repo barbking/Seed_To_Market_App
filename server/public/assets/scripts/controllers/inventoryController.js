@@ -31,7 +31,7 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
       }
     }); // end modalInstance
 
- 
+
 
   }; // end addSeed
 
@@ -54,9 +54,6 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
       }
     }); // end modalInstance
   }; // end viewReceipt
-}]);// end InventoryController
-
-
 
 //Edit button from HTML
   vm.showEdit = function(seed) {
