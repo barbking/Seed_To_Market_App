@@ -366,11 +366,11 @@
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Yield in lbs: </label>
-        <input type="number" ng-model="ahmic.yield" class="col-xs-8">
+        <input type="number" min=0 ng-model="ahmic.yield" class="col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Area sqft: </label>
-        <input type="number" ng-model="ahmic.area_sqft" class="col-xs-8">
+        <input type="number" min=0 ng-model="ahmic.area_sqft" class="col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Date: </label>
@@ -414,8 +414,8 @@
         <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Weight Sold: </label>
-        <input type="number" ng-model="asmic.weight_sold" class="col-xs-8">
+        <label class="col-xs-4">Weight Sold in lbs: </label>
+        <input type="number" min=0 ng-model="asmic.weight_sold" class="col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Date: </label>
