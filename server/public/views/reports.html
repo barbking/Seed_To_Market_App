@@ -77,13 +77,14 @@
     </thead>
     <tbody>
       <tr ng-repeat="report in rc.reports.list | orderBy:sortType:sortReverse | filter:searchreports">
-        <td>{{ reports.crop }}</td>
-        <td>{{ reports.variety }}</td>
-        <td>{{ reports.location }}</td>
-        <td>{{ reports.date_harvested }}</td>
-        <td>{{ reports.yield }}</td>
-        <td>{{ reports.weight_sold }}</td>
-        <td>{{ reports.sold_to }}</td>
+        <td>{{ report.crop }}</td>
+        <td>{{ report.variety }}</td>
+        <td>{{ report.location }}</td>
+        <td>{{ report.date_harvested | date:'MM-dd-yyyy'}}</td>
+        <td>{{ report.area_sqft }}</td>
+        <td>{{ report.yield }}</td>
+        <td>{{ report.weight_sold }}</td>
+        <td>{{ report.sold_to }}</td>
       </tr>
     </tbody>
   </table>

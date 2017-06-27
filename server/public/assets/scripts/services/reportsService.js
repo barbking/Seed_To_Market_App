@@ -7,7 +7,7 @@ myApp.service('reportsService', ['$http', '$location', function($http, $location
     console.log('in getSold service');
     $http ({
       method: 'GET',
-      url: '/planner/reports',
+      url: '/reports',
     }).then( function (response) {
       console.log( 'getReports resp:', response.data );
       self.reports.list = response.data;
