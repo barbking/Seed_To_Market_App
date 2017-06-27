@@ -4,10 +4,9 @@
   <h1>Reports</h1>
 </div>
 
-<div class="col-xs-12 planner-tables">
+<div class="col-xs-12 reports-tables">
   <form>
     <div class="form-group">
-        <!-- <span><img src="/views/images/sold.png" class="icons"/><h2>solid</h2></span> -->
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search"></i></div>
         <input type="text" class="form-control" placeholder="Search" ng-model="searchReports">
@@ -18,65 +17,65 @@
     <thead>
       <tr>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'crop'; sortReverse = !sortReverse">
             Crop
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'crop' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'crop' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'variety'; sortReverse = !sortReverse">
             Variety
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'variety' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'variety' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'location'; sortReverse = !sortReverse">
             Field
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'location' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'location' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'date_harvested'; sortReverse = !sortReverse">
             Harvest Date
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'date_harvested' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'date_harvested' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'area_sqft'; sortReverse = !sortReverse">
             Area Planted
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'area_sqft' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'area_sqft' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'yield'; sortReverse = !sortReverse">
             Harvest Weight (lbs)
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'yield' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'yield' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'weight_sold'; sortReverse = !sortReverse">
             Sold Weight (lbs)
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'weight_sold' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'weight_sold' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
         <td>
-          <a  ng-click="sortType = 'reports'; sortReverse = !sortReverse">
+          <a  ng-click="sortType = 'sold_to'; sortReverse = !sortReverse">
             Buyer
-            <span ng-show="sortType == 'reports' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'reports' && sortReverse" class="fa fa-caret-up"></span>
+            <span ng-show="sortType == 'sold_to' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'sold_to' && sortReverse" class="fa fa-caret-up"></span>
           </a>
         </td>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="report in rc.reports.list | orderBy:sortType:sortReverse | filter:searchreports">
+      <tr ng-repeat="report in rc.reports.list | orderBy:sortType:sortReverse | filter:searchReports">
         <td>{{ report.crop }}</td>
         <td>{{ report.variety }}</td>
         <td>{{ report.location }}</td>
@@ -88,6 +87,4 @@
       </tr>
     </tbody>
   </table>
-</div>
-</div>
 </div>
