@@ -1,10 +1,10 @@
 //   Seed Service
-myApp.service('seedService', ['$http','$location', function($http, $location) {
+myApp.service('seedService', ['$http', '$location', function($http, $location) {
   var self = this;
 
-  //empty object as placeholder for data that will be returned
+  //empty object as placeholder for data that will be returned for inventory page
   self.inventory = { list: [] };
-
+  
   self.addSeed = function(seedToSend){
     console.log('in addSeed service with seedToSend-->', seedToSend);
     return $http({
@@ -15,7 +15,12 @@ myApp.service('seedService', ['$http','$location', function($http, $location) {
       console.log('in service for addSeed with response-->', response );
       self.getSeeds();
       return response;
-    });
+    }, function error ( response ){
+      console.log( 'Error in addSeed:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end POST '/inventory/addSeed'
   };//end addSeed POST
 
   self.getSeeds = function () {
@@ -27,8 +32,14 @@ myApp.service('seedService', ['$http','$location', function($http, $location) {
       console.log( 'getSeeds resp:', response.data );
       self.inventory.list = response.data;
       console.log (self.inventory);
-    });
+    }, function error ( response ){
+      console.log( 'Error in getSeeds:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end GET '/inventory'
   };//end getSeeds GET
+
 
 
 
@@ -66,3 +77,25 @@ myApp.service('seedService', ['$http','$location', function($http, $location) {
   };//end edit seed PUT
 
 }]); //end service
+
+  self.updateSeeds = function (seedToUpdate) {
+    console.log('in updateSeeds service with seedToUpdate-->', seedToUpdate);
+    return $http({
+      method:'PUT',
+      url:'/planner/updateSeeds',
+      data: seedToUpdate,
+    }).then(function( response ) {
+      console.log('in service for updateSeeds with response-->', response );
+      self.getSeeds();
+      self.getPlannerSeeds();
+      return response;
+    }, function error ( response ){
+      console.log( 'Error in updateSeeds:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end POST
+  };//end updatePlanted
+
+}]);
+

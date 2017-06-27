@@ -1,4 +1,4 @@
-myApp.controller('InventoryController', ['$http', '$location','seedService', '$uibModal', '$log', function($http, $location, seedService, $uibModal, $log) {
+myApp.controller('InventoryController', ['$http', '$location','seedService', 'supplierService', '$uibModal', '$log', function($http, $location, seedService, supplierService, $uibModal, $log) {
   var vm = this;
 
 
@@ -10,7 +10,11 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
   vm.inventory = seedService.inventory;
   seedService.getSeeds();
 
-  vm.open = function ( size, parentSelector ) {
+  // populate suppliers
+  supplierService.getSuppliers();
+
+  vm.addSeed = function ( size, parentSelector ) {
+    supplierService.getSuppliers();
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.add-seed-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -26,7 +30,32 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
 
       }
     }); // end modalInstance
-  }; // end newActivity
+
+ 
+
+  }; // end addSeed
+
+  vm.viewReceipt = function ( receipt_url, size, parentSelector ) {
+    var parentElem = parentSelector ?
+      angular.element($document[0].querySelector('.view-receipt-modal' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+      animation: true,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'viewReceiptModalContent.html',
+      controller: 'viewReceiptModalInstanceCtrl',
+      controllerAs: 'vrmic',
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+        receipt_url: function () {
+          return receipt_url;
+        }
+      }
+    }); // end modalInstance
+  }; // end viewReceipt
+}]);// end InventoryController
+
 
 
 //Edit button from HTML
@@ -55,46 +84,56 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
 
 
 
-myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', function ( $uibModalInstance, $uibModal, $log, seedService ) {
+myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'seedService', 'supplierService',function ( $uibModalInstance, $uibModal, $log, seedService, supplierService ) {
   var vm = this;
+  vm.organic = false;
+  vm.untreated = false;
+  vm.nongmo= false;
 
-  vm.addNewSeed = function(supplierId){
-    var itemToSend = {
-      crop: vm.crop,
-      variety: vm.variety,
-      purchase_date: vm.purchasedate,
-      lot_number: vm.lotnum,
-      quantity: vm.quantity,
-      item_code: vm.itemcode,
-      supplier_id: supplierId,
-      organic: vm.organic,
-      untreated:vm.untreated,
-      non_gmo: vm.nongmo,
-      seed_check_sources: vm.seedcheck,
-      receipt_url: vm.file.url
-    };
-    //FILESTACK IMG URL GOES HERE
-    console.log(itemToSend);
-    seedService.addSeed(itemToSend);
+  supplierService.getSuppliers();
+  vm.suppliers = supplierService.suppliers.list;
 
+  vm.addNewSeed = function(){
+    if ( !vm.crop || !vm.variety || !vm.purchasedate || !vm.lotnum || !vm.quantity || !vm.itemcode || !vm.selectedSupplier || !vm.seedcheck || !vm.file.url ) {
+      console.log('inputs empty');
+      swal({
+        title: "Empty Fields!",
+        text: "Please enter all fields!",
+        type: "error",
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } else {
+      var itemToSend = {
+        crop: vm.crop,
+        variety: vm.variety,
+        purchase_date: vm.purchasedate,
+        lot_number: vm.lotnum,
+        quantity: vm.quantity,
+        item_code: vm.itemcode,
+        supplier_id: vm.selectedSupplier,
+        organic: vm.organic,
+        untreated:vm.untreated,
+        non_gmo: vm.nongmo,
+        seed_check_sources: vm.seedcheck,
+        // receipt_url: vm.file.url
+      };
+      //FILESTACK IMG URL GOES HERE
+      // console.log(itemToSend);
+      seedService.addSeed(itemToSend);
+      swal({
+        title: "Seed Added!",
+        text: "New seed added to inventory!",
+        type: "success",
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+      $uibModalInstance.close();
+    } // end if else
+  }; //end add Item
+
+
+  vm.cancel = function (){
     $uibModalInstance.close();
-  };//end add Item
-
-
-  vm.clearSeedInputs = function (){
-    vm.crop = "";
-    vm.variety = "";
-    vm.purchasedate = "";
-    vm.lotnum = "";
-    vm.quantity = "";
-    vm.itemcode = "";
-    vm.organic = false;
-    vm.untreated = false;
-    vm.nongmo= false;
-    vm.seedcheck= "";
-
-    $uibModalInstance.close();
-  };
+  }; // end cancel
 
   vm.showPicker = function(){
     var client = filestack.init('ANxEyrmJzQsSnoC7PFCcXz');
@@ -110,7 +149,17 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
       console.log(vm.file.url);
       //console.log("result.filesUploaded", JSON.stringify(result.filesUploaded));
     });
-  };
+  }; // end showPicker
 
-  vm.clearSeedInputs();
-}]);
+  // vm.clearSeedInputs();
+}]); // end addSeedModalInstanceCtrl
+
+myApp.controller( 'viewReceiptModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'receipt_url', function ( $uibModalInstance, $uibModal, $log, receipt_url ) {
+  var vm = this;
+
+  vm.receipt_url = receipt_url;
+
+  vm.ok = function () {
+    $uibModalInstance.close();
+  }; // end ok
+}]); // end viewReceiptModalInstanceCtrl

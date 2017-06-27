@@ -23,7 +23,7 @@ myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log',
       }
     }); // end modalInstance
   }; // end open
-}]);
+}]); // end SuppliersController
 
 
 myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', 'supplierService', function ( $uibModalInstance, $uibModal, $log, supplierService) {
@@ -39,7 +39,7 @@ myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
       state: vm.state,
       zip: vm.zip,
       description: vm.description
-    };
+    }; // end itemToSend
     // check for empty fields
     if ( vm.name === '' || vm.website === '' || vm.phone_number === '' || vm.address === '' || vm.city === '' || vm.state === '' || vm.zip === '' ) {
       console.log( 'fields are empty' );
@@ -48,7 +48,7 @@ myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
         text: "Please enter all necessary fields!",
         type: "error",
         confirmButtonText: "Ok"
-      });
+      }); // end sweetalert
     } else {
       console.log(itemToSend);
       supplierService.addSupplier(itemToSend);
@@ -57,8 +57,8 @@ myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
         title: "Supplier Added!",
         type: "success",
         confirmButtonText: "Ok"
-      });
-    }
+      }); // end sweetalert
+    } // end if else
   };//end add Item
 
 
@@ -73,7 +73,5 @@ myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
     vm.description = '';
 
     $uibModalInstance.close();
-  };
-
-  vm.clearSupplierInputs();
-}]);
+  }; // end clearSupplierInputs
+}]); // end addSupplierModalInstanceCtrl

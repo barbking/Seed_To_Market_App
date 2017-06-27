@@ -34,11 +34,12 @@ CREATE TABLE seeds (
 	purchase_date TIMESTAMP,
 	lot_number VARCHAR(100),
 	quantity INT,
+	out_of_stock BOOLEAN DEFAULT false,
 	item_code VARCHAR(100),
 	supplier_id INT REFERENCES suppliers (supplier_id),
-	organic BOOLEAN,
-	untreated BOOLEAN,
-	non_gmo BOOLEAN,
+	organic BOOLEAN DEFAULT false,
+	untreated BOOLEAN DEFAULT false,
+	non_gmo BOOLEAN DEFAULT false,
 	seed_check_sources TEXT,
 	receipt_url TEXT,
 	user_id INT REFERENCES users (user_id)
@@ -53,8 +54,8 @@ CREATE TABLE planted (
 	quantity INT,
 	area_sqft INT,
 	notes TEXT,
-	harvest_complete BOOLEAN,
-	harvest_complete_date BOOLEAN,
+	harvest_complete BOOLEAN DEFAULT false,
+	harvest_complete_date TIMESTAMP,
 	user_id INT REFERENCES users (user_id)
 );
 
@@ -67,6 +68,7 @@ CREATE TABLE harvested (
 	yield INT,
 	area_sqft INT,
 	notes TEXT,
+	sold_out BOOLEAN DEFAULT false,
 	user_id INT REFERENCES users (user_id)
 );
 
