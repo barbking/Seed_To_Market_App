@@ -23,6 +23,7 @@ CREATE TABLE suppliers (
 	state VARCHAR(2),
 	zip INT,
 	description TEXT,
+	active BOOLEAN DEFAULT true,
 	user_id INT REFERENCES users (user_id)
 );
 

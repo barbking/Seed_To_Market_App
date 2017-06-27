@@ -42,7 +42,8 @@
         </div>
         <div>
           <span class="title"><b>State:</b></span>
-          <span editable-text="fc.farm.farm_state" e-name="state" e-required>{{ fc.farm.farm_state || 'empty' }}</span>
+          <span editable-select="fc.farm.farm_state" e-name="state" e-ng-options="state for state in fc.states">
+            {{ fc.farm.farm_state }}</span>
           <span class="title"><b>ZIP:</b></span>
           <span editable-text="fc.farm.farm_zip" e-name="zip" e-required>{{ fc.farm.farm_zip || 'empty' }}</span>
         </div>
