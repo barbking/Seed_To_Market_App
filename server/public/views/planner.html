@@ -113,9 +113,9 @@
         <td>{{ seed.lot_number }}</td>
         <td>{{ seed.quantity }}</td>
         <td>{{ seed.item_code }}</td>
-        <td>{{ seed.organic}}</td>
-        <td>{{ seed.untreated }}</td>
-        <td>{{ seed.non_gmo }}</td>
+        <td>{{ seed.organic ? "Yes" : "No"}}</td>
+        <td>{{ seed.untreated ? "Yes" : "No"}}</td>
+        <td>{{ seed.non_gmo ? "Yes" : "No"}}</td>
         <td>{{ seed.supplier_id }}</td>
         <td>{{ seed.seed_check_sources }}</td>
         <td><button type="button" ng-click="pc.open(seed)">Plant</button></td>

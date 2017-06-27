@@ -144,15 +144,15 @@
       <input type="text" name="seed.item_code" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.item_code" placeholder="seed.item_code" required="" />
     </td>
     <td>
-      <span ng-hide="seed.editMode">{{seed.organic}}</span>
+      <span ng-hide="seed.editMode">{{seed.organic ? "Yes" : "No"}}</span>
       <input type="text" name="seed.organic" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.organic" placeholder="seed.organic" required="" />
     </td>
     <td>
-      <span ng-hide="seed.editMode">{{seed.untreated}}</span>
+      <span ng-hide="seed.editMode">{{seed.untreated ? "Yes" : "No"}}</span>
       <input type="text" name="seed.untreated" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.untreated" placeholder="seed.untreated" required="" />
     </td>
     <td>
-      <span ng-hide="seed.editMode">{{seed.non_gmo}}</span>
+      <span ng-hide="seed.editMode">{{seed.non_gmo ? "Yes" : "No"}}</span>
       <input type="text" name="seed.non_gmo" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.non_gmo" placeholder="seed.non_gmo" required="" />
     </td>
     <td>
