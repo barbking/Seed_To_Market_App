@@ -74,10 +74,13 @@ input {
     width:5px;
 }
 
-
 .logout {
   float: right;
 }
+body {
+  background-image: url("/views/images/barley.jpg");
+}
+
 .message {
     padding: 10px 0;
 }
