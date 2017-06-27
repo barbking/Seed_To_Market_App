@@ -27,9 +27,31 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', '$u
       }
     }); // end modalInstance
   }; // end newActivity
+
+
+//Edit button from HTML
+  vm.showEdit = function(seed) {
+       console.log('in edit user');
+       seed.sortType = null;
+       seed.editMode = true;
+      //  vm.sort = undefined;
+     };
+
+//Cancel button from HTML
+  vm.cancel = function(seed) {
+      console.log('in cancel');
+          seedService.getSeeds();
+          seed.editMode = false;
+    };
+
+//Update button from HTML
+  vm.updateSeed = function (seed){
+  console.log('In saveEditSeed');
+
+  seedService.editSeed(seed);
+  seed.editMode = false;
+};
 }]);// end InventoryController
-
-
 
 
 

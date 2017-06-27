@@ -1,5 +1,5 @@
 //   Seed Service
-myApp.service('seedService', ['$http', function($http) {
+myApp.service('seedService', ['$http','$location', function($http, $location) {
   var self = this;
 
   //empty object as placeholder for data that will be returned
@@ -30,6 +30,39 @@ myApp.service('seedService', ['$http', function($http) {
     });
   };//end getSeeds GET
 
-  self.getSeeds();
 
-}]);
+
+//Edit seed PUT
+  self.editSeed = function(seed){
+    console.log('in editseed service with seedToSend triggered by Update Button-->', seed);
+    return $http({
+      method:'PUT',
+      url:'/inventory/editSeed',
+      params: {
+        crop: seed.crop,
+        variety: seed.variety,
+        purchase_date: seed.purchase_date,
+        lot_number: seed.lot_number,
+        quantity: seed.quantity,
+        item_code: seed.item_code,
+        supplier_id: seed.supplier_id,
+        organic: seed.organic,
+        untreated:seed.untreated,
+        non_gmo: seed.non_gmo,
+        seed_check_sources: seed.seed_check_sources,
+        receipt_url: seed.receipt_url,
+        seed_id: seed.seed_id
+      }//end params
+    }).then(function( response ) {
+      console.log('in service for editSeed with response-->', response );
+      // self.getSeeds();
+      return response;
+    }, function error (response){
+      console.log('error in update seed', response);
+      if (response.status === 403) {
+        $location.path('/');
+      }
+    });//end error
+  };//end edit seed PUT
+
+}]); //end service
