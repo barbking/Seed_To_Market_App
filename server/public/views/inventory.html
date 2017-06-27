@@ -129,7 +129,7 @@
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.purchase_date | date:'MM-dd-yyyy'}}</span>
-      <input type="text" name="seed.purchase_date | date:'MM-dd-yyyy'" style="width:100px" ng-show="seed.editMode" class="edit-field" ng-model="seed.purchase_date | date:'MM-dd-yyyy'" placeholder="seed.purchase_date | date:'MM-dd-yyyy'" required="" />
+      <input type="text" name="seed.purchase_date | date:'MM-dd-yyyy'" style="width:100px" ng-show="seed.editMode" class="edit-field" ng-model="seed.purchase_date" placeholder="seed.purchase_date | date:'MM-dd-yyyy'" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.lot_number}}</span>
@@ -156,8 +156,16 @@
       <input type="text" name="seed.non_gmo" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.non_gmo" placeholder="seed.non_gmo" required="" />
     </td>
     <td>
+
+      <!-- NEED TO GET THE SUPPLIER NAME NOT ID -->
       <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
-      <input type="text" name="seed.supplier_id" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.supplier_id " placeholder="seed.supplier_id" required="" />
+      <select class="col-xs-8" ng-show="seed.editMode" ng-model="ic.selectedSupplier">
+        <option ng-repeat="supplier in ic.suppliers" value="{{supplier.supplier_id}}">{{ supplier.name }}</option>
+      </select>
+
+      <!-- <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
+      <input type="text" name="seed.supplier_id" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.supplier_id " placeholder="seed.supplier_id" required="" /> -->
+      
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.seed_check_sources}}</span>

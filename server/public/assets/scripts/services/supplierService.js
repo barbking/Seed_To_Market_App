@@ -31,6 +31,37 @@ myApp.service( 'supplierService', [ '$http', '$location', function ( $http, $loc
     }); // end POST addSupplier to suppliers
   }; // end addSupplier
 
+  //Edit supplier PUT
+    self.editSupplier = function(supplier, supplierID){
+      console.log('in editsupplier service with supplierToSend triggered by Update Button-->', supplier);
+      return $http({
+        method:'PUT',
+        url:'/suppliers/editSupplier',
+        params: {
+
+          name: supplier.name,
+          website: supplier.website,
+          phone_number: supplier.phone_number,
+          address: supplier.address,
+          city: supplier.city,
+          state: supplier.state,
+          zip: supplier.zip,
+          description: supplier.description,
+          supplier_id: supplierID
+
+        }//end params
+
+      }).then(function( response ) {
+        console.log('in service for editSupplier with response-->', response );
+
+        return response;
+      }, function error (response){
+        console.log('error in update supplier', response);
+        if (response.status === 403) {
+          $location.path('/');
+        }
+      });//end error
+    };//end edit supplier PUT
 
 
   self.removeSupplier = function (supplierId) {

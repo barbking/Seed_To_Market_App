@@ -6,6 +6,7 @@ myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log',
   vm.sortType     = 'name'; // set the default sort type
   vm.sortReverse  = false;  // set the default sort order
   vm.searchSuppliers   = '';     // set the default search/filter term
+  vm.editMode = false;
 
   vm.open = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
@@ -24,10 +25,37 @@ myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log',
     }); // end modalInstance
   }; // end open
 
+  //Edit button from HTML
+    vm.showEdit = function(supplier) {
+         console.log('in edit supplier');
+        //  vm.sortType = null;
+         supplier.editMode = true;
+         vm.editMode = true;
+       };
+
+
+       //Cancel button from HTML
+         vm.cancel = function(supplier) {
+            console.log('in cancel');
+            supplierService.getSuppliers();
+            supplier.editMode = false;
+            vm.editMode = false;
+        };
+
+        //Update button from HTML
+          vm.updateSupplier = function (supplier, supplierID){
+          console.log('In saveEditSupplier');
+          console.log('supplier update:', supplier);
+          supplierService.editSupplier(supplier, supplierID);
+          supplier.editMode = false;
+          vm.editMode = false;
+        };
+
   vm.deleteSupplier = function (supplierID){
     console.log('supplier id', supplierID);
     supplierService.removeSupplier(supplierID);
   };
+
 
 }]); // end SuppliersController
 
