@@ -11,8 +11,7 @@ myApp.service('sellService', ['$http', '$location', function($http, $location) {
       data: saleToSend,
     }).then(function( response ) {
       console.log('in service for addSale response-->', response );
-      // self.getHarvest();
-      // self.getHarvestAndCrop();
+      self.getSold();
       return response;
     }, function error ( response ){
       console.log( 'Error in addSale:', response );
@@ -22,4 +21,21 @@ myApp.service('sellService', ['$http', '$location', function($http, $location) {
     }); // end POST '/planner/addPlant'
   };//end addPlant POST
 
+  self.getSold = function () {
+    console.log('in getSold service');
+    $http ({
+      method: 'GET',
+      url: '/planner/sold',
+    }).then( function (response) {
+      console.log( 'getSold resp:', response.data );
+      self.sold.list = response.data;
+    }, function error ( response ){
+      console.log( 'Error in getSold:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end getPlants
+  };//end getPlant GET
+
+  self.getSold();
   }]);

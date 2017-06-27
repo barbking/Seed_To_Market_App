@@ -18,6 +18,10 @@ myApp.controller('PlannerController', ['$http', '$location', '$uibModal', '$log'
   // harvestService.getHarvest();
   harvestService.getHarvestAndCrop();
 
+  //create list of sold crops
+  vm.sold = sellService.sold;
+  sellService.getSold();
+
   //show/hide inventory table
   vm.isVisible = false;
   vm.showHide = function () {
@@ -166,6 +170,7 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
     harvestService.addHarvest(itemToSend);
     console.log('addHarvest object to send-->',itemToSend);
 
+    //update plant table if last harvest
     if (vm.harvest_complete === true) {
       var plantToUpdate = {
         planted_id: plant.planted_id,
@@ -217,18 +222,18 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
     sellService.addSale(itemToSend);
     console.log('addSale object to send-->',itemToSend);
 
+    //update harvest table if harvest sold out
     if (vm.sold_out === true) {
       var harvestToUpdate = {
         harvest_id: harvest.harvested_id,
         sold_out: true,
       };
-
       console.log('harvestToUpdate-->', harvestToUpdate);
       harvestService.updateHarvest(harvestToUpdate);
-    }
+    }//end if
 
     $uibModalInstance.close();
-  };//end add Item
+  };//end addSold
 
   vm.clearSoldInputs = function (){
     vm.date_sold = '';

@@ -307,11 +307,35 @@
                   <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </td>
+              <td>
+                <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                  Variety
+                  <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
+              <td>
+                <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                  Pounds Sold
+                  <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
+              <td>
+                <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                  Who
+                  <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="seed in pc.sold_id.list | orderBy:sortType:sortReverse | filter:searchSold">
-              <td>{{ seed.sold }}</td>
+            <tr ng-repeat="sale in pc.sold.list | orderBy:sortType:sortReverse | filter:searchSold">
+              <td>{{ sale.crop }}</td>
+              <td>{{ sale.variety }}</td>
+              <td>{{ sale.weight_sold }}</td>
+              <td>{{ sale.sold_to }}</td>
             </tr>
           </tbody>
         </table>
