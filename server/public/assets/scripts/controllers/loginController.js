@@ -7,7 +7,6 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
       password: '',
       newfarm: false
     }; // end vm.user
-    vm.message = '';
 
     vm.login = function() {
       if(vm.user.email === '' || vm.user.password === '')  {

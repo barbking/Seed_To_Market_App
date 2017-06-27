@@ -1,24 +1,25 @@
-<div class="logoDiv">
-    <img src="/views/images/stmLogo1.jpg" class="logo"/>
-</div>
-<div class="container col-sm-4 col-md-4 col-lg-4 col-sm-offset-4" id="login">
-  <h1 class="lead">Login</h1>
-    <h2 class="lead alert" role="alert" ng-if="message != ''">{{lc.message}}</h2>
-    <form ng-submit="lc.login()">
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="">
-            <!-- <label for="email">E-mail:</label> -->
-            <input type="text" ng-model="lc.user.email" placeholder="Email:" class="login form-control"/>
+<!-- <div class="content-div"> -->
+  <div class="logoDiv content-div">
+      <img src="/views/images/stmLogo1.jpg" class="logo"/>
+  </div>
+  <div class="container col-sm-4 col-md-4 col-lg-4 col-sm-offset-4" id="login">
+    <h1 class="lead" id="login">Login</h1>
+      <form ng-submit="lc.login()">
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="">
+              <!-- <label for="email">E-mail:</label> -->
+              <input type="text" ng-model="lc.user.email" placeholder="Email:" class="login form-control"/>
+          </div>
+          <div class="">
+              <!-- <label for="password">Password:</label> -->
+              <input type="password" ng-model="lc.user.password" placeholder="Password:" class="login form-control"/>
+          </div>
         </div>
-        <div class="">
-            <!-- <label for="password">Password:</label> -->
-            <input type="password" ng-model="lc.user.password" placeholder="Password:" class="login form-control"/>
-        </div>
-      </div>
 
-      <div class="col-xs-6 col-xs-offset-3">
-          <input class="btn btn-default login-btn" type="submit" name="submit" value="Log In" />
-          <a href="#register">Register</a>
-      </div>
-    </form>
-</div>
+        <div class="col-xs-6 col-xs-offset-3">
+            <input class="btn btn-default login-btn" type="submit" name="submit" value="Log In" />
+            <a href="#register" class="register">Register</a>
+        </div>
+      </form>
+  </div>
+<!-- </div> -->
