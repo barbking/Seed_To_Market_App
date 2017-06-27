@@ -1,23 +1,15 @@
 <!-- this page uses FarmController as fc  -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-  <div class ="container-fluid col-sm-4 col-md-4 col-lg-4 col-sm-offset-4 headingDiv">
-    <div class ="row">
-      <div class="farmImg col-sm-2 col-md-2 col-lg-2">
-        <img src="/views/images/farm.png" class="farmIcon"/>
-      </div>
-      <div id="farmTitle" class="col-sm-10 col-md-10 col-lg-10">
-        <h1>Farm Profile</h1>
-      </div>
+<div class="headingDiv">
+  <h1>Farm Profile</h1>
+</div>
 
-    </div>
-    <div class="buttons">
-      <!-- button to show form -->
-      <button type="button" class="btn btn-default btn-primary" ng-click="fc.editableForm.$show()" ng-show="!fc.editableForm.$visible">
-        Edit
-      </button>
-    </div>
-
-  </div>
+<div class="container col-xs-2 col-xs-offset-5">
+  <!-- button to show form -->
+  <button type="button" class="btn btn-default btn-primary btn-inventory-toggle" ng-click="fc.editableForm.$show()" ng-show="!fc.editableForm.$visible">
+    Edit
+  </button>
+</div>
 
 
 
