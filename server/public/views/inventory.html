@@ -59,7 +59,7 @@
     </td>
     <td>
         <a  ng-click="sortType = 'quantity'; sortReverse = !sortReverse">
-          Quantity
+          Seed Count
           <span ng-show="sortType == 'quantity' && !sortReverse" class="fa fa-caret-down"></span>
           <span ng-show="sortType == 'quantity' && sortReverse" class="fa fa-caret-up"></span>
         </a>
@@ -184,52 +184,63 @@
     </div>
     <div class="modal-body col-xs-12">
       <div class="col-xs-12">
-        <label class="col-xs-4">Crop: </label>
-        <input type="text" ng-model="asmic.crop" class="col-xs-8">
+        <!-- <label class="col-xs-4">Crop: </label> -->
+        <input type="text" ng-model="asmic.crop" placeholder="Crop:" class="modal-inputs form-control col-xs-7">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Variety: </label>
-        <input type="text" ng-model="asmic.variety" class="col-xs-8">
+        <!-- <label class="col-xs-4">Variety: </label> -->
+        <input type="text" ng-model="asmic.variety" placeholder="Variety:" class="modal-inputs form-control col-xs-8">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Purchase Date: </label>
-        <input type="date" ng-model="asmic.purchasedate" class="col-xs-8">
+        <!-- <label class="col-xs-4">Lot #: </label> -->
+        <input type="text" ng-model="asmic.lotnum" placeholder="Lot #:" class="modal-inputs form-control col-xs-8">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Supplier: </label>
-        <select class="col-xs-8" ng-model="asmic.selectedSupplier">
-          <option ng-repeat="supplier in asmic.suppliers" value="{{supplier.supplier_id}}">{{ supplier.name }}</option>
-        </select>
+        <!-- <label class="col-xs-4">Quantity: </label> -->
+        <input type="text" ng-model="asmic.quantity" placeholder="Quantity(seed count):" class="modal-inputs form-control col-xs-8">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Lot #: </label>
-        <input type="text" ng-model="asmic.lotnum" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Quantity: </label>
-        <input type="text" ng-model="asmic.quantity" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Item Code: </label>
-        <input type="text" ng-model="asmic.itemcode" class="col-xs-8">
+        <!-- <label class="col-xs-4">Item Code: </label> -->
+        <input type="text" ng-model="asmic.itemcode" placeholder="Item Code:" class="modal-inputs form-control col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-3">Organic: </label>
         <label class="col-xs-3">Untreated: </label>
         <label class="col-xs-3">NonGMO: </label>
       </div>
-      <div class="col-xs-12">
-        <input type="checkbox" ng-model="asmic.organic" class="checkbox-seeds col-xs-3">
-        <input type="checkbox" ng-model="asmic.untreated" class="checkbox-seeds col-xs-3">
-        <input type="checkbox" ng-model="asmic.nongmo" class="checkbox-seeds col-xs-3">
+      <div class="checkbox-seeds col-xs-12">
+        <div class="col-xs-3 col-xs-offest-1">
+          <input type="checkbox" ng-model="asmic.organic" class="checkbox-seeds-box">
+        </div>
+        <div class="col-xs-3">
+          <input type="checkbox" ng-model="asmic.untreated" class="checkbox-seeds-box">
+        </div>
+        <div class="col-xs-3">
+          <input type="checkbox" ng-model="asmic.nongmo" class="checkbox-seeds-box">
+        </div>
+      </div>
+      <div class="suppliers col-xs-12">
+        <label class="col-xs-4">Supplier: </label>
+        <select class="modal-inputs col-xs-8" placeholder="Supplier:" ng-model="asmic.selectedSupplier">
+          <option ng-repeat="supplier in asmic.suppliers" value="{{supplier.supplier_id}}">{{ supplier.name }}</option>
+        </select>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-6">Seed Check Sources: </label>
-        <textarea rows="4" ng-model="asmic.seedcheck" class="col-xs-6"></textarea>
+        <label class="col-xs-4">Purchase Date: </label>
+        <div style="display:inline-block; min-height:290px;">
+          <div uib-datepicker ng-model="asmic.purchasedate" class="well well-sm"></div>
+        </div>
+        <!-- <input type="date" ng-model="asmic.purchasedate" placeholder="Purchase Date:" class="modal-inputs form-control col-xs-8"> -->
+      </div>
+
+
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-6">Seed Check Sources: </label> -->
+        <textarea rows="4" ng-model="asmic.seedcheck" placeholder="Seed Check Sources:" class="form-control col-xs-6"></textarea>
       </div>
     </div>
     <div class="modal-footer">
-      <input type="button" ng-model='uc.imgUpld' value=" Click to Upload Receipt Image" ng-click="asmic.showPicker()" />
+      <input type="button" ng-model='uc.imgUpld' value="Click to Upload Receipt Image" ng-click="asmic.showPicker()" / class="btn btn-info">
       <button type="button" class="btn btn-default btn-success" ng-click="asmic.addNewSeed()" >
         Save
       </button>
