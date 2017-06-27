@@ -9,13 +9,13 @@
 <button type="button" ng-click="sc.open()">Add Supplier</button>
 
 <div class="container">
-  <div class="alert alert-info">
+  <!-- <div class="alert alert-info">
           Sort Type: {{ sortType }}
           <br>
           Sort Reverse: {{ sortReverse }}
           <br>
           Search Query: {{ searchSuppliers }}
-  </div>
+  </div> -->
 
   <form>
       <div class="form-group">
@@ -85,6 +85,9 @@
           <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
+    <td>
+      Remove Supplier
+    </td>
   </tr>
 </thead>
   <tbody>
@@ -97,6 +100,7 @@
       <td>{{ supplier.state }}</td>
       <td>{{ supplier.zip}}</td>
       <td>{{ supplier.description }}</td>
+      <td> <button class="btn-warning" ng-click = "sc.deleteSupplier(supplier.supplier_id)"> Delete</button></td>
     </tr>
   </tbody>
 </table>
