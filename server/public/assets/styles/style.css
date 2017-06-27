@@ -10,6 +10,15 @@
     color: #DDDDDD;
 }*/
 
+.checkbox-seeds {
+  margin-bottom: 15px;
+  margin-left: 5%;
+}
+
+.checkbox-seeds-box {
+  transform: scale(1.5);
+}
+
 h1 {
   text-align: center;
 }
@@ -20,6 +29,14 @@ h2{
 
 #farmTitle {
   text-align: left;
+}
+
+.modal-inputs {
+  margin-bottom: 5px;
+}
+
+.suppliers {
+  margin-bottom: 12px;
 }
 
 .headingDiv {
@@ -51,6 +68,11 @@ input {
 .logoDiv{
   margin-top: 30px;
   text-align: center;
+}
+
+.modal-content {
+  /*border: 2px solid black;*/
+  border-radius: 10px !important;
 }
 
 .btn-danger {
