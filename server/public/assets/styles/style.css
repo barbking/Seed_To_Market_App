@@ -31,6 +31,12 @@ h2{
   text-align: left;
 }
 
+.login {
+  margin-bottom: 8px;
+  border-radius: 5px;
+  text-align: center;
+}
+
 .modal-inputs {
   margin-bottom: 5px;
 }
