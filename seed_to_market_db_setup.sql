@@ -82,8 +82,3 @@ CREATE TABLE sold (
 	notes TEXT,
 	user_id INT REFERENCES users (user_id)
 );
-
-
-Create mock supplier:
-INSERT INTO suppliers ( website , phone_number, address, city, state, zip, description, user_id)
- VALUES ( 'www.test.com', '555-555-5555', '1234 street','nowhere','xx','55555', 'test', 1 );

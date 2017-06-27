@@ -125,7 +125,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
         out_of_stock: true,
       };
       console.log('seedToUpdate-->', seedToUpdate);
-      seedService.updateSeeds(seedToUpdate);
+      seedService.updateSeedStock(seedToUpdate);
     }
 
     $uibModalInstance.close();
