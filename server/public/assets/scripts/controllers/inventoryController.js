@@ -5,6 +5,7 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
   vm.sortType     = 'crop'; // set the default sort type
   vm.sortReverse  = false;  // set the default sort order
   vm.searchSeeds   = '';     // set the default search/filter term
+  vm.editMode = false;
 
   // create the list of seeds
   vm.inventory = seedService.inventory;
@@ -58,8 +59,9 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
 //Edit button from HTML
   vm.showEdit = function(seed) {
        console.log('in edit user');
-       seed.sortType = null;
+       vm.sortType = null;
        seed.editMode = true;
+       vm.editMode = true;
       //  vm.sort = undefined;
      };
 
@@ -68,14 +70,16 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
       console.log('in cancel');
           seedService.getSeeds();
           seed.editMode = false;
+          vm.editMode = false;
+
     };
 
 //Update button from HTML
   vm.updateSeed = function (seed){
   console.log('In saveEditSeed');
-
   seedService.editSeed(seed);
   seed.editMode = false;
+  vm.editMode = false;
 };
 }]);// end InventoryController
 

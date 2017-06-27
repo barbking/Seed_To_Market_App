@@ -96,6 +96,10 @@ input {
     width:5px;
 }
 
+#login{
+  text-align: center;
+}
+
 
 .logout {
   float: right;
