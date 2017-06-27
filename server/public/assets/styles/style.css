@@ -13,10 +13,29 @@
 h1 {
   text-align: center;
 }
+
+h2{
+  padding-top: 30px;
+}
+
+.icons {
+  float: left;
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-right: 40px;
+  height: 60px;
+  width: 60px;
+}
 input {
   border: 1px solid black;
   border-radius: 5px;
 }
+
+.logoDiv{
+  margin-top: 30px;
+  text-align: center;
+}
+
 .btn-danger {
     margin-left: 10px;
 }
