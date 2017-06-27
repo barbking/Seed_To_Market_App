@@ -63,5 +63,24 @@ router.get('/', function(req,res) {
  }
 });//end get
 
+//edit seed PUT
+router.put('/editSeed', function(req, res){
+console.log('in router PUT for edit seed', req.query);
+  var newSeed = req.query;
+  if (req.isAuthenticated()) {
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+          connection.query("UPDATE seeds SET crop = $1 , variety = $2 , purchase_date = $3 , lot_number = $4 , quantity = $5 , item_code = $6 , supplier_id = $7 , organic = $8 , untreated = $9 , non_gmo = $10 , seed_check_sources = $11 , receipt_url = $12 WHERE seed_id=$13 ", [req.query.crop, req.query.variety, req.query.purchase_date, req.query.lot_number, req.query.quantity, req.query.item_code, req.query.supplier_id, req.query.organic, req.query.untreated, req.query.non_gmo, req.query.seed_check_sources, req.query.receipt_url, req.query.seed_id]);
+
+        done();
+        res.sendStatus(200);
+      } //end else
+    }); //end pool
+  } else {
+    res.sendStatus(403);
+  }
+});//end PUT
 
 module.exports = router;

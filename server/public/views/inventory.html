@@ -12,8 +12,9 @@
           Sort Reverse: {{ sortReverse }}
           <br>
           Search Query: {{ searchSeeds }}
-  </div> -->
-
+    </div> -->
+  </div>
+  <!-- Search Inputs -->
   <form>
       <div class="form-group">
         <div class="col-xs-2" style="padding-left: 0px; padding-right: 10px;">
@@ -25,7 +26,7 @@
         </div>
       </div>
     </form>
-
+    <!-- Table -->
 <table class="table table-bordered table-striped">
 <thead>
   <tr>
@@ -44,17 +45,17 @@
         </a>
     </td>
     <td>
-        <a  ng-click="sortType = 'purchasedate'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'purchase_date'; sortReverse = !sortReverse">
           Date Purchased
-          <span ng-show="sortType == 'purchasedate' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'purchasedate' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'purchase_date' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'purchase_date' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
     <td>
-        <a  ng-click="sortType = 'lotnum'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'lot_number'; sortReverse = !sortReverse">
           Lot Number
-          <span ng-show="sortType == 'lotnum' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'lotnum' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'lot_number' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'lot_number' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
     <td>
@@ -65,10 +66,10 @@
         </a>
     </td>
     <td>
-        <a  ng-click="sortType = 'itemcode'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'item_code'; sortReverse = !sortReverse">
           Item Code
-          <span ng-show="sortType == 'itemcode' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'itemcode' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'item_code' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'item_code' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
     <td>
@@ -86,24 +87,24 @@
         </a>
     </td>
     <td>
-        <a  ng-click="sortType = 'nongmo'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'non_gmo'; sortReverse = !sortReverse">
           NonGMO
-          <span ng-show="sortType == 'nongmo' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'nongmo' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'non_gmo' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'non_gmo' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
     <td>
-        <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'supplier_id'; sortReverse = !sortReverse">
           Supplier
-          <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'supplier_id' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'supplier_id' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
     <td>
-        <a  ng-click="sortType = 'seedcheck'; sortReverse = !sortReverse">
+        <a  ng-click="sortType = 'seed_check_sources'; sortReverse = !sortReverse">
           Seed Check
-          <span ng-show="sortType == 'seedcheck' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'seedcheck' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'seed_check_sources' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'seed_check_sources' && sortReverse" class="fa fa-caret-up"></span>
         </a>
     </td>
     <td>
@@ -112,26 +113,68 @@
   </tr>
 </thead>
   <tbody>
-    <tr ng-repeat="seed in ic.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds">
-      <td>{{ seed.crop }}</td>
-      <td>{{ seed.variety }}</td>
-      <td>{{ seed.purchase_date | date:'MM-dd-yyyy' }}</td>
-      <td>{{ seed.lot_number }}</td>
-      <td>{{ seed.quantity }}</td>
-      <td>{{ seed.item_code }}</td>
-      <td>{{ seed.organic}}</td>
-      <td>{{ seed.untreated }}</td>
-      <td>{{ seed.non_gmo }}</td>
-      <td>{{ seed.supplier_id }}</td>
-      <td>{{ seed.seed_check_sources }}</td>
-      <td><button type="button" class="btn btn-info" ng-click="ic.viewReceipt( seed.receipt_url )">View</button></td>
+
+<!-- Populating Table -->
+
+<tr ng-repeat="seed in ic.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds">
+
+    <td>
+      <span ng-hide="seed.editMode">{{seed.crop}}</span>
+      <input type="text" name="seed.crop" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.crop" placeholder="seed.crop" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.variety}}</span>
+      <input type="text" name="seed.variety" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.variety" placeholder="seed.variety" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.purchase_date | date:'MM-dd-yyyy'}}</span>
+      <input type="text" name="seed.purchase_date" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.purchase_date" placeholder="seed.purchase_date" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.lot_number}}</span>
+      <input type="text" name="seed.lot_number" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.lot_number" placeholder="seed.lot_number" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.quantity}}</span>
+      <input type="text" name="seed.quantity" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.quantity" placeholder="seed.quantity" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.item_code}}</span>
+      <input type="text" name="seed.item_code" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.item_code" placeholder="seed.item_code" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.organic}}</span>
+      <input type="text" name="seed.organic" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.organic" placeholder="seed.organic" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.untreated}}</span>
+      <input type="text" name="seed.untreated" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.untreated" placeholder="seed.untreated" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.non_gmo}}</span>
+      <input type="text" name="seed.non_gmo" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.non_gmo" placeholder="seed.non_gmo" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
+      <input type="text" name="seed.supplier_id" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.supplier_id " placeholder="seed.supplier_id" required="" />
+    </td>
+    <td>
+      <span ng-hide="seed.editMode">{{seed.seed_check_sources}}</span>
+      <input type="text" name="seed.seed_check_sources" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.seed_check_sources" placeholder="seed.seed_check_sources" required="" />
+    </td>
+    <td><button type="button" class="btn btn-info" ng-click="ic.viewReceipt( seed.receipt_url )">View</button></td>
+
+      <!-- Buttons -->
+      <td>
+        <a href="" ng-hide="seed.editMode" sortType= "" ng-click="ic.showEdit(seed)">Edit</a>
+        <a href="" ng-hide="seed.editMode" ng-click="ic.deleteSeed(seed)">Delete</a>
+        <a href="" ng-show="seed.editMode" ng-click="ic.updateSeed(seed)">Update</a>
+        <a href="" ng-show="seed.editMode" ng-click="ic.cancel(seed)">Cancel</a>
+      </td>
     </tr>
   </tbody>
 </table>
 </div>
-
-
-
 
 <!-- add seed modal -->
 <div class="add-seed-modal container">

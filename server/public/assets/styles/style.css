@@ -50,6 +50,14 @@ input {
 .container p {
     margin-top : 14px;
 }
+
+ .edit-field{
+    padding:0px;
+    margin: 0px;
+    width:5px;
+}
+
+
 .logout {
   float: right;
 }
