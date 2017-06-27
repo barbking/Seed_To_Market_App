@@ -76,7 +76,6 @@ myApp.service('seedService', ['$http', '$location', function($http, $location) {
     });//end error
   };//end edit seed PUT
 
-}]); //end service
 
   self.updateSeedStock = function (seedToUpdate) {
     console.log('in updateSeedStock service with seedToUpdate-->', seedToUpdate);
@@ -97,5 +96,4 @@ myApp.service('seedService', ['$http', '$location', function($http, $location) {
     }); // end POST
   };//end updatePlanted
 
-}]);
-
+}]);//end Seedservice
