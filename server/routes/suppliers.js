@@ -27,7 +27,7 @@ router.get( '/getAll', function ( req, res ) {
         res.send(400);
       } else {
         console.log('connected to db');
-        var resultSet = connection.query( "SELECT * FROM suppliers WHERE user_id=$1", [ req.user.user_id ]); // end connection.query
+        var resultSet = connection.query( "SELECT * FROM suppliers WHERE user_id=$1 and active = true", [ req.user.user_id ]); // end connection.query
         resultSet.on( 'row', function( row ){
           suppliers.push( row );
         });
@@ -104,6 +104,32 @@ console.log('in router PUT for edit supplier', req.query);
     res.sendStatus(403);
   }
 });//end PUT
+
+router.put('/removeSupplier', function ( req, res ){
+  console.log('in deactivate supplier route on server with-->', req.query.supplier_id);
+  if (req.isAuthenticated()) {
+    console.log( 'deactivating supplier' );
+    pool.connect(function(err, connection, done) {
+      if (err) {
+        res.send(400);
+      } else {
+        console.log('connected to db');
+        connection.query( "UPDATE suppliers SET active = false WHERE supplier_id = $1 and user_id = $2 ", [ req.query.supplier_id, req.user.user_id], function ( err, result ) {
+          if ( err ) {
+            console.log( 'error:', err );
+            res.status( 500 ).send( 'Error removing supplier' );
+          } else {
+            done();
+            res.status( 201 ).send( 'deactivated in database' );
+          }
+        }); // end connection.query
+      } // end if err
+    }); // end pool.connect
+    } else {
+    console.log( 'authentication error' );
+    res.status( 403 ).send( 'authentication error, try relogging in' );
+    } // end if authenticated
+    }); // end POST to addSupplier
 
 
 module.exports = router;

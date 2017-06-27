@@ -1,6 +1,9 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-<h1>Planner</h1>
+<div class="headingDiv">
+  <h1>Planner</h1>
+</div>
+
 <!-- Inventory Table  -->
 <div class="col-xs-12">
   <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds For Planting</button>
@@ -110,9 +113,9 @@
         <td>{{ seed.lot_number }}</td>
         <td>{{ seed.quantity }}</td>
         <td>{{ seed.item_code }}</td>
-        <td>{{ seed.organic}}</td>
-        <td>{{ seed.untreated }}</td>
-        <td>{{ seed.non_gmo }}</td>
+        <td>{{ seed.organic ? "Yes" : "No"}}</td>
+        <td>{{ seed.untreated ? "Yes" : "No"}}</td>
+        <td>{{ seed.non_gmo ? "Yes" : "No"}}</td>
         <td>{{ seed.supplier_id }}</td>
         <td>{{ seed.seed_check_sources }}</td>
         <td><button type="button" ng-click="pc.open(seed)">Plant</button></td>
@@ -323,7 +326,7 @@
               </td>
               <td>
                 <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
-                  Who
+                  Buyer
                   <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
                   <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
@@ -363,11 +366,11 @@
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Yield in lbs: </label>
-        <input type="number" ng-model="ahmic.yield" class="col-xs-8">
+        <input type="number" min=0 ng-model="ahmic.yield" class="col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Area sqft: </label>
-        <input type="number" ng-model="ahmic.area_sqft" class="col-xs-8">
+        <input type="number" min=0 ng-model="ahmic.area_sqft" class="col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Date: </label>
@@ -411,8 +414,8 @@
         <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Weight Sold: </label>
-        <input type="number" ng-model="asmic.weight_sold" class="col-xs-8">
+        <label class="col-xs-4">Weight Sold in lbs: </label>
+        <input type="number" min=0 ng-model="asmic.weight_sold" class="col-xs-8">
       </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Date: </label>

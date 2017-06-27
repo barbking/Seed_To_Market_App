@@ -119,7 +119,7 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
         untreated:vm.untreated,
         non_gmo: vm.nongmo,
         seed_check_sources: vm.seedcheck,
-        // receipt_url: vm.file.url
+        receipt_url: vm.file.url
       };
       //FILESTACK IMG URL GOES HERE
       // console.log(itemToSend);

@@ -10,12 +10,43 @@
     color: #DDDDDD;
 }*/
 
+.checkbox-seeds {
+  margin-bottom: 15px;
+  margin-left: 5%;
+}
+
+.checkbox-seeds-box {
+  transform: scale(1.5);
+}
+
 h1 {
   text-align: center;
 }
 
 h2{
   padding-top: 30px;
+}
+
+#farmTitle {
+  text-align: left;
+}
+
+.login {
+  margin-bottom: 8px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-inputs {
+  margin-bottom: 5px;
+}
+
+.suppliers {
+  margin-bottom: 12px;
+}
+
+.headingDiv {
+  margin-top: 70px;
 }
 
 .icons {
@@ -26,6 +57,15 @@ h2{
   height: 60px;
   width: 60px;
 }
+
+.farmIcon {
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-right: 40px;
+  height: 60px;
+  width: 60px;
+}
+
 input {
   border: 1px solid black;
   border-radius: 5px;
@@ -34,6 +74,11 @@ input {
 .logoDiv{
   margin-top: 30px;
   text-align: center;
+}
+
+.modal-content {
+  /*border: 2px solid black;*/
+  border-radius: 10px !important;
 }
 
 .btn-danger {
@@ -58,9 +103,20 @@ input {
 }
 
 
+
+#login{
+  text-align: center;
+}
+
+
+
 .logout {
   float: right;
 }
+body {
+  background-image: url("/views/images/barley.jpg");
+}
+
 .message {
     padding: 10px 0;
 }
@@ -128,7 +184,7 @@ input {
   margin-left: 40vw;
 }
 #registerbackground {
-  background-color: #845bb8;
+  background-color: white;
   height: 100vh;
   width: 100vw;
   /*color: black;*/

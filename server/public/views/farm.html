@@ -1,15 +1,28 @@
 <!-- this page uses FarmController as fc  -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-<h1>Farm Profile</h1>
+  <div class ="container-fluid col-sm-4 col-md-4 col-lg-4 col-sm-offset-4 headingDiv">
+    <div class ="row">
+      <div class="farmImg col-sm-2 col-md-2 col-lg-2">
+        <img src="/views/images/farm.png" class="farmIcon"/>
+      </div>
+      <div id="farmTitle" class="col-sm-10 col-md-10 col-lg-10">
+        <h1>Farm Profile</h1>
+      </div>
 
-<div id="farmpage">
-  <form editable-form name="fc.editableForm" onaftersave="fc.saveFarm()">
+    </div>
     <div class="buttons">
       <!-- button to show form -->
       <button type="button" class="btn btn-default btn-primary" ng-click="fc.editableForm.$show()" ng-show="!fc.editableForm.$visible">
         Edit
       </button>
     </div>
+
+  </div>
+
+
+
+<div id="farmpage">
+  <form editable-form name="fc.editableForm" onaftersave="fc.saveFarm()">
 
     <div class="wrap">
       <div class="left_col">
@@ -29,7 +42,8 @@
         </div>
         <div>
           <span class="title"><b>State:</b></span>
-          <span editable-text="fc.farm.farm_state" e-name="state" e-required>{{ fc.farm.farm_state || 'empty' }}</span>
+          <span editable-select="fc.farm.farm_state" e-name="state" e-ng-options="state for state in fc.states">
+            {{ fc.farm.farm_state }}</span>
           <span class="title"><b>ZIP:</b></span>
           <span editable-text="fc.farm.farm_zip" e-name="zip" e-required>{{ fc.farm.farm_zip || 'empty' }}</span>
         </div>
