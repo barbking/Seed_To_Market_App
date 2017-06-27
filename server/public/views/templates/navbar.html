@@ -1,15 +1,15 @@
 <nav style="position: fixed; top: 0; width: 100%;overflow: hidden; z-index: 99;" class="navbar navbar-default">
   <div class="container-fluid" ng-controller="NavbarController as nc">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Seed to Market</a>
+      <a class="navbar-brand" href="#planner">Seed to Market</a>
     </div>
     <ul class="nav navbar-nav">
       <!-- <li class="active"><a href="#">Home</a></li> -->
-      <li><a href="#farm">Farm</a></li>
-      <li><a href="#inventory">Inventory</a></li>
       <li><a href="#planner">Planner</a></li>
-      <li><a href="#reports">Reports</a></li>
+      <li><a href="#inventory">Inventory</a></li>
       <li><a href="#suppliers">Suppliers</a></li>
+      <li><a href="#reports">Reports</a></li>
+      <li><a href="#farm">Farm Profile</a></li>
     </ul>
       <button class="btn logout btn-default" ng-click="nc.logout()">Log Out</button>
   </div>
