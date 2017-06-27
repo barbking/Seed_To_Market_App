@@ -23,6 +23,12 @@ myApp.controller('SuppliersController', ['$http','$location','$uibModal','$log',
       }
     }); // end modalInstance
   }; // end open
+
+  vm.deleteSupplier = function (supplierID){
+    console.log('supplier id', supplierID);
+    supplierService.removeSupplier(supplierID);
+  };
+
 }]); // end SuppliersController
 
 

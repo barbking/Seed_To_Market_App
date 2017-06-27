@@ -31,6 +31,28 @@ myApp.service( 'supplierService', [ '$http', '$location', function ( $http, $loc
     }); // end POST addSupplier to suppliers
   }; // end addSupplier
 
+
+
+  self.removeSupplier = function (supplierId) {
+    console.log( 'in remove supplier service');
+    $http({
+      method: 'PUT',
+      url: '/suppliers/removeSupplier',
+      params: {
+        supplier_id: supplierId
+      }
+    }).then(function(response) {
+      console.log('in removeSupplier service, back from db with -->', response);
+    }, function error ( response ){
+      console.log( 'Error in removeSupplier:', response );
+      if ( response.status === 403 ) {
+        $location.path( '/' );
+      }
+    }); // end PUT '/suppliers/removeSupplier'
+    self.getSuppliers();
+  }; // end removeSupplier
+
+
   self.getSuppliers();
 
 }]); // end supplierService
