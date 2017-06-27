@@ -199,8 +199,8 @@ router.put('/updatePlanted', function(req, res) {
   } // end response if user not authenticated
 }); //end of POST
 
-router.put('/updateSeeds', function(req, res) {
-  console.log('in updateSeeds with -->', req.body);
+router.put('/updateSeedStock', function(req, res) {
+  console.log('in updateSeedStock with -->', req.body);
   if (req.isAuthenticated()) {
     //query to add new plant to database
     pool.connect(function(err, connection, done) {

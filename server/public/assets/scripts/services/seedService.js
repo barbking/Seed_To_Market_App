@@ -4,7 +4,7 @@ myApp.service('seedService', ['$http', '$location', function($http, $location) {
 
   //empty object as placeholder for data that will be returned for inventory page
   self.inventory = { list: [] };
-  
+
   self.addSeed = function(seedToSend){
     console.log('in addSeed service with seedToSend-->', seedToSend);
     return $http({
@@ -78,19 +78,19 @@ myApp.service('seedService', ['$http', '$location', function($http, $location) {
 
 }]); //end service
 
-  self.updateSeeds = function (seedToUpdate) {
-    console.log('in updateSeeds service with seedToUpdate-->', seedToUpdate);
+  self.updateSeedStock = function (seedToUpdate) {
+    console.log('in updateSeedStock service with seedToUpdate-->', seedToUpdate);
     return $http({
       method:'PUT',
-      url:'/planner/updateSeeds',
+      url:'/planner/updateSeedStock',
       data: seedToUpdate,
     }).then(function( response ) {
-      console.log('in service for updateSeeds with response-->', response );
+      console.log('in service for updateSeedStock with response-->', response );
       self.getSeeds();
       self.getPlannerSeeds();
       return response;
     }, function error ( response ){
-      console.log( 'Error in updateSeeds:', response );
+      console.log( 'Error in updateSeedStock:', response );
       if ( response.status === 403 ) {
         $location.path( '/' );
       }
