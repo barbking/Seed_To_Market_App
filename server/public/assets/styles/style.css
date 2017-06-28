@@ -1,13 +1,13 @@
 /*USE VW or VW percentage instead of px, eliminates alignment issues when changing view size*/
 
 /*.instructions .container h1 {
-    font-size: 24px;
-    font-weight: 700;
+font-size: 24px;
+font-weight: 700;
 }*/
 
 /*.instructions {
-    background-color: #333333;
-    color: #DDDDDD;
+background-color: #333333;
+color: #DDDDDD;
 }*/
 
 .checkbox-seeds {
@@ -21,7 +21,7 @@
 
 .content-div {
   background-color: white;
-  padding-top: 25px;
+  height: 100vh;
 }
 
 h1 {
@@ -67,11 +67,12 @@ h2{
 }
 
 .farmIcon {
-  margin-left: 40px;
-  margin-top: 10px;
+  /*margin-left: 40px;*/
+  /*margin-top: 10px;*/
   margin-right: 40px;
-  height: 60px;
-  width: 60px;
+  height: 100%;
+  width: auto;
+  float: left;
 }
 
 input {
@@ -80,8 +81,11 @@ input {
 }
 
 .logoDiv{
-  margin-top: 30px;
+  margin-top: 0;
+  width: 100%;
   text-align: center;
+  background-color: white;
+  padding: 30px;
 }
 
 .modal-content {
@@ -90,7 +94,7 @@ input {
 }
 
 .btn-danger {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .btn-inventory-toggle {
   text-align: center;
@@ -100,13 +104,13 @@ input {
   margin-bottom: 1vw;
 }
 .container p {
-    margin-top : 14px;
+  margin-top : 14px;
 }
 
- .edit-field{
-    padding:0px;
-    margin: 0px;
-    width:5px;
+.edit-field{
+  padding:0px;
+  margin: 0px;
+  width:5px;
 }
 
 
@@ -124,26 +128,25 @@ input {
   margin-top: 5px;
 }
 body {
-  background-image: url("/views/images/barley.jpg");
+  background: url("/views/images/barley.jpg");
   background-size: cover;
   background-position: center;
-  /*position: fixed;*/
 }
 
 .message {
-    padding: 10px 0;
+  padding: 10px 0;
 }
 
 .message p {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .message:nth-child(odd) {
-     background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
-    background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }
 
 .nav-bar-seed {
@@ -160,37 +163,41 @@ body {
   overflow-y: auto;
 }
 .vertical-line{
-     width: 45vw; /* Line width */
-     background-color: black; /* Line color */
-     height: 1px;
-     margin-top: 10px;
-   }
+  width: 45vw; /* Line width */
+  background-color: black; /* Line color */
+  height: 1px;
+  margin-top: 10px;
+}
 .wrap {
-      width:60vw;
-      height:15vh;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      /*margin:0 auto;*/
+  width:60vw;
+  height:15vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /*margin:0 auto;*/
 }
 .left_col {
-      float:left;
-      width:30vw;
+  float:left;
+  width:30vw;
 }
 .right_col {
-      float:right;
-      width:30vw;
+  float:right;
+  width:30vw;
 }
 #entryForm {
-    margin-top: 14px;
+  margin-top: 14px;
 }
 
 #container {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 #farmpage {
   margin-left: 10vw;
+  margin-top: 5vh;
   line-height: 300%;
   height: 50vh;
+}
+#farm-content {
+  margin-top: 15vh;
 }
 .register {
   color: #00778b;
