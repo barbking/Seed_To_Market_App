@@ -158,7 +158,7 @@
     <td>
 
       <!-- NEED TO GET THE SUPPLIER NAME NOT ID -->
-      <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
+      <span ng-hide="seed.editMode">{{seed.name}}</span>
       <select class="col-xs-8" ng-show="seed.editMode" ng-model="ic.selectedSupplier">
         <option ng-repeat="supplier in ic.suppliers" value="{{supplier.supplier_id}}">{{ supplier.name }}</option>
       </select>

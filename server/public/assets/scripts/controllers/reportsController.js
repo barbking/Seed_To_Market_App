@@ -9,7 +9,7 @@ myApp.controller('ReportsController', ['$http', '$location','$uibModal','$log','
   console.log('ReportsController reports-->',vm.reports);
 
   //open csv modal
-  vm.open = function ( size, parentSelector ) {
+  vm.openDownload = function ( size, parentSelector ) {
     var parentElem = parentSelector ?
       angular.element($document[0].querySelector('.csv-download-modal' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -29,8 +29,8 @@ myApp.controller('ReportsController', ['$http', '$location','$uibModal','$log','
 
 }]);
 
-//controller for PLANT modal
-myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log', function ( $uibModalInstance, $uibModal, $log) {
+//controller for download modal
+myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log','reportsService', function ( $uibModalInstance, $uibModal, $log,reportsService) {
   var vm = this;
 
   console.log( 'csvDownload in modal:');
@@ -38,10 +38,22 @@ myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
   vm.sendDates = function(){
     var itemToSend = {
       date_from: vm.date_from,
-      date_to: vm.date_to
+      date_to: vm.date_to,
+      select_all: vm.select_all
     };
+
     reportsService.sendDates(itemToSend);
     console.log(itemToSend);
+
     $uibModalInstance.close();
-   };//end sendDates
+  };//end sendDates
+
+  vm.clearInputs = function (){
+    vm.select_all = '';
+    $uibModalInstance.close();
+  };
+
+  vm.clearInputs();
+  $uibModalInstance.close();
+
   }]);//end of addPlantModalInstanceCtrl controller
