@@ -6,13 +6,14 @@ myApp.controller( 'FarmController', [ '$http', '$filter', '$location', 'farmServ
   vm.getFarmInfo = function(){
     farmService.getFarm().then( function ( data ){
       vm.farm = data;
+      console.log("vm.farm-->", vm.farm);
     });
-    console.log("vm.farm-->", vm.farm);
   };
 
   vm.saveFarm = function() {
-    console.log('in savefarm');
-    farmService.updateFarm(vm.farm);
+    farmService.updateFarm(vm.farm).then(function(){
+      vm.getFarmInfo();
+    });
   };
 
   vm.getFarmInfo();

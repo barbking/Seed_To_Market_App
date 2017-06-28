@@ -50,10 +50,12 @@ myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
 };
 
   vm.sendDates = function(){
+
     var startDate = pgFormatDate(vm.date_from);
     var endDate = pgFormatDate(vm.date_to);
     console.log(startDate, endDate);
     csvService.seedsCsv(startDate, endDate);
+
 
     $uibModalInstance.close();
   };//end sendDates
@@ -66,4 +68,4 @@ myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
   vm.clearInputs();
   $uibModalInstance.close();
 
-  }]);//end of addPlantModalInstanceCtrl controller
+}]);//end of addPlantModalInstanceCtrl controller
