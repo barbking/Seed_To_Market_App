@@ -13,7 +13,7 @@
   </div>
   <div class="col-xs-2 col-xs-offset-5" ng-show="fc.editableForm.$visible">
     <span ng-show="fc.editableForm.$visible">
-      <button type="submit" class="btn btn-primary col-xs-6" ng-disabled="fc.editableForm.$waiting">
+      <button type="submit" class="btn btn-primary col-xs-6" ng-disabled="fc.editableForm.$waiting" ng-click="fc.editableForm.$save()">
         Save
       </button>
       <button type="button" class="btn btn-default col-xs-6" ng-disabled="fc.editableForm.$waiting" ng-click="fc.editableForm.$cancel()">

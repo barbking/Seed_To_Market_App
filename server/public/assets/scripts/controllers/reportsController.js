@@ -42,8 +42,9 @@ myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
       select_all: vm.select_all
     };
 
-    reportsService.sendDates(itemToSend);
+    // reportsService.sendDates(itemToSend);
     console.log(itemToSend);
+  
 
     $uibModalInstance.close();
   };//end sendDates
@@ -56,4 +57,4 @@ myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
   vm.clearInputs();
   $uibModalInstance.close();
 
-  }]);//end of addPlantModalInstanceCtrl controller
+}]);//end of addPlantModalInstanceCtrl controller
