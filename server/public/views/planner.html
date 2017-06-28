@@ -1,22 +1,20 @@
 <!-- PlannerController as pc -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-<div class="headingDiv container">
-  <h1 class="col-xs-12">Planner</h1>
-  <div class="col-xs-4 col-xs-offset-4">
-    <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds For Planting</button>
-    <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Seeds</button>
+<div class="container content-div">
+  <div class="headingDiv">
+    <h1>Planner</h1>
+    <div class="col-xs-4 col-xs-offset-4">
+      <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible == false">Available Seeds For Planting</button>
+      <button type="button" class="btn-inventory-toggle btn-default btn-primary" ng-click="pc.showHide()" ng-if="pc.isVisible">Hide Seeds</button>
+    </div>
   </div>
-</div>
 
-<!-- Inventory Table  -->
+  <!-- Inventory Table  -->
 
+  <div ng-show="pc.isVisible" class="col-xs-12">
+    <div class="planner-tables planner-inventory">
 
-
-<div class="">
-<div ng-show="pc.isVisible">
-  <div class="container planner-tables planner-inventory content-div">
-
-    <form>
+      <form>
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-search"></i></div>
@@ -25,193 +23,132 @@
         </div>
       </form>
 
-  <table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <td>
-          <a  ng-click="sortType = 'crop'; sortReverse = !sortReverse">
-            Crop
-            <span ng-show="sortType == 'crop' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'crop' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'variety'; sortReverse = !sortReverse">
-            Variety
-            <span ng-show="sortType == 'variety' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'variety' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'purchasedate'; sortReverse = !sortReverse">
-            Date
-            <span ng-show="sortType == 'purchasedate' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'purchasedate' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'lotnum'; sortReverse = !sortReverse">
-            Lot Number
-            <span ng-show="sortType == 'lotnum' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'lotnum' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'quanity'; sortReverse = !sortReverse">
-            Quanity
-            <span ng-show="sortType == 'quantity' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'quantity' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'itemcode'; sortReverse = !sortReverse">
-            Item Code
-            <span ng-show="sortType == 'itemcode' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'itemcode' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'organic'; sortReverse = !sortReverse">
-            Organic
-            <span ng-show="sortType == 'organic' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'organic' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'untreated'; sortReverse = !sortReverse">
-            Untreated
-            <span ng-show="sortType == 'untreated' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'untreated' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'nongmo'; sortReverse = !sortReverse">
-            NonGMO
-            <span ng-show="sortType == 'nongmo' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'nongmo' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Supplier
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-          <a  ng-click="sortType = 'seedcheck'; sortReverse = !sortReverse">
-            Seed Check
-            <span ng-show="sortType == 'seedcheck' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'seedcheck' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td></td>
-    </tr>
-  </thead>
-    <tbody>
-      <tr ng-repeat="seed in pc.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds" ng-hide="seed.out_of_stock==true">
-        <td>{{ seed.crop }}</td>
-        <td>{{ seed.variety }}</td>
-        <td>{{ seed.purchase_date | date:'MM-dd-yyyy' }}</td>
-        <td>{{ seed.lot_number }}</td>
-        <td>{{ seed.quantity }}</td>
-        <td>{{ seed.item_code }}</td>
-        <td>{{ seed.organic ? "Yes" : "No"}}</td>
-        <td>{{ seed.untreated ? "Yes" : "No"}}</td>
-        <td>{{ seed.non_gmo ? "Yes" : "No"}}</td>
-        <td>{{ seed.supplier_id }}</td>
-        <td>{{ seed.seed_check_sources }}</td>
-        <td><button type="button" ng-click="pc.open(seed)">Plant</button></td>
-      </tr>
-    </tbody>
-  </table>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <td>
+              <a  ng-click="sortType = 'crop'; sortReverse = !sortReverse">
+                Crop
+                <span ng-show="sortType == 'crop' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'crop' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'variety'; sortReverse = !sortReverse">
+                Variety
+                <span ng-show="sortType == 'variety' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'variety' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'purchasedate'; sortReverse = !sortReverse">
+                Date
+                <span ng-show="sortType == 'purchasedate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'purchasedate' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'lotnum'; sortReverse = !sortReverse">
+                Lot Number
+                <span ng-show="sortType == 'lotnum' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'lotnum' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'quanity'; sortReverse = !sortReverse">
+                Quanity
+                <span ng-show="sortType == 'quantity' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'quantity' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'itemcode'; sortReverse = !sortReverse">
+                Item Code
+                <span ng-show="sortType == 'itemcode' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'itemcode' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'organic'; sortReverse = !sortReverse">
+                Organic
+                <span ng-show="sortType == 'organic' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'organic' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'untreated'; sortReverse = !sortReverse">
+                Untreated
+                <span ng-show="sortType == 'untreated' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'untreated' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'nongmo'; sortReverse = !sortReverse">
+                NonGMO
+                <span ng-show="sortType == 'nongmo' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'nongmo' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                Supplier
+                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'seedcheck'; sortReverse = !sortReverse">
+                Seed Check
+                <span ng-show="sortType == 'seedcheck' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'seedcheck' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="seed in pc.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds" ng-hide="seed.out_of_stock==true">
+            <td>{{ seed.crop }}</td>
+            <td>{{ seed.variety }}</td>
+            <td>{{ seed.purchase_date | date:'MM-dd-yyyy' }}</td>
+            <td>{{ seed.lot_number }}</td>
+            <td>{{ seed.quantity }}</td>
+            <td>{{ seed.item_code }}</td>
+            <td>{{ seed.organic ? "Yes" : "No"}}</td>
+            <td>{{ seed.untreated ? "Yes" : "No"}}</td>
+            <td>{{ seed.non_gmo ? "Yes" : "No"}}</td>
+            <td>{{ seed.supplier_id }}</td>
+            <td>{{ seed.seed_check_sources }}</td>
+            <td><button type="button" ng-click="pc.open(seed)" class="btn btn-info">Plant</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- end of inventory table-->
   </div>
-</div>
-<!-- end of inventory table-->
-
-</div>
-
-<!-- add a plant modal -->
-<div class="add-plant-modal container">
-  <script type="text/ng-template" id="addPlantModalContent.html">
-    <div class="modal-header">
-      <h3>Move to Plant</h3>
-    </div>
-    <div class="modal-body col-xs-12">
-      <div class="col-xs-12">
-        <label class="col-xs-4">Crop: </label>
-        <p ng-model="apmic.crop">{{apmic.crop}}</p>
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Variety: </label>
-        <p ng-model="apmic.variety">{{apmic.variety}}</p>
-        <br>
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Quantity: </label>
-        <input type="number" ng-model="apmic.quantity" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Date: </label>
-        <input type="date" ng-model="apmic.date_planted" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Location: </label>
-        <input type="text" ng-model="apmic.location" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Area Sqft: </label>
-        <input type="text" ng-model="apmic.area_sqft" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-8">Check here if used last of seed: </label>
-        <input type="checkbox" ng-model="apmic.out_of_stock" class="checkbox-plant col-xs-3">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Notes: </label>
-        <textarea rows="4" ng-model="apmic.notes" class="col-xs-8"></textarea>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default btn-success" ng-click="apmic.addPlant()" >
-        Plant
-      </button>
-      <button type="button" class="btn btn-default btn-danger" ng-click="apmic.clearPlantInputs()">
-        Cancel
-      </button>
-    </div>
-  </script>
-
-<!-- planner tables to display planted/harvested/sold on planner page -->
-<div class="content-div">
-
-  <div class="container planner">
-    <div class="col-xs-12">
-      <div class="col-xs-4 planner-tables">
-        <!-- <div class="alert alert-info">
-          Sort Reverse: {{ sortReverse }}
-          <br>
-          Search Query: {{ searchPlanted }}
-        </div> -->
-        <form>
-          <div class="form-group">
-            <span><img src="/views/images/seeds.png" class="icons"/><h2>Planted</h2></span>
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-search"></i></div>
-              <input type="text" class="form-control" placeholder="Search" ng-model="searchPlanted">
-            </div>
+  <!-- planner tables to display planted/harvested/sold on planner page -->
+  <div class="col-xs-12">
+    <!-- Planted table -->
+    <div class="col-xs-4 planner-tables">
+      <form>
+        <div class="form-group">
+          <span><img src="/views/images/seeds.png" class="icons"/><h2>Planted</h2></span>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchPlanted">
           </div>
-        </form>
-        <table class="table table-bordered table-striped">
+        </div>
+      </form>
+      <table class="table table-bordered table-striped">
 
-          <thead>
-            <tr>
-              <td>
-                <a  ng-click="sortType = 'planted'; sortReverse = !sortReverse">
-                  Planted
-                  <span ng-show="sortType == 'planted' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
+        <thead>
+          <tr>
+            <td>
+              <a  ng-click="sortType = 'planted'; sortReverse = !sortReverse">
+                Planted
+                <span ng-show="sortType == 'planted' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
               <td>
                 <a  ng-click="sortType = 'planted'; sortReverse = !sortReverse">
                   Variety
@@ -226,228 +163,273 @@
                   <span ng-show="sortType == 'planted' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </td>
-                <td></td>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="plant in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted" ng-hide="planted.harvest_complete==true">
-              <td>{{ plant.crop }}</td>
-              <td>{{ plant.variety }}</td>
-              <td>{{ plant.location }}</td>
-              <td><button type="button" class="btn-info" ng-click="pc.openHarvest(plant)">Harvest</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-xs-4 planner-tables">
-        <!-- <div class="alert alert-info">
-          Sort Reverse: {{ sortReverse }}
-          <br>
-          Search Query: {{ searchHarvested }}
-        </div> -->
-        <form>
-          <div class="form-group">
-            <span><img src="/views/images/harvest.png" class="icons"/><h2>Harvested</h2></span>
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-search"></i></div>
-              <input type="text" class="form-control" placeholder="Search" ng-model="searchHarvested">
-            </div>
-          </div>
-        </form>
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <td>
-                <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
-                  Harvested
-                  <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-              </td>
-              <td>
-                <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
-                  Variety
-                  <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-              </td>
-              <td>
-                <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
-                  Date Harvested
-                  <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-              </td>
               <td></td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="harvest in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested" ng-hide="harvest.out_of_stock==true">
-              <td>{{ harvest.crop }}</td>
-              <td>{{ harvest.variety }}</td>
-              <td>{{ harvest.date_harvested | date:'MM-dd-yyyy' }}</td>
-              <td><button type="button" class="btn-info" ng-click="pc.openSold(harvest)">Sell</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-xs-4 planner-tables">
-        <!-- <div class="alert alert-info">
-          Sort Reverse: {{ sortReverse }}
-          <br>
-          Search Query: {{ searchSold }}
-        </div> -->
-        <form>
-          <div class="form-group">
-              <span><img src="/views/images/sold.png" class="icons"/><h2>Sold</h2></span>
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-search"></i></div>
-              <input type="text" class="form-control" placeholder="Search" ng-model="searchSold">
-            </div>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="plant in pc.planted.list | orderBy:sortType:sortReverse | filter:searchPlanted" ng-hide="planted.harvest_complete==true">
+            <td>{{ plant.crop }}</td>
+            <td>{{ plant.variety }}</td>
+            <td>{{ plant.location }}</td>
+            <td><button type="button" class="btn-info" ng-click="pc.openHarvest(plant)">Harvest</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Harvested Table -->
+    <div class="col-xs-4 planner-tables">
+      <form>
+        <div class="form-group">
+          <span><img src="/views/images/harvest.png" class="icons"/><h2>Harvested</h2></span>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchHarvested">
           </div>
-        </form>
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <td>
-                <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
-                  Sold
-                  <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-              </td>
-              <td>
-                <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
-                  Variety
-                  <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-              </td>
-              <td>
-                <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
-                  Pounds Sold
-                  <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-              </td>
-              <td>
-                <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
-                  Buyer
-                  <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
-                </a>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="sale in pc.sold.list | orderBy:sortType:sortReverse | filter:searchSold">
-              <td>{{ sale.crop }}</td>
-              <td>{{ sale.variety }}</td>
-              <td>{{ sale.weight_sold }}</td>
-              <td>{{ sale.sold_to }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        </div>
+      </form>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <td>
+              <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
+                Harvested
+                <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
+                Variety
+                <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'harvested'; sortReverse = !sortReverse">
+                Date Harvested
+                <span ng-show="sortType == 'harvested' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'harvested' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="harvest in pc.harvested.list | orderBy:sortType:sortReverse | filter:searchHarvested" ng-hide="harvest.out_of_stock==true">
+            <td>{{ harvest.crop }}</td>
+            <td>{{ harvest.variety }}</td>
+            <td>{{ harvest.date_harvested | date:'MM-dd-yyyy' }}</td>
+            <td><button type="button" class="btn-info" ng-click="pc.openSold(harvest)">Sell</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- sold table -->
+    <div class="col-xs-4 planner-tables">
+      <form>
+        <div class="form-group">
+          <span><img src="/views/images/sold.png" class="icons"/><h2>Sold</h2></span>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchSold">
+          </div>
+        </div>
+      </form>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <td>
+              <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                Sold
+                <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                Variety
+                <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                Pounds Sold
+                <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a  ng-click="sortType = 'sold'; sortReverse = !sortReverse">
+                Buyer
+                <span ng-show="sortType == 'sold' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sold' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="sale in pc.sold.list | orderBy:sortType:sortReverse | filter:searchSold">
+            <td>{{ sale.crop }}</td>
+            <td>{{ sale.variety }}</td>
+            <td>{{ sale.weight_sold }}</td>
+            <td>{{ sale.sold_to }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
-  <!-- add a harvest modal -->
-  <div class="add-harvest-modal container">
-    <script type="text/ng-template" id="addHarvestModalContent.html">
-      <div class="modal-header">
-        <h3>Move Plant to Harvest</h3>
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Crop: </label>
-        <p ng-model="ahmic.crop">{{ahmic.crop}}</p>
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Variety: </label>
-        <p ng-model="ahmic.variety">{{ahmic.variety}}</p>
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Location: </label>
-        <p ng-model="ahmic.location">{{ahmic.location}}</p>
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Yield in lbs: </label>
-        <input type="number" min=0 ng-model="ahmic.yield" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Area sqft: </label>
-        <input type="number" min=0 ng-model="ahmic.area_sqft" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Date: </label>
-        <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-3">Last Harvest: </label>
-        <input type="checkbox" ng-model="ahmic.harvest_complete" class="checkbox-harvest col-xs-3">
-      </div>
-      <div class="col-xs-12">
-        <label class="col-xs-4">Notes: </label>
-        <textarea rows="4" ng-model="ahmic.notes" class="col-xs-8"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-success" ng-click="ahmic.addHarvest()" >
-          Harvest
-        </button>
-        <button type="button" class="btn btn-default btn-danger" ng-click="ahmic.clearHarvestInputs()">
-          Cancel
-        </button>
-      </div>
-    </script>
-  </div>
 
-  <!-- add a sell modal -->
-  <div class="add-sold-modal container">
-    <script type="text/ng-template" id="addSoldModalContent.html">
-      <div class="modal-header">
-        <h3>Sell Harvest</h3>
+<!-- add a plant modal -->
+<div class="add-plant-modal container">
+  <script type="text/ng-template" id="addPlantModalContent.html">
+    <div class="modal-header">
+      <img src="/views/images/seeds.png" class="icons"><h3>Plant Seeds</h3>
+    </div>
+    <div class="modal-body col-xs-12">
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Crop: </label> -->
+        <input ng-model="apmic.crop" class="form-control modal-inputs" ng-readonly="true" ng-value="{{apmic.crop}}"></input>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Crop: </label>
-        <p ng-model="ahmic.crop">{{asmic.crop}}</p>
+        <!-- <label class="col-xs-4">Variety: </label> -->
+        <input ng-model="apmic.variety" class="form-control modal-inputs" ng-readonly="true" ng-value="{{apmic.variety}}"></input>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Variety: </label>
-        <p ng-model="ahmic.variety">{{asmic.variety}}</p>
+        <!-- <label class="col-xs-4">Quantity: </label> -->
+        <input type="number" ng-model="apmic.quantity" placeholder="Quantity:" class="form-control modal-inputs">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Date Harvested: </label>
-        <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p>
+        <!-- <label class="col-xs-4">Date: </label> -->
+        <input type="date" ng-model="apmic.date_planted" placeholder="Date:" class="form-control modal-inputs">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Weight Sold in lbs: </label>
-        <input type="number" min=0 ng-model="asmic.weight_sold" class="col-xs-8">
+        <!-- <label class="col-xs-4">Location: </label> -->
+        <input type="text" ng-model="apmic.location" placeholder="Location:" class="form-control modal-inputs">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Date: </label>
-        <input type="date" ng-model="asmic.date_sold" class="col-xs-8">
+        <!-- <label class="col-xs-4">Area Sqft: </label> -->
+        <input type="text" ng-model="apmic.area_sqft" placeholder="Area Sqft:" class="form-control modal-inputs">
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Sold to: </label>
-        <input type="text" ng-model="asmic.sold_to" class="col-xs-8">
+        <input type="checkbox" ng-model="apmic.out_of_stock" class="checkbox-seeds-box col-xs-1" style="margin-left: 10px">
+        <label class="col-xs-10">Check here if you used the last of this seed: </label>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-4">Notes: </label>
-        <textarea rows="4" ng-model="asmic.notes" class="col-xs-8"></textarea>
+        <!-- <label class="col-xs-4">Notes: </label> -->
+        <textarea rows="4" ng-model="apmic.notes" placeholder="Notes:" class="form-control modal-inputs"></textarea>
       </div>
-      <div class="col-xs-12">
-        <label class="col-xs-3">Sold Out: </label>
-        <input type="checkbox" ng-model="asmic.sold_out" class="checkbox-sold col-xs-3">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-success" ng-click="asmic.addSold()" >
-          Sell
-        </button>
-        <button type="button" class="btn btn-default btn-danger" ng-click="asmic.clearSoldInputs()">
-          Cancel
-        </button>
-      </div>
-    </script>
-  </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-success" ng-click="apmic.addPlant()" >
+        Plant
+      </button>
+      <button type="button" class="btn btn-default btn-danger" ng-click="apmic.clearPlantInputs()">
+        Cancel
+      </button>
+    </div>
+  </script>
+</div>
+
+
+
+<!-- add a harvest modal -->
+<div class="add-harvest-modal container">
+  <script type="text/ng-template" id="addHarvestModalContent.html">
+    <div class="modal-header">
+      <h3>Harvest From Planted Crops</h3>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Crop: </label>
+      <p ng-model="ahmic.crop">{{ahmic.crop}}</p>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Variety: </label>
+      <p ng-model="ahmic.variety">{{ahmic.variety}}</p>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Location: </label>
+      <p ng-model="ahmic.location">{{ahmic.location}}</p>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Yield in lbs: </label>
+      <input type="number" min=0 ng-model="ahmic.yield" class="col-xs-8">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Area sqft: </label>
+      <input type="number" min=0 ng-model="ahmic.area_sqft" class="col-xs-8">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Date: </label>
+      <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-3">Last Harvest: </label>
+      <input type="checkbox" ng-model="ahmic.harvest_complete" class="checkbox-harvest col-xs-3">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Notes: </label>
+      <textarea rows="4" ng-model="ahmic.notes" class="col-xs-8"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-success" ng-click="ahmic.addHarvest()" >
+        Harvest
+      </button>
+      <button type="button" class="btn btn-default btn-danger" ng-click="ahmic.clearHarvestInputs()">
+        Cancel
+      </button>
+    </div>
+  </script>
+</div>
+
+<!-- add a sell modal -->
+<div class="add-sold-modal container">
+  <script type="text/ng-template" id="addSoldModalContent.html">
+    <div class="modal-header">
+      <h3>Sell Harvest</h3>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Crop: </label>
+      <p ng-model="ahmic.crop">{{asmic.crop}}</p>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Variety: </label>
+      <p ng-model="ahmic.variety">{{asmic.variety}}</p>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Date Harvested: </label>
+      <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Weight Sold in lbs: </label>
+      <input type="number" min=0 ng-model="asmic.weight_sold" class="col-xs-8">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Date: </label>
+      <input type="date" ng-model="asmic.date_sold" class="col-xs-8">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Sold to: </label>
+      <input type="text" ng-model="asmic.sold_to" class="col-xs-8">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-4">Notes: </label>
+      <textarea rows="4" ng-model="asmic.notes" class="col-xs-8"></textarea>
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-3">Sold Out: </label>
+      <input type="checkbox" ng-model="asmic.sold_out" class="checkbox-sold col-xs-3">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-success" ng-click="asmic.addSold()" >
+        Sell
+      </button>
+      <button type="button" class="btn btn-default btn-danger" ng-click="asmic.clearSoldInputs()">
+        Cancel
+      </button>
+    </div>
+  </script>
+</div>
