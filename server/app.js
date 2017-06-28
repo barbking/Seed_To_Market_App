@@ -14,6 +14,7 @@ var reports = require('./routes/reports');
 var planner = require('./routes/planner');
 var inventory = require('./routes/inventory');
 var farm = require('./routes/farm');
+var csv = require('./routes/csv');
 
 
 app.use(bodyParser.json());
@@ -42,6 +43,7 @@ app.use('/planner', planner);
 app.use('/reports', reports);
 app.use('/suppliers', suppliers);
 app.use('/register', register);
+app.use('/csv', csv);
 app.use('/*', index);
 
 // App Set //
