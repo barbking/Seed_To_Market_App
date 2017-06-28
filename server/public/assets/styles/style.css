@@ -121,6 +121,7 @@ input {
 
 .logout {
   float: right;
+  margin-top: 5px;
 }
 body {
   background-image: url("/views/images/barley.jpg");
