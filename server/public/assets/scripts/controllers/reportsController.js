@@ -30,20 +30,30 @@ myApp.controller('ReportsController', ['$http', '$location','$uibModal','$log','
 }]);
 
 //controller for download modal
-myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log','reportsService', function ( $uibModalInstance, $uibModal, $log,reportsService) {
+myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibModal', '$log','reportsService', 'csvService', function ( $uibModalInstance, $uibModal, $log, reportsService, csvService ) {
   var vm = this;
 
   console.log( 'csvDownload in modal:');
 
-  vm.sendDates = function(){
-    var itemToSend = {
-      date_from: vm.date_from,
-      date_to: vm.date_to,
-      select_all: vm.select_all
-    };
+  function pgFormatDate (date) {
+    /* Via http://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date */
+    function zeroPad(d) {
+        return ("0" + d).slice(-2)
+    } 
 
-    reportsService.sendDates(itemToSend);
-    console.log(itemToSend);
+    if (date) {
+        var parsed = new Date(date)
+        return [parsed.getUTCFullYear(), zeroPad(parsed.getMonth() + 1), zeroPad(parsed.getDate())].join("-");
+    } else {
+        return null;
+    }
+};
+
+  vm.sendDates = function(){
+    var startDate = pgFormatDate(vm.date_from);
+    var endDate = pgFormatDate(vm.date_to);
+    console.log(startDate, endDate);
+    csvService.seedsCsv(startDate, endDate);
 
     $uibModalInstance.close();
   };//end sendDates
