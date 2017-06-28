@@ -119,7 +119,7 @@
             <td>{{ seed.non_gmo ? "Yes" : "No"}}</td>
             <td>{{ seed.supplier_id }}</td>
             <td>{{ seed.seed_check_sources }}</td>
-            <td><button type="button" ng-click="pc.open(seed)" class="btn btn-info">Plant</button></td>
+            <td><button type="button" ng-click="pc.open(seed)" class="btn-info">Plant</button></td>
           </tr>
         </tbody>
       </table>
@@ -300,11 +300,18 @@
       </div>
       <div class="col-xs-12">
         <!-- <label class="col-xs-4">Quantity: </label> -->
-        <input type="number" ng-model="apmic.quantity" placeholder="Quantity:" class="form-control modal-inputs">
+        <input type="number" ng-model="apmic.quantity" placeholder="Quantity:" class="form-control modal-inputs" autofocus="true">
       </div>
       <div class="col-xs-12">
-        <!-- <label class="col-xs-4">Date: </label> -->
-        <input type="date" ng-model="apmic.date_planted" placeholder="Date:" class="form-control modal-inputs">
+        <input type="checkbox" ng-model="apmic.out_of_stock" class="checkbox-seeds-box col-xs-1" style="margin-left: 10px; margin-bottom: 25px">
+        <label class="col-xs-10" >Check here if you used the last of this seed: </label>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date Planted:</label>
+        <div style="display:inline-block; min-height:290px;">
+          <div uib-datepicker ng-model="apmic.date_planted" class="well well-sm"></div>
+        </div>
+        <!-- <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8"> -->
       </div>
       <div class="col-xs-12">
         <!-- <label class="col-xs-4">Location: </label> -->
@@ -313,10 +320,6 @@
       <div class="col-xs-12">
         <!-- <label class="col-xs-4">Area Sqft: </label> -->
         <input type="text" ng-model="apmic.area_sqft" placeholder="Area Sqft:" class="form-control modal-inputs">
-      </div>
-      <div class="col-xs-12">
-        <input type="checkbox" ng-model="apmic.out_of_stock" class="checkbox-seeds-box col-xs-1" style="margin-left: 10px">
-        <label class="col-xs-10">Check here if you used the last of this seed: </label>
       </div>
       <div class="col-xs-12">
         <!-- <label class="col-xs-4">Notes: </label> -->
@@ -340,39 +343,50 @@
 <div class="add-harvest-modal container">
   <script type="text/ng-template" id="addHarvestModalContent.html">
     <div class="modal-header">
-      <h3>Harvest From Planted Crops</h3>
+      <img src="/views/images/harvest.png" class="icons"><h3>Harvest From Planted Crop</h3>
     </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Crop: </label>
-      <p ng-model="ahmic.crop">{{ahmic.crop}}</p>
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Variety: </label>
-      <p ng-model="ahmic.variety">{{ahmic.variety}}</p>
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Location: </label>
-      <p ng-model="ahmic.location">{{ahmic.location}}</p>
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Yield in lbs: </label>
-      <input type="number" min=0 ng-model="ahmic.yield" class="col-xs-8">
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Area sqft: </label>
-      <input type="number" min=0 ng-model="ahmic.area_sqft" class="col-xs-8">
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Date: </label>
-      <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8">
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-3">Last Harvest: </label>
-      <input type="checkbox" ng-model="ahmic.harvest_complete" class="checkbox-harvest col-xs-3">
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Notes: </label>
-      <textarea rows="4" ng-model="ahmic.notes" class="col-xs-8"></textarea>
+    <div class="modal-body col-xs-12">
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Crop: </label> -->
+        <input ng-model="ahmic.crop" class="form-control modal-inputs" ng-readonly="true" ng-value="{{ahmic.crop}}"></input>
+        <!-- <input ng-model="ahmic.crop" ng-value="">{{ahmic.crop}}</p> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Variety: </label> -->
+        <input ng-model="ahmic.variety" class="form-control modal-inputs" ng-readonly="true" ng-value="{{ahmic.variety}}"></input>
+        <!-- <p ng-model="ahmic.variety">{{ahmic.variety}}</p> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Location: </label> -->
+        <input ng-model="ahmic.location" class="form-control modal-inputs" ng-readonly="true" ng-value="{{ahmic.location}}"></input>
+        <!-- <p ng-model="ahmic.location">{{ahmic.location}}</p> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Yield in lbs: </label> -->
+        <input type="text" ng-model="ahmic.yield" placeholder="Yeild in lbs:" class="form-control modal-inputs" autofocus="true">
+        <!-- <input type="number" min=0 ng-model="ahmic.yield" class="col-xs-8"> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Area sqft: </label> -->
+        <input type="text" ng-model="ahmic.area_sqft" placeholder="Area sqft:" class="form-control modal-inputs">
+        <!-- <input type="number" min=0 ng-model="ahmic.area_sqft" class="col-xs-8"> -->
+      </div>
+      <div class="col-xs-12">
+        <input type="checkbox" ng-model="ahmic.harvest_complete" class="checkbox-seeds-box col-xs-1" style="margin-left: 10px; margin-bottom: 25px">
+        <label class="col-xs-10">Check if this is the last harvest for this crop</label>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date Harvested:</label>
+        <div style="display:inline-block; min-height:290px;">
+          <div uib-datepicker ng-model="ahmic.date_harvested" class="well well-sm"></div>
+        </div>
+        <!-- <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8"> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Notes: </label> -->
+        <textarea rows="4" ng-model="ahmic.notes" placeholder="Notes:" class="form-control modal-inputs"></textarea>
+        <!-- <textarea rows="4" ng-model="ahmic.notes" class="col-xs-8"></textarea> -->
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default btn-success" ng-click="ahmic.addHarvest()" >
@@ -389,39 +403,50 @@
 <div class="add-sold-modal container">
   <script type="text/ng-template" id="addSoldModalContent.html">
     <div class="modal-header">
-      <h3>Sell Harvest</h3>
+      <img src="/views/images/sold.png" class="icons"><h3>Sell Harvest</h3>
     </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Crop: </label>
-      <p ng-model="ahmic.crop">{{asmic.crop}}</p>
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Variety: </label>
-      <p ng-model="ahmic.variety">{{asmic.variety}}</p>
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Date Harvested: </label>
-      <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p>
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Weight Sold in lbs: </label>
-      <input type="number" min=0 ng-model="asmic.weight_sold" class="col-xs-8">
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Date: </label>
-      <input type="date" ng-model="asmic.date_sold" class="col-xs-8">
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Sold to: </label>
-      <input type="text" ng-model="asmic.sold_to" class="col-xs-8">
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-4">Notes: </label>
-      <textarea rows="4" ng-model="asmic.notes" class="col-xs-8"></textarea>
-    </div>
-    <div class="col-xs-12">
-      <label class="col-xs-3">Sold Out: </label>
-      <input type="checkbox" ng-model="asmic.sold_out" class="checkbox-sold col-xs-3">
+    <div class="modal-body col-xs-12">
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Crop: </label> -->
+        <input ng-model="asmic.crop" class="form-control modal-inputs" ng-readonly="true" ng-value="{{asmic.crop}}"></input>
+        <!-- <p ng-model="ahmic.crop">{{asmic.crop}}</p> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Variety: </label> -->
+        <input ng-model="asmic.variety" class="form-control modal-inputs" ng-readonly="true" ng-value="{{asmic.variety}}"></input>
+        <!-- <p ng-model="ahmic.variety">{{asmic.variety}}</p> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Date Harvested: </label> -->
+        <input ng-model="asmic.date_harvested" class="form-control modal-inputs" ng-readonly="true" ng-value="{{asmic.date_harvested}}"></input>
+        <!-- <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Weight Sold in lbs: </label> -->
+        <input type="text" ng-model="asmic.weight_sold" placeholder="Weight Sold in lbs:" class="form-control modal-inputs" autofocus="true">
+        <!-- <input type="number" min=0 ng-model="asmic.weight_sold" class="col-xs-8"> -->
+      </div>
+      <div class="col-xs-12">
+        <input type="checkbox" ng-model="asmic.sold_out" class="checkbox-seeds-box col-xs-1" style="margin-left: 10px; margin-bottom: 25px">
+        <label class="col-xs-10">Check here if all of this harvest is sold out: </label>
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date Sold: </label>
+        <div style="display:inline-block; min-height:290px;">
+          <div uib-datepicker ng-model="asmic.date_sold" class="well well-sm"></div>
+        </div>
+        <!-- <input type="date" ng-model="ahmic.date_harvested" class="col-xs-8"> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Sold to: </label> -->
+        <input type="text" ng-model="asmic.sold_to" placeholder="Who it was sold to:" class="form-control modal-inputs">
+        <!-- <input type="text" ng-model="asmic.sold_to" class="col-xs-8"> -->
+      </div>
+      <div class="col-xs-12">
+        <!-- <label class="col-xs-4">Notes: </label> -->
+        <textarea rows="4"ng-model="asmic.notes" placeholder="Notes:" class="form-control modal-inputs"></textarea>
+        <!-- <textarea rows="4" ng-model="asmic.notes" class="col-xs-8"></textarea> -->
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default btn-success" ng-click="asmic.addSold()" >
