@@ -60,7 +60,7 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
 //Edit button from HTML
   vm.showEdit = function(seed) {
        console.log('in edit user');
-       vm.sortType = null;
+       vm.sortType = "";
        seed.editMode = true;
        vm.editMode = true;
       //  vm.sort = undefined;

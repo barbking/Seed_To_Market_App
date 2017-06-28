@@ -3,17 +3,8 @@
 <div class="headingDiv">
   <h1>Inventory</h1>
 </div>
-
-
+<!-- Search Inputs -->
 <div class="container content-div">
-  <!-- <div class="alert alert-info">
-          Sort Type: {{ sortType }}
-          <br>
-          Sort Reverse: {{ sortReverse }}
-          <br>
-          Search Query: {{ searchSeeds }}
-    </div> -->
-  <!-- Search Inputs -->
   <form>
       <div class="form-group">
         <div class="col-xs-2" style="padding-left: 0px; padding-right: 10px;">
@@ -25,7 +16,7 @@
         </div>
       </div>
     </form>
-    <!-- Table -->
+<!-- Table -->
 <table class="table table-bordered table-striped">
 <thead>
   <tr>
@@ -114,68 +105,66 @@
   </tr>
 </thead>
   <tbody>
-
 <!-- Populating Table -->
-
 <tr ng-repeat="seed in ic.inventory.list | orderBy:sortType:sortReverse | filter:searchSeeds">
-
     <td>
       <span ng-hide="seed.editMode">{{seed.crop}}</span>
-      <input type="text" name="seed.crop" style="width:90px" ng-show="seed.editMode" class="edit-field" ng-model="seed.crop" placeholder="seed.crop" required="" />
+      <input type="text" name="seed.crop" style="width:90px" ng-show="seed.editMode" class="edit-field" ng-model="seed.crop" placeholder="Crop" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.variety}}</span>
-      <input type="text" name="seed.variety" style="width:90px" ng-show="seed.editMode" class="edit-field" ng-model="seed.variety" placeholder="seed.variety" required="" />
+      <input type="text" name="seed.variety" style="width:90px" ng-show="seed.editMode" class="edit-field" ng-model="seed.variety" placeholder="Variety" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.purchase_date | date:'MM-dd-yyyy'}}</span>
-      <input type="text" name="seed.purchase_date | date:'MM-dd-yyyy'" style="width:100px" ng-show="seed.editMode" class="edit-field" ng-model="seed.purchase_date" placeholder="seed.purchase_date | date:'MM-dd-yyyy'" required="" />
+      <input type="text" name="seed.purchase_date | date:'MM-dd-yyyy'" style="width:100px" ng-show="seed.editMode" class="edit-field" ng-model="seed.purchase_date" placeholder="Date" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.lot_number}}</span>
-      <input type="text" name="seed.lot_number" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.lot_number" placeholder="seed.lot_number" required="" />
+      <input type="text" name="seed.lot_number" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.lot_number" placeholder="Lot #" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.quantity}}</span>
-      <input type="text" name="seed.quantity" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.quantity" placeholder="seed.quantity" required="" />
+      <input type="text" name="seed.quantity" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.quantity" placeholder="Quantity" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.item_code}}</span>
-      <input type="text" name="seed.item_code" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.item_code" placeholder="seed.item_code" required="" />
+      <input type="text" name="seed.item_code" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.item_code" placeholder="Item Code" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.organic ? "Yes" : "No"}}</span>
-      <input type="text" name="seed.organic" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.organic" placeholder="seed.organic" required="" />
+      <input type="text" name="seed.organic" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.organic" placeholder="Organic" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.untreated ? "Yes" : "No"}}</span>
-      <input type="text" name="seed.untreated" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.untreated" placeholder="seed.untreated" required="" />
+      <input type="text" name="seed.untreated" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.untreated" placeholder="Untreated" required="" />
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.non_gmo ? "Yes" : "No"}}</span>
-      <input type="text" name="seed.non_gmo" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.non_gmo" placeholder="seed.non_gmo" required="" />
+      <input type="text" name="seed.non_gmo" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.non_gmo" placeholder="NonGmo" required="" />
     </td>
-    <td>
 
-      <!-- NEED TO GET THE SUPPLIER NAME NOT ID -->
-      <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
+
+
+  <!-- NEED TO GET THE SUPPLIER NAME NOT ID -->
+    <td>
+      <span ng-hide="seed.editMode">{{seed.name}}</span>
       <select class="col-xs-8" ng-show="seed.editMode" ng-model="ic.selectedSupplier">
-        <option ng-repeat="supplier in ic.suppliers" value="{{supplier.supplier_id}}">{{ supplier.name }}</option>
+        <option ng-repeat="supplier in ic.suppliers" value="{{supplier.supplier_id}}">{{ seed.name}}</option>
       </select>
 
-      <!-- <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
-      <input type="text" name="seed.supplier_id" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.supplier_id " placeholder="seed.supplier_id" required="" /> -->
-
+  <!-- <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
+        <input type="text" name="seed.supplier_id" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.supplier_id " placeholder="seed.supplier_id" required="" /> -->
     </td>
     <td>
       <span ng-hide="seed.editMode">{{seed.seed_check_sources}}</span>
-      <input type="text" name="seed.seed_check_sources" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.seed_check_sources" placeholder="seed.seed_check_sources" required="" />
+      <input type="text" name="seed.seed_check_sources" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.seed_check_sources" placeholder="Seed Check Sources" required="" />
     </td>
+    <!-- View Recipt Button -->
     <td><button type="button" class="btn btn-info" ng-click="ic.viewReceipt( seed.receipt_url )">View</button></td>
-
-      <!-- Buttons -->
+  <!-- Edit Buttons -->
       <td>
-        <button ng-hide="seed.editMode" sortType= "" ng-disabled="ic.editMode" ng-click="ic.showEdit(seed)">Edit</button>
+        <button ng-hide="seed.editMode" ng-disabled="ic.editMode" ng-click="ic.showEdit(seed)">Edit</button>
         <a href="" ng-show="seed.editMode" ng-click="ic.updateSeed(seed)">Update</a>
         <a href="" ng-show="seed.editMode" ng-click="ic.cancel(seed)">Cancel</a>
       </td>
