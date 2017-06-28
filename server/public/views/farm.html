@@ -1,111 +1,57 @@
 <!-- this page uses FarmController as fc  -->
 <nav ng-include="'/views/templates/navbar.html'"></nav>
-<div class="headingDiv">
-  <h1>Farm Profile</h1>
-</div>
+<div class="content-div container">
+  <div class="headingDiv">
+    <h1>Farm Profile</h1>
+  </div>
 
-<div class="container col-xs-2 col-xs-offset-5">
-  <!-- button to show form -->
-  <button type="button" class="btn btn-default btn-primary btn-inventory-toggle" ng-click="fc.editableForm.$show()" ng-show="!fc.editableForm.$visible">
-    Edit
-  </button>
-</div>
+  <div class="col-xs-2 col-xs-offset-5" ng-show="!fc.editableForm.$visible">
+    <!-- button to show form -->
+    <button type="button" class="btn btn-default btn-primary btn-inventory-toggle" ng-click="fc.editableForm.$show()" >
+      Edit
+    </button>
+  </div>
+  <div class="col-xs-2 col-xs-offset-5" ng-show="fc.editableForm.$visible">
+    <span ng-show="fc.editableForm.$visible">
+      <button type="submit" class="btn btn-primary col-xs-6" ng-disabled="fc.editableForm.$waiting">
+        Save
+      </button>
+      <button type="button" class="btn btn-default col-xs-6" ng-disabled="fc.editableForm.$waiting" ng-click="fc.editableForm.$cancel()">
+        Cancel
+      </button>
+    </span>
+  </div>
+  <div id="farm-content">
+    <div id="farmpage" class="col-xs-4">
+      <form editable-form name="fc.editableForm" onaftersave="fc.saveFarm()">
 
-
-
-<div id="farmpage">
-  <form editable-form name="fc.editableForm" onaftersave="fc.saveFarm()">
-
-    <div class="wrap">
-      <div class="left_col">
-        <div>
-          <span class="title"><b>Farm name:</b></span>
-          <span editable-text="fc.farm.farm_name" e-name="name" e-required>{{ fc.farm.farm_name || 'empty' }}</span>
+        <div class="wrap">
+          <div class="left_col">
+            <div>
+              <span class="title"><b>Farm name:</b></span>
+              <span editable-text="fc.farm.farm_name" e-name="name" e-required>{{ fc.farm.farm_name || 'empty' }}</span>
+            </div>
+            <div>
+              <span class="title"><b>Address:</b></span>
+              <span editable-text="fc.farm.farm_address" e-name="address" e-required>{{ fc.farm.farm_address || 'empty' }}</span>
+            </div>
+            <div>
+              <span class="title"><b>City:</b></span>
+              <span editable-text="fc.farm.farm_city" e-name="city" e-required>{{ fc.farm.farm_city || 'empty' }}</span>
+            </div>
+            <div>
+              <span class="title"><b>State:</b></span>
+              <span editable-select="fc.farm.farm_state" e-name="state" e-ng-options="state for state in fc.states">
+                {{ fc.farm.farm_state }}</span>
+              <span class="title"><b>ZIP:</b></span>
+              <span editable-text="fc.farm.farm_zip" e-name="zip" e-required>{{ fc.farm.farm_zip || 'empty' }}</span>
+            </div>
+          </div>
         </div>
-        <div>
-          <span class="title"><b>Address:</b></span>
-          <span editable-text="fc.farm.farm_address" e-name="address" e-required>{{ fc.farm.farm_address || 'empty' }}</span>
-        </div>
-      </div>
-      <div class="right_col">
-        <div>
-          <span class="title"><b>City:</b></span>
-          <span editable-text="fc.farm.farm_city" e-name="city" e-required>{{ fc.farm.farm_city || 'empty' }}</span>
-        </div>
-        <div>
-          <span class="title"><b>State:</b></span>
-          <span editable-select="fc.farm.farm_state" e-name="state" e-ng-options="state for state in fc.states">
-            {{ fc.farm.farm_state }}</span>
-          <span class="title"><b>ZIP:</b></span>
-          <span editable-text="fc.farm.farm_zip" e-name="zip" e-required>{{ fc.farm.farm_zip || 'empty' }}</span>
-        </div>
-      </div>
+      </form>
     </div>
-
-    <!-- <div class="vertical-line"></div> -->
-    <!-- <hr width="60%" align="left">
-    <div class="wrap">
-      <div class="left_col">
-        <div>
-          <span class="title">Primary Owner: </span>
-          <span editable-text="fc.farm.owner1" e-name="owner1" e-required>{{ fc.farm.owner1 || 'empty' }}</span>
-        </div>
-        <div>
-          <span class="title">Phone Number: </span>
-          <span editable-text="fc.farm.phone1" e-name="phone1" e-required>{{ fc.farm.phone1 || 'empty' }}</span>
-        </div>
-        <div>
-          <span class="title">Email: </span>
-          <span editable-text="fc.farm.email1" e-name="email1" e-required>{{ fc.farm.email1 || 'empty' }}</span>
-        </div>
-      </div>
-      <div class="right_col">
-        <div>
-          <span class="title">Other Owner: </span>
-          <span editable-text="fc.farm.owner2" e-name="owner2" e-required>{{ fc.farm.owner2 || 'empty' }}</span>
-        </div>
-        <div>
-          <span class="title">Phone Number: </span>
-          <span editable-text="fc.farm.phone2" e-name="phone2" e-required>{{ fc.farm.phone2 || 'empty' }}</span>
-        </div>
-        <div>
-          <span class="title">Email: </span>
-          <span editable-text="fc.farm.email2" e-name="email2" e-required>{{ fc.farm.email2 || 'empty' }}</span>
-        </div>
-      </div>
-    </div><br>
-
-  <!-<div class="vertical-line"></div> -->
-    <!-- <hr width="60%" align="left">
-  <div class="wrap">
-    <div class="left_col">
-      <div>
-        <span class="title">Certifier: </span>
-        <span editable-text="fc.farm.certifier" e-name="certifier" e-required>{{ fc.farm.certifier || 'empty' }}</span>
-      </div>
-      <div>
-        <span class="title">Certifier Email: </span>
-        <span editable-text="fc.farm.certifierEmail" e-name="certifierEmail" e-required>{{ fc.farm.certifierEmail || 'empty' }}</span>
-      </div>
-    </div>
-    <div class="right_col">
-      <div>
-        <span class="title">certifierID: </span>
-        <span editable-text="fc.farm.certifierId" e-name="certifierId" e-required>{{ fc.farm.certifierId || 'empty' }}</span>
-      </div>
-    </div><br> -->
-
-    <div class="buttons">
-      <!-- buttons to submit / cancel form -->
-      <span ng-show="fc.editableForm.$visible">
-        <button type="submit" class="btn btn-primary" ng-disabled="fc.editableForm.$waiting">
-          Save
-        </button>
-        <button type="button" class="btn btn-default" ng-disabled="fc.editableForm.$waiting" ng-click="fc.editableForm.$cancel()">
-          Cancel
-        </button>
-      </span>
+    <div class="col-xs-4">
+        <img src="/views/images/farm.png" class="farmIcon">
     </div>
   </div>
-  </form>
 </div>
