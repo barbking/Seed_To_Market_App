@@ -3,16 +3,16 @@
 <div class="headingDiv">
   <h1>Reports</h1>
 </div>
-<div class="container content-div">
-  <div class="col-xs-12 reports-tables">
-    <form>
+  <div class="container content-div">
+    <div class="col-xs-12 reports-tables">
+      <form>
         <div class="form-group">
           <div class="col-xs-2" style="padding-left: 0px; padding-right: 10px;">
             <button type="button" class="btn btn-primary" ng-click="ic.downloadReport()" style="width: 100%; padding-left: 0px; padding-right: 0px">Download CSV File</button>
           </div>
           <div class="input-group col-xs-10">
             <div class="input-group-addon"><i class="fa fa-search"></i></div>
-            <input type="text" class="form-control" placeholder="Search" ng-model="searchReports">
+            <input type="text" class="form-control" placeholder="Search" ng-model="pc.searchReports">
           </div>
         </div>
       </form>
@@ -91,4 +91,33 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<!-- csv modal -->
+<div class="csv-download-modal container">
+  <script type="text/ng-template" id="csvDownloadModalContent.html">
+    <div class="modal-header">
+      <h3>Select date range</h3>
+    </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date From: </label>
+        <input type="date" ng-model="cdmic.date_from" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-4">Date To: </label>
+        <input type="date" ng-model="cdmic.date_to" class="col-xs-8">
+      </div>
+      <div class="col-xs-12">
+        <label class="col-xs-8">Select All: </label>
+        <input type="checkbox" ng-model="cdmic.select_all" class="checkbox-csv col-xs-3">
+      </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-success" ng-click="cdmic.sendDates()" >
+        Download
+      </button>
+      <button type="button" class="btn btn-default btn-danger" ng-click="cdmic.clearInputs()">
+        Cancel
+      </button>
+    </div>
+  </script>
 </div>
