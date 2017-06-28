@@ -199,6 +199,10 @@ body {
 #farm-content {
   margin-top: 15vh;
 }
+.receipt-img {
+  width: 70%;
+  height: auto;
+}
 .register {
   color: #00778b;
   text-shadow: 1.5px 1.5px 1.5px black;
