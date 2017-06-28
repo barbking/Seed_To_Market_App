@@ -20,7 +20,7 @@ var pool = new pg.Pool(config);
 // GET request seeds .csv file
 router.get('/exportSeeds/:fromDate?/:toDate?', function (req, res, next) {
   console.log('hit export seeds route');
-      // if (req.isAuthenticated()) {
+      if (req.isAuthenticated()) {
         // connects to the pool
         pool.connect(function(err, connection, done) {
               if (err) {
@@ -54,7 +54,7 @@ router.get('/exportSeeds/:fromDate?/:toDate?', function (req, res, next) {
                     } else {
                       // query that selects all reports for a selected period of time
                       var jsonQuerySeeds = 'SELECT * FROM seeds WHERE purchase_date >=$1 and purchase_date <=$2 and user_id= $3';
-                      connection.query(jsonQuerySeeds, [req.params.fromDate, req.params.toDate, 1], function(queryError, result) {
+                      connection.query(jsonQuerySeeds, [req.params.fromDate, req.params.toDate, req.user.user_id], function(queryError, result) {
                         done();
                         if (queryError) {
                           res.sendStatus(500);
@@ -79,9 +79,9 @@ router.get('/exportSeeds/:fromDate?/:toDate?', function (req, res, next) {
                    // pool.connect
             }
               });
-            // } else {
-            //   res.sendStatus( 403 );
-            // }
+            } else {
+              res.sendStatus( 403 );
+            }
           });
 
 
