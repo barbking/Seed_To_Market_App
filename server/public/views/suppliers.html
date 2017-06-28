@@ -4,10 +4,6 @@
   <h1>Suppliers</h1>
 </div>
 
-
-
-<button type="button" ng-click="sc.open()">Add Supplier</button>
-
 <div class="container">
   <!-- <div class="alert alert-info">
           Sort Type: {{ sortType }}
@@ -18,10 +14,12 @@
 
   </div>  -->
 <div class="container content-div">
-
   <form>
       <div class="form-group">
-        <div class="input-group">
+        <div class="col-xs-2" style="padding-left: 0px; padding-right: 10px;">
+          <button type="button" class="btn btn-primary" ng-click="sc.open()" style="width: 100%; padding-left: 0px; padding-right: 0px">Add Supplier</button>
+        </div>
+        <div class="input-group col-xs-10">
           <div class="input-group-addon"><i class="fa fa-search"></i></div>
           <input type="text" class="form-control" placeholder="Search" ng-model="searchSuppliers">
         </div>
