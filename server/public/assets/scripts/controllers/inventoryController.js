@@ -101,12 +101,21 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
   vm.suppliers = supplierService.suppliers.list;
 
   vm.addNewSeed = function(){
-    if ( !vm.crop || !vm.variety || !vm.purchasedate || !vm.lotnum || !vm.quantity || !vm.itemcode || !vm.selectedSupplier || !vm.seedcheck || !vm.file.url ) {
+    if ( !vm.crop || !vm.variety || !vm.purchasedate || !vm.lotnum || !vm.quantity || !vm.itemcode || !vm.selectedSupplier || !vm.seedcheck ) {
       console.log('inputs empty');
       swal({
         title: "Empty Fields!",
         text: "Please enter all fields!",
         type: "error",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } else if ( vm.file === undefined){
+      swal({
+        title: "Upload Receipt!",
+        text: "Please upload a picture of the receipt",
+        type: "error",
+        timer: 3500,
         confirmButtonText: "Ok"
       }); // end sweetalert
     } else {
@@ -131,6 +140,7 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
         title: "Seed Added!",
         text: "New seed added to inventory!",
         type: "success",
+        timer: 3500,
         confirmButtonText: "Ok"
       }); // end sweetalert
       $uibModalInstance.close();
