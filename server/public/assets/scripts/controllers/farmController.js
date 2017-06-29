@@ -11,15 +11,25 @@ myApp.controller( 'FarmController', [ '$http', '$filter', '$location', 'farmServ
   };
 
   vm.saveFarm = function() {
-    farmService.updateFarm(vm.farm).then(function(){
+    if ( !vm.farm.farm_name || !vm.farm.farm_address || !vm.farm.farm_city || !vm.farm.farm_zip || !vm.farm.farm_state ) {
       swal({
-        title: "Farm Updated!",
-        type: "success",
+        title: "Empty Fields!",
+        text: "Please enter all fields!",
+        type: "error",
         timer: 3500,
         confirmButtonText: "Ok"
       }); // end sweetalert
-      vm.getFarmInfo();
-    });
+    } else {
+      farmService.updateFarm(vm.farm).then(function(){
+        swal({
+          title: "Farm Updated!",
+          type: "success",
+          timer: 3500,
+          confirmButtonText: "Ok"
+        }); // end sweetalert
+        vm.getFarmInfo();
+      });
+    }
   };
 
   vm.getFarmInfo();

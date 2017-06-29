@@ -52,7 +52,27 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
         $http.post('/register', vm.user).then(
         function(response) {
           console.log('success');
-          $location.path('/home');
+          $http.post('/', vm.user).then(function(response) {
+            if(response.data.email) {
+              // console.log('success: ', response.data);
+              $location.path('/farm');
+              swal({
+                title: "Welcome!",
+                text: "Thank you for registering with Seed to Market! Please take some time and create your farm information!",
+                imageUrl: "/views/images/farm_welcome.png",
+                confirmButtonText: "Ok"
+              }); // end sweetalert
+            } else {
+              console.log('failure: ', response);
+              // vm.message = "Wrong!!";
+              swal({
+                title: "An Error Occurred!",
+                text: 'Please try again',
+                type: "error",
+                confirmButtonText: "Ok"
+              }); // end sweetalert
+            } // end if else
+          }); // end POST '/'
         },
         function(response) {
           console.log('error');
