@@ -112,9 +112,16 @@
         <input type="date" ng-model="cdmic.date_to" class="col-xs-8" name="input" required>
       </div>
       <div class="col-xs-12">
-        <label class="col-xs-8">Select All: </label>
-        <input type="checkbox" ng-model="cdmic.select_all" class="checkbox-csv col-xs-3">
+        <label class="col-xs-8">Select Report to Download: </label>
+        <select class="modal-inputs col-xs-8" placeholder="Select:" ng-model="cdmic.select">
+          <option> Seeds</option>
+            <option> Plants</option>
+              <option> Harvests</option>
+                <option> Sold</option>
+                  <option> Suppliers</option>
+        </select>
       </div>
+
     <div class="modal-footer">
       <button type="button" class="btn btn-default btn-success" ng-click="cdmic.sendDates()" >
         Download
