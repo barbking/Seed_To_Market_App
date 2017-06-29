@@ -38,16 +38,16 @@ myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
   function pgFormatDate (date) {
     /* Via http://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date */
     function zeroPad(d) {
-        return ("0" + d).slice(-2)
-    } 
+        return ("0" + d).slice(-2);
+    }
 
     if (date) {
-        var parsed = new Date(date)
+        var parsed = new Date(date);
         return [parsed.getUTCFullYear(), zeroPad(parsed.getMonth() + 1), zeroPad(parsed.getDate())].join("-");
     } else {
         return null;
     }
-};
+  }
 
   vm.sendDates = function(){
 
@@ -56,7 +56,12 @@ myApp.controller( 'csvDownloadModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
     console.log(startDate, endDate);
     csvService.seedsCsv(startDate, endDate);
 
-
+    swal({
+      title: "Report Downloading!",
+      type: "success",
+      confirmButtonText: "Ok",
+      timer: 3500
+    }); // end sweetalert
     $uibModalInstance.close();
   };//end sendDates
 

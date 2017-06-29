@@ -12,6 +12,12 @@ myApp.controller( 'FarmController', [ '$http', '$filter', '$location', 'farmServ
 
   vm.saveFarm = function() {
     farmService.updateFarm(vm.farm).then(function(){
+      swal({
+        title: "Farm Updated!",
+        type: "success",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
       vm.getFarmInfo();
     });
   };

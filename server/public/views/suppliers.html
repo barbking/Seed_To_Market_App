@@ -81,7 +81,7 @@
             Remove
           </td>
           <td>
-            Edit
+
           </td>
         </tr>
       </thead>
@@ -122,7 +122,7 @@
             <input type="text" name="supplier.description" style="width:110px" ng-show="supplier.editMode" class="edit-field" ng-model="supplier.description" placeholder="supplier.description" required="" />
           </td>
           <td>
-            <button class="btn-warning" ng-click = "sc.deleteSupplier(supplier.supplier_id)"> Delete</button>
+            <button class="btn-warning" ng-click = "sc.deleteSupplier(supplier.supplier_id)"> Remove</button>
           </td>
           <td>
             <button ng-hide="supplier.editMode" sortType= "" ng-disabled="sc.editMode" ng-click="sc.showEdit(supplier)">Edit</button>

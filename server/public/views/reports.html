@@ -101,19 +101,25 @@
 <div class="csv-download-modal container">
   <script type="text/ng-template" id="csvDownloadModalContent.html">
     <div class="modal-header">
-      <h3>Select date range</h3>
+      <img src="/views/images/report.png" class="icons"><h3>Select Report To Download</h3>
     </div>
+    <div class="modal-body col-xs-12">
+      <div class="col-xs-12">
+        <p>Select a date range and specific report to download, or leave blank to download all available data</p>
+      </div>
       <div class="col-xs-12">
         <label class="col-xs-4">Date From: </label>
-        <input type="date" ng-model="cdmic.date_from" class="col-xs-8">
+        <!-- <input type="text" name="seed.purchase_date | date:'MM-dd-yyyy'" style="width:90px" ng-show="seed.editMode" class="edit-field" ng-model="seed.purchase_date" placeholder="Date" required="" /> -->
+        <input type="date" ng-model="cdmic.date_from" class="col-xs-8 form-control">
       </div>
-      <div class="col-xs-12">
+      <div class="col-xs-12" style="margin-top: 10px">
         <label class="col-xs-4">Date To: </label>
-        <input type="date" ng-model="cdmic.date_to" class="col-xs-8" name="input" required>
+        <!-- <input type="text" name="seed.purchase_date | date:'MM-dd-yyyy'" style="width:90px" ng-show="seed.editMode" class="edit-field" ng-model="seed.purchase_date" placeholder="Date" required="" /> -->
+        <input type="date" ng-model="cdmic.date_to" class="col-xs-8 form-control" name="input" required>
       </div>
-      <div class="col-xs-12">
+      <div class="col-xs-12" style="margin-top: 10px">
         <label class="col-xs-8">Select Report to Download: </label>
-        <select class="modal-inputs col-xs-8" placeholder="Select:" ng-model="cdmic.select">
+        <select class="modal-inputs col-xs-8 form-control" placeholder="Select:" ng-model="cdmic.select">
           <option> Seeds</option>
             <option> Plants</option>
               <option> Harvests</option>
@@ -121,7 +127,7 @@
                   <option> Suppliers</option>
         </select>
       </div>
-
+    </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default btn-success" ng-click="cdmic.sendDates()" >
         Download

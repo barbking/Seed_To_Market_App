@@ -106,29 +106,43 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
   console.log ('apmic controller inventory',vm.inventory);
 
   vm.addPlant = function(){
-    var itemToSend = {
-      seed_id: seed.seed_id,
-      location: vm.location,
-      date_planted: vm.date_planted,
-      quantity: vm.quantity,
-      area_sqft: vm.area_sqft,
-      notes: vm.notes,
-      out_of_stock: vm.out_of_stock
-    };
-    plantService.addPlant(itemToSend);
-    console.log(itemToSend);
-
-    //if check last seed checkbox in modal, update seeds table out_of_stock to true
-    if (vm.out_of_stock === true) {
-      var seedToUpdate = {
+    if ( !vm.quantity || !vm.date_planted || !vm.location || !vm.area_sqft || !vm.notes ) {
+      swal({
+        title: "Empty Fields!",
+        text: "Please enter all fields!",
+        type: "error",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } else {
+      var itemToSend = {
         seed_id: seed.seed_id,
-        out_of_stock: true,
-      };
-      console.log('seedToUpdate-->', seedToUpdate);
-      seedService.updateSeedStock(seedToUpdate);
-    }
-
-    $uibModalInstance.close();
+        location: vm.location,
+        date_planted: vm.date_planted,
+        quantity: vm.quantity,
+        area_sqft: vm.area_sqft,
+        notes: vm.notes,
+        out_of_stock: vm.out_of_stock
+      }; // end itemToSend
+      plantService.addPlant(itemToSend);
+      console.log(itemToSend);
+      //if check last seed checkbox in modal, update seeds table out_of_stock to true
+      if (vm.out_of_stock === true) {
+        var seedToUpdate = {
+          seed_id: seed.seed_id,
+          out_of_stock: true,
+        }; // end seedToUpdate
+        console.log('seedToUpdate-->', seedToUpdate);
+        seedService.updateSeedStock(seedToUpdate);
+      } // end if out_of_stock
+      $uibModalInstance.close();
+      swal({
+        title: "Seeds Planted!",
+        type: "success",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } // end if empty
   };//end add Item
 
 
@@ -140,7 +154,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
     vm.notes = '';
 
     $uibModalInstance.close();
-  };
+  }; // end clearPlantInputs
 
   vm.clearPlantInputs();
 }]);//end of addPlantModalInstanceCtrl controller
@@ -158,30 +172,43 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
   console.log( 'plant_id in modal:', plant.planted_id );
 
   vm.addHarvest = function(){
-    var itemToSend = {
-      plant_id: plant.planted_id,
-      location: vm.location,
-      area_sqft: vm.area_sqft,
-      date_harvested: vm.date_harvested,
-      yield: vm.yield,
-      notes: vm.notes
-    };
-
-    harvestService.addHarvest(itemToSend);
-    console.log('addHarvest object to send-->',itemToSend);
-
-    //update plant table if last harvest
-    if (vm.harvest_complete === true) {
-      var plantToUpdate = {
-        planted_id: plant.planted_id,
-        harvest_complete: true,
-        harvest_complet_date: vm.date_harvested
-      };
-      console.log('plantToUpdate-->', plantToUpdate);
-      plantService.updatePlanted(plantToUpdate);
-    }
-
-    $uibModalInstance.close();
+    if ( !vm.yield || !vm.date_harvested || !vm.area_sqft || !vm.notes ) {
+      swal({
+        title: "Empty Fields!",
+        text: "Please enter all fields!",
+        type: "error",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } else {
+      var itemToSend = {
+        plant_id: plant.planted_id,
+        location: vm.location,
+        area_sqft: vm.area_sqft,
+        date_harvested: vm.date_harvested,
+        yield: vm.yield,
+        notes: vm.notes
+      }; // itemToSend
+      harvestService.addHarvest(itemToSend);
+      console.log('addHarvest object to send-->',itemToSend);
+      //update plant table if last harvest
+      if (vm.harvest_complete === true) {
+        var plantToUpdate = {
+          planted_id: plant.planted_id,
+          harvest_complete: true,
+          harvest_complet_date: vm.date_harvested
+        }; // plantToUpdate
+        console.log('plantToUpdate-->', plantToUpdate);
+        plantService.updatePlanted(plantToUpdate);
+      } // end if harvest_complete
+      $uibModalInstance.close();
+      swal({
+        title: "Crop Harvested!",
+        type: "success",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } // end if empty
   };//end add Item
 
 
@@ -210,29 +237,44 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
   vm.date_harvested = harvest.date_harvested;
 
   vm.addSold = function(){
-    var itemToSend = {
-      harvested_id: harvest.harvested_id,
-      date_sold: vm.date_sold,
-      weight_sold: vm.weight_sold,
-      sold_to: vm.sold_to,
-      notes: vm.notes,
-      sold_out: vm.sold_out
-    };
-
-    sellService.addSale(itemToSend);
-    console.log('addSale object to send-->',itemToSend);
-
-    //update harvest table if harvest sold out
-    if (vm.sold_out === true) {
-      var harvestToUpdate = {
-        harvest_id: harvest.harvested_id,
-        sold_out: true,
+    if ( !vm.weight_sold || !vm.date_sold || !vm.sold_to || !vm.notes ) {
+      swal({
+        title: "Empty Fields!",
+        text: "Please enter all fields!",
+        type: "error",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } else {
+      var itemToSend = {
+        harvested_id: harvest.harvested_id,
+        date_sold: vm.date_sold,
+        weight_sold: vm.weight_sold,
+        sold_to: vm.sold_to,
+        notes: vm.notes,
+        sold_out: vm.sold_out
       };
-      console.log('harvestToUpdate-->', harvestToUpdate);
-      harvestService.updateHarvest(harvestToUpdate);
-    }//end if
 
-    $uibModalInstance.close();
+      sellService.addSale(itemToSend);
+      console.log('addSale object to send-->',itemToSend);
+
+      //update harvest table if harvest sold out
+      if (vm.sold_out === true) {
+        var harvestToUpdate = {
+          harvest_id: harvest.harvested_id,
+          sold_out: true,
+        };
+        console.log('harvestToUpdate-->', harvestToUpdate);
+        harvestService.updateHarvest(harvestToUpdate);
+      }//end if
+      $uibModalInstance.close();
+      swal({
+        title: "Harvest Sold!",
+        type: "success",
+        timer: 3500,
+        confirmButtonText: "Ok"
+      }); // end sweetalert
+    } // end if empty
   };//end addSold
 
   vm.clearSoldInputs = function (){

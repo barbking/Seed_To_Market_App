@@ -418,7 +418,7 @@
       </div>
       <div class="col-xs-12">
         <!-- <label class="col-xs-4">Date Harvested: </label> -->
-        <input ng-model="asmic.date_harvested" class="form-control modal-inputs" ng-readonly="true" ng-value="{{asmic.date_harvested}}"></input>
+        <input ng-model="asmic.date_harvested | date:'MM-dd-yyyy'" class="form-control modal-inputs" ng-readonly="true" ng-value="{{asmic.date_harvested}}"></input>
         <!-- <p ng-model="ahmic.variety">{{asmic.date_harvested | date:'MM-dd-yyyy' }}</p> -->
       </div>
       <div class="col-xs-12">
