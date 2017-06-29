@@ -60,23 +60,22 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
 
 //Edit button from HTML
   vm.showEdit = function(seed) {
-       console.log('in edit user');
-       vm.suppliers = supplierService.suppliers.list;
-       supplierService.getSuppliers();
-       vm.sortType = null;
-       seed.editMode = true;
-       vm.editMode = true;
-      //  vm.sort = undefined;
-     };
+    console.log('in edit user');
+    vm.suppliers = supplierService.suppliers.list;
+    supplierService.getSuppliers();
+    vm.sortType = null;
+    seed.editMode = true;
+    vm.editMode = true;
+    //  vm.sort = undefined;
+  };
 
 //Cancel button from HTML
   vm.cancel = function(seed) {
-      console.log('in cancel');
-          seedService.getSeeds();
-          seed.editMode = false;
-          vm.editMode = false;
-
-    };
+    console.log('in cancel');
+    seedService.getSeeds();
+    seed.editMode = false;
+    vm.editMode = false;
+  };
 
 //Update button from HTML
   vm.updateSeed = function (seed){
@@ -86,6 +85,8 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
   seedService.editSeed(seed);
   seed.editMode = false;
   vm.editMode = false;
+  vm.inventory = seedService.inventory;
+  seedService.getSeeds();
 };
 }]);// end InventoryController
 
