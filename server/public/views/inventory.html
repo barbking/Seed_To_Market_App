@@ -134,7 +134,7 @@
           </td>
           <td>
             <span ng-hide="seed.editMode">{{seed.item_code}}</span>
-            <input type="text" name="seed.item_code" style="width:50px" ng-show="seed.editMode" class="edit-field" ng-model="seed.item_code" placeholder="" required="" />
+            <input type="text" name="seed.item_code" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.item_code" placeholder="" required="" />
           </td>
           <td>
             <span ng-hide="seed.editMode">{{seed.organic ? "Yes" : "No"}}</span>
@@ -146,7 +146,13 @@
           </td>
           <td>
             <span ng-hide="seed.editMode">{{seed.non_gmo ? "Yes" : "No"}}</span>
-            <input type="text" name="seed.non_gmo" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.non_gmo" placeholder="" required="" />
+            <!-- <input type="text" name="seed.non_gmo" style="width:40px" ng-show="seed.editMode" class="edit-field" ng-model="seed.non_gmo" placeholder="" required="" /> -->
+
+            <select class="col-xs-8" ng-show="seed.editMode" ng-model="seed.non_gmo" placeholder="{{seed.non_gmo}}">
+              <option value=true>yes</option>
+              <option value=false>no</option>
+            </select>
+
           </td>
           <td>
 
