@@ -6,13 +6,14 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
   vm.sortReverse  = false;  // set the default sort order
   vm.searchSeeds   = '';     // set the default search/filter term
   vm.editMode = false;
+  vm.opt = [ {value: true, text: 'Yes' }, {value: false, text: 'No' } ];
 
   // create the list of seeds
   vm.inventory = seedService.inventory;
   seedService.getSeeds();
 
   // populate suppliers
-  vm.suppliers = supplierService.suppliers;
+  vm.suppliers = supplierService.suppliers.list;
   supplierService.getSuppliers();
 
   vm.addSeed = function ( size, parentSelector ) {
@@ -60,6 +61,8 @@ myApp.controller('InventoryController', ['$http', '$location','seedService', 'su
 //Edit button from HTML
   vm.showEdit = function(seed) {
        console.log('in edit user');
+       vm.suppliers = supplierService.suppliers.list;
+       supplierService.getSuppliers();
        vm.sortType = null;
        seed.editMode = true;
        vm.editMode = true;
