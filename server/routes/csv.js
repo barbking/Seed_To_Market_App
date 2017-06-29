@@ -19,14 +19,14 @@ var pool = new pg.Pool(config);
 
 // GET request seeds .csv file
 router.get('/exportSeeds/:fromDate?/:toDate?', function (req, res, next) {
-  console.log('hit export seeds route');
+  console.log('hit export seeds route-->', req.params);
       if (req.isAuthenticated()) {
         // connects to the pool
         pool.connect(function(err, connection, done) {
               if (err) {
                 res.sendStatus( 403 );
               } else {
-                if (req.params.fromDate === undefined && req.params.toDate === undefined) {
+                if (req.params.fromDate === 'null' && req.params.toDate === 'null') {
                   var jsonQueryAllSeeds = 'SELECT * FROM seeds WHERE user_id= $1';
                   connection.query(jsonQueryAllSeeds,[req.user.user_id], function(queryError, result) {
                     done();
