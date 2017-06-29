@@ -21,7 +21,7 @@ color: #DDDDDD;
 
 .content-div {
   background-color: white;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 h1 {
