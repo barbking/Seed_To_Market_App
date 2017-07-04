@@ -96,13 +96,13 @@
                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
               </a>
             </td>
-            <td>
+            <!-- <td>
               <a  ng-click="sortType = 'seedcheck'; sortReverse = !sortReverse">
                 Seed Check
                 <span ng-show="sortType == 'seedcheck' && !sortReverse" class="fa fa-caret-down"></span>
                 <span ng-show="sortType == 'seedcheck' && sortReverse" class="fa fa-caret-up"></span>
               </a>
-            </td>
+            </td> -->
             <td></td>
           </tr>
         </thead>
@@ -118,7 +118,7 @@
             <td>{{ seed.untreated ? "Yes" : "No"}}</td>
             <td>{{ seed.non_gmo ? "Yes" : "No"}}</td>
             <td>{{ seed.supplier_id }}</td>
-            <td>{{ seed.seed_check_sources }}</td>
+            <!-- <td>{{ seed.seed_check_sources }}</td> -->
             <td><button type="button" ng-click="pc.open(seed)" class="btn-info">Plant</button></td>
           </tr>
         </tbody>
