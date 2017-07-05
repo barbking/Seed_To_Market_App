@@ -200,12 +200,12 @@ body {
   margin-top: 15vh;
 }
 .receipt-img {
-  width: 70%;
+  width: 60%;
   height: auto;
 }
 .register {
-  color: #00778b;
-  text-shadow: 1.5px 1.5px 1.5px black;
+  color: #00778b !important;
+  /*text-shadow: 1.5px 1.5px 1.5px black;*/
   font-size: 21px;
 }
 #register {
