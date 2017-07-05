@@ -90,7 +90,7 @@ myApp.controller( 'addSupplierModalInstanceCtrl', [ '$uibModalInstance', '$uibMo
 
   vm.addNewSupplier = function(){
     // check for empty fields
-    if ( !vm.name || !vm.website || !vm.phone_number || !vm.address || !vm.city || !vm.state || !vm.zip || !vm.description ) {
+    if ( !vm.name || !vm.website || !vm.phone_number || !vm.address || !vm.city || !vm.state || !vm.zip ) {
       swal({
         title: "Empty Fields!",
         text: "Please enter all fields!",

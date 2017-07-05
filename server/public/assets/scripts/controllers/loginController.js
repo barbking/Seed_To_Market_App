@@ -38,6 +38,10 @@ myApp.controller('LoginController', ['$http', '$location', function($http, $loca
       } // end if else
     }; // end login
 
+    vm.register = function () {
+      $location.path( '/register' );
+    }; // end register
+
     vm.registerUser = function() {
       if(vm.user.email === '' || vm.user.user_name === '' || vm.user.phone_number === '' || vm.user.password === '' ){
         // vm.message = "No fields can be blank, try again.";

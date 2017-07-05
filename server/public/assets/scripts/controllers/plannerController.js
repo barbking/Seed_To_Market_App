@@ -106,7 +106,7 @@ myApp.controller( 'addPlantModalInstanceCtrl', [ '$uibModalInstance', '$uibModal
   console.log ('apmic controller inventory',vm.inventory);
 
   vm.addPlant = function(){
-    if ( !vm.quantity || !vm.date_planted || !vm.location || !vm.area_sqft || !vm.notes ) {
+    if ( !vm.quantity || !vm.date_planted || !vm.location || !vm.area_sqft ) {
       swal({
         title: "Empty Fields!",
         text: "Please enter all fields!",
@@ -172,7 +172,7 @@ myApp.controller( 'addHarvestModalInstanceCtrl', [ '$uibModalInstance', '$uibMod
   console.log( 'plant_id in modal:', plant.planted_id );
 
   vm.addHarvest = function(){
-    if ( !vm.yield || !vm.date_harvested || !vm.area_sqft || !vm.notes ) {
+    if ( !vm.yield || !vm.date_harvested || !vm.area_sqft ) {
       swal({
         title: "Empty Fields!",
         text: "Please enter all fields!",
@@ -237,7 +237,7 @@ myApp.controller( 'addSoldModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
   vm.date_harvested = harvest.date_harvested;
 
   vm.addSold = function(){
-    if ( !vm.weight_sold || !vm.date_sold || !vm.sold_to || !vm.notes ) {
+    if ( !vm.weight_sold || !vm.date_sold || !vm.sold_to ) {
       swal({
         title: "Empty Fields!",
         text: "Please enter all fields!",
