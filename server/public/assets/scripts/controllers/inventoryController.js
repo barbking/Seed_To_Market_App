@@ -102,7 +102,7 @@ myApp.controller( 'addSeedModalInstanceCtrl', [ '$uibModalInstance', '$uibModal'
   vm.suppliers = supplierService.suppliers.list;
 
   vm.addNewSeed = function(){
-    if ( !vm.crop || !vm.variety || !vm.purchasedate || !vm.lotnum || !vm.quantity || !vm.itemcode || !vm.selectedSupplier || !vm.seedcheck ) {
+    if ( !vm.crop || !vm.variety || !vm.purchasedate || !vm.lotnum || !vm.quantity || !vm.itemcode || !vm.selectedSupplier ) {
       console.log('inputs empty');
       swal({
         title: "Empty Fields!",
