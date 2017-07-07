@@ -2,20 +2,22 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var path = require('path');
-var pg = require('pg');
+// var pg = require('pg');
 var csvtojson = require('csvtojson');
 var json2csv = require('json2csv');
+//
+// // set up config for the pool
+// var config = {
+//   database: 'seed-to-market',
+//   host: 'localhost',
+//   port: 5432,
+//   max: 10
+// }; // end config
+//
+// // setup new pool
+// var pool = new pg.Pool(config);
 
-// set up config for the pool
-var config = {
-  database: 'seed-to-market',
-  host: 'localhost',
-  port: 5432,
-  max: 10
-}; // end config
-
-// setup new pool
-var pool = new pg.Pool(config);
+var pool = require('../modules/pool');
 
 // GET request seeds .csv file
 router.get('/exportSeeds/:fromDate?/:toDate?', function (req, res, next) {
