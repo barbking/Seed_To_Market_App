@@ -43,21 +43,6 @@ router.get( '/getAll', function ( req, res ) {
   } // end if authenticated
 }); // end GET getAll
 
-// POST route to add a supplier to the database
-/*
-POST objectStructure
-{
-  name: String,
-  website: String,
-  phone_number: String,
-  address: String,
-  city: String,
-  state: String,
-  zip: Number,
-  description: String,
-  user_id: Number ( req.user.user_id )
-}
-*/
 router.post( '/addSupplier', function ( req, res ) {
   console.log( 'in add to suppliers' );
   // verify authentication
