@@ -2,6 +2,7 @@ var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var encryptLib = require('../modules/encryption');
 // var connection = require('../modules/connection');
+/*
 var pg = require('pg');
 
 //@TODO update pool config for Heroku deployment
@@ -19,6 +20,8 @@ var config = {
 //it will keep idle connections open for a 30 seconds
 //and set a limit of maximum 10 idle clients
 var pool = new pg.Pool(config);
+*/
+var pool = require('../modules/pool');
 console.log('clients connected: ', connectCount);
 
 var acquireCount = 0;

@@ -205,7 +205,7 @@ body {
 }
 .register {
   color: #00778b !important;
-  /*text-shadow: 1.5px 1.5px 1.5px black;*/
+  text-shadow: 1.5px 1.5px 1.5px black;
   font-size: 21px;
 }
 #register {
