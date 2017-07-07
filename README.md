@@ -1,56 +1,69 @@
 # Seed to Market
 ## Prime Digital Academy Full Stack Engineering Program - Group Project
---------------------------------------------------------------------------------
+
 ## Description
+
 Seed to Market is a full-stack web application to help small farms track crops and documentation to meet organic certification requirements.  It provides the user with the ability track a crops throughout the agricultural cycle -- from seed to plant, plant to harvest and harvest to final sale.  This data can then be used to generate reports for organic certification as well as inform planting decisions for future crops.
---------------------------------------------------------------------------------
+
 ## Application Features
 ### Login
-https://github.com/barbking/Seed_To_Market_App/screenshots/Login.png
+![Login](screenshots/Login.png)
 ### Planner
-https://github.com/barbking/Seed_To_Market_App/screenshots/Planner.png
-https://github.com/barbking/Seed_To_Market_App/screenshots/PlannerSeedView.png
-https://github.com/barbking/Seed_To_Market_App/screenshots/PlannerHarvestModal.png
-https://github.com/barbking/Seed_To_Market_App/screenshots/PlannerSellModal.png
+![Planner](screenshots/Planner.png)
+![PlannerSeedView](screenshots/PlannerSeedView.png)
+![PlannerHarvestModal](screenshots/PlannerHarvestModal.png)
+![PlannerSellModal](screenshots/PlannerSellModal.png)
 ### Inventory
-https://github.com/barbking/Seed_To_Market_App/screenshots/Inventory.png
+![Inventory](screenshots/Inventory.png)
 ### Suppliers
-https://github.com/barbking/Seed_To_Market_App/screenshots/Suppliers.png
+![Suppliers](screenshots/Suppliers.png)
 ### Farm Profile
-https://github.com/barbking/Seed_To_Market_App/screenshots/FarmProfile.png
+![FarmProfile](screenshots/FarmProfile.png)
 ### Reports
-https://github.com/barbking/Seed_To_Market_App/screenshots/Reports.png
----------------------------------------------------------------------------------
+![Reports](screenshots/Reports.png)
+
 ##Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 You will need to have the following software installed:
-* Node.js
-* PostgreSql
-* Postico
+* [Node.js](https://nodejs.org/en/)
+
+* [PostgreSql](https://launchschool.com/blog/how-to-install-postgresql-on-a-mac)
+
+* [Postico](https://eggerapps.at/postico/)
 
 ### Installing
+
 Steps to get the development environment running.
 1. Clone the repository to your local machine.
-```git clone https://github.com/```
+```
+git clone https://github.com/
+```
 2. Install all dependencies.
-```npm install```
+```
+npm install
+```
 3. Ensure PostgreSql is running.
-```brew services start postgresql```
+```
+brew services start postgresql
+```
 4. Spin up the Server.
-```npm start```
+```
+npm start
+```
 5. Open in the browser.
-```localhost:5000```
+```
+localhost:5000
+```
 
---------------------------------------------------------------------------------
 ## Contributors
 * Ryan Beadie
 * Barb King
 * Ben Lauderbaugh
 * Amy Venturino
---------------------------------------------------------------------------------
+
 ## Technologies
 ### Primary
 * HTML5
