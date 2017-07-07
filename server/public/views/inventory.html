@@ -157,20 +157,12 @@
 
             </td>
             <td>
-
-
-
               <!-- NEED TO GET THE SUPPLIER NAME NOT ID -->
               <span ng-hide="seed.editMode">{{seed.name}}</span>
               <select class="col-xs-8" ng-show="seed.editMode" ng-model="ic.selectedSupplier" ng-options="a.supplier_id as a.name for a in ic.suppliers">
                 <!-- <option ng-repeat="supplier in ic.suppliers" value="{{supplier.supplier_id}}">{{ supplier.name }}</option> -->
                 <!-- <p>{{ a }}</p> -->
               </select>
-
-
-              <!-- <span ng-hide="seed.editMode">{{seed.supplier_id}}</span>
-              <input type="text" name="seed.supplier_id" style="width:60px" ng-show="seed.editMode" class="edit-field" ng-model="seed.supplier_id " placeholder="seed.supplier_id" required="" /> -->
-
             </td>
             <td>
               <span ng-hide="seed.editMode">{{seed.seed_check_sources}}</span>
