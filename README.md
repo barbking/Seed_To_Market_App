@@ -39,7 +39,7 @@ You will need to have the following software installed:
 Steps to get the development environment running.
 1. Clone the repository to your local machine.
 ```
-git clone https://github.com/
+git clone https://github.com/CornercopiaFarms/seed-to-market.git
 ```
 2. Install all dependencies.
 ```
